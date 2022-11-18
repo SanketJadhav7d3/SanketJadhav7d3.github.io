@@ -3,16 +3,14 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #000;
-    color: #fff;
-    font-family: 'Roboto Mono', monospace;
     display: flex;
     flex-direction: column;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 .container {
     height: 100vh;
     width: 100vw;
-    color: #fff;
 }
 
 .introduction {
@@ -21,15 +19,46 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: white;
-    background-color: transparent;
 }
 
 canvas {
     position: absolute;
-    height: 700px;
-    width: 700px;
+    height: 100vh;
+    width: 100vw;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.nav-bar {
+    position: absolute;
+    top: 0px;
+    height: 50px;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    padding-right: 25px;
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+}
+
+p { 
+    font-size: 50px;
+    color: white;
+}
+
+#name  {
+    letter-spacing: 8px;
+    font-style: bold;
+    color: rgb(23, 175, 13);
 }

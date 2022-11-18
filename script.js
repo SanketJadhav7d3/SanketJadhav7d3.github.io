@@ -3,11 +3,11 @@ var canvas = document.getElementById("myCanvas");
 
 var context = canvas.getContext("2d");
 
-var cellSize = 10;
+var cellSize = 5;
 
 // rows and columns
-const rows = 500;
-const cols = 500;
+const rows = 800;
+const cols = 800;
 
 //creating a two dimensional array for cells where the index position of 
 //the elements is its position on the grid and the value stored defines whether it is alive or not
