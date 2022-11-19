@@ -1,11 +1,16 @@
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0px;
     padding: 0px;
-    background-color: #000;
+    background-color: black;
+    color: white;
     display: flex;
     flex-direction: column;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Indie Flower', cursive;
 }
 
 .container {
@@ -46,19 +51,61 @@ ul {
 }
 
 a {
-    padding-right: 25px;
+    padding-right: 50px;
+    font-size: 25px;
     text-decoration: none;
     color: white;
-    font-size: 25px;
 }
 
 p { 
-    font-size: 50px;
-    color: white;
+    font-size: 40px;
 }
 
 #name  {
     letter-spacing: 8px;
     font-style: bold;
+    font-size: 60px;
     color: rgb(23, 175, 13);
+}
+
+.about-me {
+    
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.projects {
+    display: flex; 
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-grow: 9;
+    align-items: center;
+}
+
+.project {
+    height: 400px;
+    width: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-image {
+    flex-grow: 6;
+}
+
+.python-neat {
+    background-image: url("./images/python_neat.png")
+}
+
+.description {
+    flex-grow: 4;
+    text-align: center;
+}
+
+.skills {
+
 }
