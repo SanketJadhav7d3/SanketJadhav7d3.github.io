@@ -89,20 +89,14 @@ p {
     height: 400px;
     width: 400px;
     background-color: white;
-    display: flex;
-    flex-direction: column;
 }
 
-.project-image {
-    flex-grow: 6;
-}
-
-.python-neat {
-    background-image: url("./images/python_neat.png")
+.project > a, img {
+    height: 400px;
+    width: 400px;
 }
 
 .description {
-    flex-grow: 4;
     text-align: center;
 }
 
