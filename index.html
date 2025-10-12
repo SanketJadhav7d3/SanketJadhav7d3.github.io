@@ -34,6 +34,8 @@
         <a href="/projects/">Projects</a>
         <a href="/blogs/">Blog</a>
       </nav>
+      <div class="static-line"></div>
+      <div class="scroll-line"></div>
     </div>
 
     <!-- Main Content -->
@@ -48,11 +50,8 @@
       </div>
 
       <div class="center-bar">
-        <h1 class="montserrat-400 title-font">👋🏼 Hello there, I’m Sanket!</h1>
-<br>
-<div class="montserrat-400 body-text-font">
-👨🏻‍💻 I’m a Computer Science and Engineering undergrad interning at Clarion Analytics Pte Ltd.
-</div>
+        <h1 class="montserrat-400 title-font">👋🏼 Hello there, I’m <span class="gradient-text">Sanket</span>! I’m a Computer Science and Engineering undergrad</h1>
+<img src="/assets/images/city skyline.png" width="900px">
 <h2 class="montserrat-400 title-font">🔬 Research Interest</h2>
 <div class="montserrat-400 body-text-font">
 🤖 Interested in deep learning and computer vision.
@@ -127,6 +126,24 @@
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
+
+    const scrollLine = document.querySelector(".scroll-line");
+    const staticLine = document.querySelector(".static-line");
+
+    const updateScrollLine = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = scrollTop / scrollHeight;
+
+      const lineWidth = staticLine.offsetWidth; // get the exact width of static line
+      scrollLine.style.width = `${scrollPercent * lineWidth}px`;
+    };
+
+    window.addEventListener("scroll", updateScrollLine);
+    window.addEventListener("resize", updateScrollLine); // keeps it aligned on resize
+    updateScrollLine(); // initialize
+
+
   </script>
 </body>
 </html>
