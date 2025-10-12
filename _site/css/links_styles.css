@@ -1,7 +1,7 @@
 /* Social media sidebar */
 .left-bar {
-  position: sticky;
-  top: 6rem;   /* adjust based on nav height */
+  position: fixed;
+  top: 8rem;   /* adjust based on nav height */
   left: 3rem;
   align-self: flex-start;  /* makes sticky work inside flex container */
   height: fit-content;     /* shrink-wrap content */
@@ -13,7 +13,7 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.3rem;
 }
 
 .social-links li {
@@ -22,7 +22,7 @@
 
 .social-links a {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 2.9rem;
     /* Icon size */
     transition: color 0.3s ease, transform 0.3s ease;
     position: relative;

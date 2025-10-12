@@ -3,7 +3,7 @@ layout: base.njk
 title: Home
 ---
 
-<h1 class="montserrat-400">👋🏼 Hello there, I’m Sanket!</h1>
+<h1 class="montserrat-400 title-font">👋🏼 Hello there, I’m Sanket!</h1>
 
 <br>
 
@@ -11,7 +11,7 @@ title: Home
 👨🏻‍💻 I’m a Computer Science and Engineering undergrad interning at Clarion Analytics Pte Ltd.
 </div>
 
-<h2 class="montserrat-400">🔬 Research Interest</h2>
+<h2 class="montserrat-400 title-font">🔬 Research Interest</h2>
 
 
 <div class="montserrat-400 body-text-font">
@@ -19,7 +19,7 @@ title: Home
 </div>
 
 
-<h2 class="montserrat-400">🛠️ Professional Experience</h2>
+<h2 class="montserrat-400 title-font">🛠️ Professional Experience</h2>
 
 <div class="montserrat-400 body-text-font">
 💼 I’m currently interning at Clarion Analytics, where I work on extracting structured data from different types of document images, including pharmacy bills, hospital invoices, and identity documents. My role focuses on turning unstructured information into clean, usable data that can be processed more easily. This internship is giving me hands-on experience with data extraction workflows and helping me sharpen my problem-solving and technical skills while working on real-world projects.

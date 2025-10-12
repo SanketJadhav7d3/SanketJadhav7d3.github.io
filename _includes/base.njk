@@ -25,56 +25,54 @@
 </head>
 
 <body>
-  <div class="stars-container">
-    <div class="page-container">
+  <div class="page-container">
 
-      <!-- Navigation -->
-      <div class="navigation-bar">
-        <nav>
-          <a href="/">Home</a>
-          <a href="/projects/">Projects</a>
-          <a href="/blogs/">Blog</a>
-        </nav>
+    <!-- Navigation -->
+    <div class="navigation-bar">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/blogs/">Blog</a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      
+      <div class="left-bar">
+        <ul class="social-links">
+          <li><a href="https://twitter.com/yourprofile" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+          <li><a href="https://github.com/yourprofile" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+        </ul>
       </div>
 
-      <!-- Main Content -->
-      <div class="main-content">
-        <div class="left-bar">
-          <ul class="social-links">
-            <li><a href="https://twitter.com/yourprofile" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-            <li><a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-            <li><a href="https://github.com/yourprofile" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-          </ul>
-        </div>
-
-        <div class="center-bar">
-          {{ content | safe }}
-        </div>
-
-        <div class="right-bar"></div>
+      <div class="center-bar">
+        {{ content | safe }}
       </div>
-
-      <!-- START: Minimal Footer -->
-      <footer class="site-footer" role="contentinfo" aria-label="Site footer">
-        <div class="footer-inner">
-          <div class="footer-brand">
-            <a href="/" class="logo montserrat-400">Sanket</a>
-            <p class="tagline body-text-font">
-              Small things, carefully made — <span class="current-year"></span>
-            </p>
-          </div>
-
-          <div class="footer-social" aria-label="Social links">
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <a id="back-to-top" href="#" class="back-to-top body-text-font" aria-label="Back to top">Back to top ↑</a>
-        </div>
-      </footer>
-      <!-- END: Minimal Footer -->
 
     </div>
+
+    <!-- START: Minimal Footer -->
+    <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/" class="logo montserrat-400">Sanket</a>
+          <p class="tagline body-text-font">
+            Small things, carefully made — <span class="current-year"></span>
+          </p>
+        </div>
+
+        <div class="footer-social" aria-label="Social links">
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <a id="back-to-top" href="#" class="back-to-top body-text-font" aria-label="Back to top">Back to top ↑</a>
+      </div>
+    </footer>
+    <!-- END: Minimal Footer -->
+
   </div>
 
   <!-- JS: auto year + smooth scroll -->
