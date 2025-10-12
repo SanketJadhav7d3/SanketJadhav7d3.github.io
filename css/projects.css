@@ -1,0 +1,267 @@
+.projects-intro h1 {
+}
+
+.projects-intro p {
+    color: #dcd6d8;
+    margin-bottom: 1.4rem;
+}
+
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.project-card {
+    position: relative; /* needed for the pseudo-element */
+    background: rgba(255, 255, 255, 0.03); /* translucent base */
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+
+    /* Frosted glass effect */
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Noise overlay */
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: url("https://grainy-gradients.vercel.app/noise.svg"); /* subtle noise texture */
+    opacity: 0.06; /* very subtle */
+    mix-blend-mode: overlay;
+    border-radius: inherit;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(255, 107, 107, 0.08);
+}
+
+.project-link {
+    color: inherit;
+    display: block;
+    text-decoration: none;
+}
+
+.project-cover {
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+}
+
+.project-content {
+    padding: 1rem;
+}
+
+.project-title {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+}
+
+.project-excerpt {
+    margin: 0 0 0.6rem 0;
+    color: #d3ced0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.project-tech {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.project-tech li {
+    font-size: 0.8rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(255, 107, 107, 0.08);
+    color: #ff6b6b;
+}
+
+/* ---------------------------
+   Project detail layout styles
+   --------------------------- */
+.project-page {
+    padding: 2rem 0;
+}
+
+.project-header {
+    margin-bottom: 1rem;
+}
+
+.project-cover-image {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 0.75rem;
+}
+
+.project-body-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;  
+    margin-top: 1.25rem;
+}
+
+.project-body {
+    line-height: 1.8;
+}
+
+/* ---------------------------
+   Tech sidebar redesign
+   --------------------------- */
+:root {
+    --accent-1: #ff6b6b;
+    --accent-2: #ffb86b;
+    --panel-bg: rgba(255,255,255,0.02);
+    --panel-border: rgba(255,255,255,0.03);
+    --muted: #cfc9cb;
+}
+
+.project-sidebar {
+    position: relative;
+    padding: 1.5rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(0,0,0,0.02));
+    border-radius: 14px;
+    border: 1px solid var(--panel-border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    overflow-y: auto; /* scroll inside if content exceeds height */
+}
+
+.project-sidebar::before {
+    content: "";
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    top: -6px;
+    height: 6px;
+    background: linear-gradient(90deg, transparent, rgba(255,107,107,0.16), transparent);
+    filter: blur(6px);
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0.95;
+}
+
+.project-sidebar::after {
+    content: "";
+    position: absolute;
+    left: 0.7rem;
+    top: 1.1rem;
+    bottom: 1.1rem;
+    width: 1.5px;
+    background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+    border-radius: 999px;
+    filter: blur(6px);
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.project-sidebar h3 {
+    margin: 0 0 0.9rem 0;
+    padding-left: 0.6rem;
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.tech-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.42rem 0.72rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.015), rgba(0,0,0,0.01));
+    border: 1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s, border-color .18s;
+    cursor: default;
+}
+
+.tech-list li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(45deg, var(--accent-1), var(--accent-2));
+    box-shadow: 0 3px 10px rgba(255,107,107,0.12);
+    flex: 0 0 auto;
+    transform: translateY(-0.5px);
+}
+
+.tech-list li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.72), 0 6px 18px rgba(255,107,107,0.04);
+    border-color: rgba(255,107,107,0.22);
+}
+
+.tech-list li:focus, .tech-list a:focus {
+    outline: 3px solid rgba(255,107,107,0.18);
+    outline-offset: 3px;
+    border-radius: 12px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    background: #ff6b6b;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+    .project-body-grid {
+        grid-template-columns: 1fr;
+    }
+    .project-sidebar {
+        margin-top: 1rem;
+    }
+    .tech-list {
+        justify-content: center;
+    }
+}
+
+/* Optional vertical variant */
+.project-sidebar.vertical .tech-list {
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.project-sidebar.vertical .tech-list li {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: 14px;
+}
