@@ -43,7 +43,7 @@
 body {
   height: 100vh;
   margin: 0;
-  background-color: #121212; /* Base dark color */
+  background-color: #111111; /* Base dark color */
   background-image:
     radial-gradient(circle closest-side at 15% 20%, rgba(18,18,18,0.15), transparent 280%),
     radial-gradient(circle closest-side at 75% 30%, rgba(32,32,32,0.12), transparent 300%),
@@ -84,21 +84,31 @@ body {
   width: 10%;
 }
 
-/* Navigation bar styling */
 .navigation-bar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #121212;
-  box-shadow: 0 0.125rem 0.625rem #ff6b6b; /* 2px 10px → 0.125rem 0.625rem */
   padding: 1.6rem 4rem;
+
+  /* Blurry transparent background */
+  background-color: #11111166; /* semi-transparent black */
+  backdrop-filter: blur(10px);          /* adds blur effect behind navbar */
+  -webkit-backdrop-filter: blur(10px);  /* Safari support */
+
+  /* Optional: smooth transition when scrolling */
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 
+/* Make nav stretch full width of bar */
 .navigation-bar nav {
   display: flex;
+  align-items: center;
   gap: 2rem;
+  position: relative;
+  width: 100%; /* ensure full width container */
 }
 
+/* Links */
 .navigation-bar nav a {
   position: relative;
   font-family: "Raleway", sans-serif;
@@ -115,9 +125,9 @@ body {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.125rem; /* -2px → -0.125rem */
+  bottom: -0.125rem;
   width: 0%;
-  height: 0.125rem; /* 2px → 0.125rem */
+  height: 0.125rem;
   background-color: #ff6b6b;
   transition: width 0.3s ease;
 }
@@ -128,4 +138,38 @@ body {
 
 .navigation-bar nav a:hover::after {
   width: 100%;
+}
+
+
+/* Existing horizontal line (static) */
+.static-line {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 370px;   /* start of the line */
+  right: 80px;
+  height: 1px;
+  background-color: #fff;
+  opacity: 0.4;  /* slightly faded so scroll line is visible */
+}
+
+/* Scroll progress line (on top) */
+.scroll-line {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 370px;    /* same as nav::after */
+  height: 1px;    /* same thickness */
+  background-color: #ff6b6b;
+  width: 0%;      /* will increase as you scroll */
+  opacity: 1;
+  z-index: 10;    /* above the static line */
+}
+
+.gradient-text {
+  background: radial-gradient(circle at 100% 0%, #a0d9f2, #8dded2, #9ddda7, #c0d57f, #e3c978, #fcbb9e, #ffb0d2, #f7b0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
 }

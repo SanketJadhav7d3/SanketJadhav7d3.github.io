@@ -34,6 +34,8 @@
         <a href="/projects/">Projects</a>
         <a href="/blogs/">Blog</a>
       </nav>
+      <div class="static-line"></div>
+      <div class="scroll-line"></div>
     </div>
 
     <!-- Main Content -->
@@ -124,6 +126,24 @@
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
+
+    const scrollLine = document.querySelector(".scroll-line");
+    const staticLine = document.querySelector(".static-line");
+
+    const updateScrollLine = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = scrollTop / scrollHeight;
+
+      const lineWidth = staticLine.offsetWidth; // get the exact width of static line
+      scrollLine.style.width = `${scrollPercent * lineWidth}px`;
+    };
+
+    window.addEventListener("scroll", updateScrollLine);
+    window.addEventListener("resize", updateScrollLine); // keeps it aligned on resize
+    updateScrollLine(); // initialize
+
+
   </script>
 </body>
 </html>

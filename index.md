@@ -3,20 +3,16 @@ layout: base.njk
 title: Home
 ---
 
-<h1 class="montserrat-400 title-font">👋🏼 Hello there, I’m Sanket!</h1>
+<h1 class="montserrat-400 title-font">👋🏼 Hello there, I’m <span class="gradient-text">Sanket</span>! I’m a Computer Science and Engineering undergrad</h1>
 
-<br>
-
-<div class="montserrat-400 body-text-font">
-👨🏻‍💻 I’m a Computer Science and Engineering undergrad interning at Clarion Analytics Pte Ltd.
-</div>
+<img src="/assets/images/city skyline.png" width="900px">
 
 <h2 class="montserrat-400 title-font">🔬 Research Interest</h2>
-
 
 <div class="montserrat-400 body-text-font">
 🤖 Interested in deep learning and computer vision.
 </div>
+
 
 
 <h2 class="montserrat-400 title-font">🛠️ Professional Experience</h2>
