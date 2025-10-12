@@ -14,7 +14,6 @@ permalink: /projects/ai-builder-agent/
 
 # 🏰 Minetest Builder Agent
 
-
 AI-powered voxel architect that uses LLMs to plan and build structures (houses, castles, gardens, and more) inside Minetest
 
 # 🚀 What is this?
