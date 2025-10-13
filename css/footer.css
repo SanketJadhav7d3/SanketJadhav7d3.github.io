@@ -20,7 +20,7 @@
 
 .footer-brand .logo {
   font-family: "Major Mono Display", monospace;
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   color: #ff6b6b;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -32,7 +32,7 @@
 
 .footer-brand .tagline {
   margin-top: 6px;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   opacity: 0.85;
   color: #ddd;
 }
@@ -59,7 +59,7 @@
 .back-to-top {
   text-decoration: none;
   color: #888;
-  font-size: 0.85rem;
+  font-size: 1.0rem;
   transition: color 0.3s ease;
 }
 
