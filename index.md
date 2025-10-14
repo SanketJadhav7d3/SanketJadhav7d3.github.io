@@ -3,9 +3,7 @@ layout: base.njk
 title: Home
 ---
 
-<h1 class="montserrat-400 title-font">👋🏼 Hello there, I’m <span class="gradient-text">Sanket</span>! I’m a Computer Science and Engineering undergrad</h1>
-
-<img src="/assets/images/city skyline.png" width="900px">
+<h1 class="montserrat-400 title-font">👋🏼 Hello there, I’m <span class="gradient-text sixtyfour-400">Sanket</span>! I’m a Computer Science and Engineering undergrad</h1>
 
 <h2 class="montserrat-400 title-font">🔬 Research Interest</h2>
 
@@ -26,7 +24,7 @@ title: Home
     <div class="timeline-marker"></div>
     <div class="timeline-content">
       <span class="timeline-date">Jun 2024 – Present</span>
-      <h3>Intern — Clarion Analytics</h3>
+      <h3 class="montserrat-400 body-text-font">Intern — Clarion Analytics</h3>
       <p class="montserrat-400 body-text-font">
         Working on extracting structured data from pharmacy bills, hospital
         invoices, and identity documents. Converting unstructured info into
@@ -39,7 +37,7 @@ title: Home
     <div class="timeline-marker"></div>
     <div class="timeline-content">
       <span class="timeline-date">Jan 2023 – Jun 2023</span>
-      <h3>Trainee — Intel Unnati</h3>
+      <h3 class="montserrat-400 body-text-font">Trainee — Intel Unnati</h3>
       <p class="montserrat-400 body-text-font">
         Developed an AI-powered contract validation system using large language
         models, with a web upload interface for real-time feedback.

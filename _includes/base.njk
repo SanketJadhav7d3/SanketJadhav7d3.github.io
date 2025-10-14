@@ -12,6 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -26,9 +30,15 @@
 
 <body>
   <div class="page-container">
+    
+    {% if homePageImage %}
+      <div class="pixel-art">
+        <img src="{{ homePageImage }}" alt="{{ title }} hero image" class="hero-image">
+      </div>
+    {% endif %}
 
     <!-- Navigation -->
-    <div class="navigation-bar">
+    <div class="navigation-bar no-select">
       <nav>
         <a href="/">Home</a>
         <a href="/projects/">Projects</a>
@@ -49,11 +59,12 @@
         </ul>
       </div>
 
-      <div class="center-bar">
+      <div class="{{ 'home-center-bar' if isHomePage else 'center-bar'}}">
         {{ content | safe }}
       </div>
 
     </div>
+      
 
     <!-- START: Minimal Footer -->
     <footer class="site-footer" role="contentinfo" aria-label="Site footer">
