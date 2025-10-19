@@ -30,6 +30,6 @@
 
 /* Hover effect: color + slight lift */
 .social-links a:hover {
-    color: #ff6b6b;
+    color: #F76C6C;
     transform: translateY(-3px);
 }
