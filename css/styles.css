@@ -1,4 +1,12 @@
+/* === Root Theme Variables === */
+:root {
+  --highlight-color: #F76C6C; /* Main sky/highlight color */
+  --background-color: #111111; /* Base dark color */
+  --text-color: #FCF7F8;
+  --nav-blur-bg: #11111166;
+}
 
+/* === Global Behavior === */
 html {
   scroll-behavior: smooth;
 }
@@ -13,6 +21,7 @@ html, body {
   overscroll-behavior: none;
 }
 
+/* === Typography === */
 .raleway-400 {
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
@@ -21,12 +30,12 @@ html, body {
 }
 
 .title-font {
-  font-size: 2.5rem; /* 13px → 0.8125rem */
+  font-size: 2.5rem;
   line-height: 1.7;
 }
 
 .body-text-font {
-  font-size: 1.3rem; /* 13px → 0.8125rem */
+  font-size: 1.3rem;
   line-height: 1.7;
 }
 
@@ -49,16 +58,16 @@ html, body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: 0.875rem; /* 14px → 0.875rem */
+  font-size: 0.875rem;
   font-variation-settings: "wdth" 100;
-  letter-spacing: 0.044rem; /* 0.7px → 0.044rem */
+  letter-spacing: 0.044rem;
 }
 
-/* Basic body styling */
+/* === Base Layout === */
 body {
   height: 100vh;
   margin: 0;
-  background-color: #111111; /* Base dark color */
+  background-color: var(--background-color);
   background-image:
     radial-gradient(circle closest-side at 15% 20%, rgba(18,18,18,0.15), transparent 280%),
     radial-gradient(circle closest-side at 75% 30%, rgba(32,32,32,0.12), transparent 300%),
@@ -69,12 +78,11 @@ body {
   background-blend-mode: screen;
   background-attachment: fixed;
   background-repeat: no-repeat;
-
   position: relative;
-  color: #FCF7F8;
+  color: var(--text-color);
   font-family: "Raleway", sans-serif;
   font-weight: 350;
-  font-size: 1rem; /* base font size */
+  font-size: 1rem;
 }
 
 .page-container {
@@ -82,9 +90,7 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: column;
-
 }
-
 
 .main-content {
   display: flex;
@@ -93,17 +99,18 @@ body {
 .center-bar {
   min-height: 100%;
   width: 100%;
-  padding-left: 31.75rem; /* 300px → 18.75rem */
-  padding-right: 27.75rem; /* 300px → 18.75rem */
+  padding-left: 31.75rem;
+  padding-right: 27.75rem;
 }
 
 .home-center-bar {
   min-height: 100%;
   width: 100%;
-  padding: 0 30.75rem; /* 300px → 18.75rem */
+  padding: 0 30.75rem;
   padding-right: 35.75rem;
 }
 
+/* === Right Bar === */
 .right-bar {
   height: 100%;
   width: 30%;
@@ -112,35 +119,30 @@ body {
   z-index: -1;
 }
 
-.right-bar >  img { 
+.right-bar > img {
   height: 300px;
 }
 
+/* === Navigation Bar === */
 .navigation-bar {
   position: sticky;
   top: 0;
   z-index: 1000;
   padding: 1.6rem 4rem;
-
-  /* Blurry transparent background */
-  background-color: #11111166; /* semi-transparent black */
-  backdrop-filter: blur(10px);          /* adds blur effect behind navbar */
-  -webkit-backdrop-filter: blur(10px);  /* Safari support */
-
-  /* Optional: smooth transition when scrolling */
+  background-color: var(--nav-blur-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-/* Make nav stretch full width of bar */
 .navigation-bar nav {
   display: flex;
   align-items: center;
   gap: 2rem;
   position: relative;
-  width: 100%; /* ensure full width container */
+  width: 100%;
 }
 
-/* Links */
 .navigation-bar nav a {
   position: relative;
   font-family: "Raleway", sans-serif;
@@ -152,7 +154,6 @@ body {
   transition: color 0.3s ease;
 }
 
-/* Animated underline */
 .navigation-bar nav a::after {
   content: "";
   position: absolute;
@@ -160,83 +161,73 @@ body {
   bottom: -0.125rem;
   width: 0%;
   height: 0.125rem;
-  background-color: #ff6b6b;
+  background-color: var(--highlight-color);
   transition: width 0.3s ease;
 }
 
 .navigation-bar nav a:hover {
-  color: #ff6b6b;
+  color: var(--highlight-color);
 }
 
 .navigation-bar nav a:hover::after {
   width: 100%;
 }
 
-
-/* Existing horizontal line (static) */
+/* === Scroll Line === */
 .static-line {
   content: "";
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 370px;   /* start of the line */
+  left: 370px;
   right: 40px;
   height: 1px;
   background-color: #fff;
-  opacity: 0.4;  /* slightly faded so scroll line is visible */
+  opacity: 0.4;
 }
 
-/* Scroll progress line (on top) */
 .scroll-line {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 370px;    /* same as nav::after */
-  height: 1px;    /* same thickness */
-  background-color: #ff6b6b;
-  width: 0%;      /* will increase as you scroll */
+  left: 370px;
+  height: 1px;
+  background-color: var(--highlight-color);
+  width: 0%;
   opacity: 1;
-  z-index: 10;    /* above the static line */
+  z-index: 10;
 }
 
+/* === Gradient Text === */
 .gradient-text {
-  background: radial-gradient(circle at 100% 0%, #a0d9f2, #8dded2, #9ddda7, #c0d57f, #e3c978, #fcbb9e, #ffb0d2, #f7b0ff);
+  background: radial-gradient(circle at 100% 0%, var(--highlight-color), #E08EAD, #A77FA0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
 }
 
-.sixtyfour-400 {
-  font-family: "Sixtyfour", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "BLED" 0,
-    "SCAN" 0;
-}
-
+/* === Pixel Art Section === */
 .pixel-art {
-  position: fixed;          /* stays fixed on the right */
+  position: fixed;
   top: 8rem;
   right: 0;
-  height: 70vh;            /* full viewport height */
-  width: auto;              /* width adjusts based on image aspect ratio */
+  height: 70vh;
+  width: auto;
   display: flex;
-  align-items: center;      /* vertically center the image if shorter than 100vh */
+  align-items: center;
   justify-content: flex-end;
-  overflow: hidden;         /* hides any overflow beyond viewport */
-  z-index: -1;              /* keep it behind your content */
+  overflow: hidden;
+  z-index: -1;
 }
 
 .pixel-art .hero-image {
-  height: 70vh;            /* full height */
-  width: auto;              /* keep aspect ratio */
-  object-fit: contain;      /* ensures no stretching */
+  height: 70vh;
+  width: auto;
+  object-fit: contain;
   display: block;
-  user-select: none;        /* prevents accidental selection */
-  pointer-events: none;     /* allows clicking through to links */
-  opacity: 0.9;             /* subtle opacity (optional aesthetic) */
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.9;
 }
 
 .pixel-art::after {
@@ -248,4 +239,15 @@ body {
   width: 100%;
   background: linear-gradient(to left, rgba(0,0,0,0.4), transparent);
   z-index: 1;
+}
+
+/* === Special Font === */
+.sixtyfour-400 {
+  font-family: "Sixtyfour", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 0,
+    "SCAN" 0;
 }
