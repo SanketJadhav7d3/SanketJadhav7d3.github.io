@@ -3,20 +3,12 @@ layout: base.njk
 title: Home
 ---
 
-<h1 class="montserrat-400 title-font">👋🏼 Hello there, I’m <span class="gradient-text sixtyfour-400">Sanket</span>! I’m a Computer Science and Engineering undergrad</h1>
+<h1 class="quicksand-500 title-font"><span class="dim-text">Hello there, I’m </span><br><span class="image-text meddon-regular">Sanket</span>
 
-<h2 class="montserrat-400 title-font">🔬 Research Interest</h2>
-
-<div class="montserrat-400 body-text-font">
-🤖 Interested in deep learning and computer vision.
-</div>
-
-
-
-<h2 class="montserrat-400 title-font">🛠️ Professional Experience</h2>
+<h2 class="montserrat-400 secondary-title-font">️Professional Experience</h2>
 
 <div class="montserrat-400 body-text-font">
-💼 I’m currently interning at Clarion Analytics, where I work on extracting structured data from different types of document images, including pharmacy bills, hospital invoices, and identity documents. My role focuses on turning unstructured information into clean, usable data that can be processed more easily. This internship is giving me hands-on experience with data extraction workflows and helping me sharpen my problem-solving and technical skills while working on real-world projects.
+I’m currently interning at Clarion Analytics, where I work on extracting structured data from different types of document images, including pharmacy bills, hospital invoices, and identity documents. My role focuses on turning unstructured information into clean, usable data that can be processed more easily. This internship is giving me hands-on experience with data extraction workflows and helping me sharpen my problem-solving and technical skills while working on real-world projects.
 </div>
 
 <section class="timeline">
@@ -44,6 +36,5 @@ title: Home
       </p>
     </div>
   </div>
-
 </section>
 

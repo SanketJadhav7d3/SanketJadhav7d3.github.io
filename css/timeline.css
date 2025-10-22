@@ -1,14 +1,18 @@
-
-/* Timeline CSS - add to your styles.css */
+/* Timeline CSS - adapted for gradient colors */
 :root {
-  --accent: #ff6b6b;
-  --bg: #121212;
-  --panel: #1e1e1e;
+  /* Using key colors from the gradient image */
+  --accent-light-pink: #E5A8C8; /* A prominent soft pink */
+  --accent-lavender-blue: #A8A3E0; /* A cooler, purplish-blue */
+  --accent-peach: #FFC98C; /* A warm peach tone */
+  --accent-deep-blue: #7983CC; /* For deeper contrast if needed */
+
+  --bg: #121212; /* Keeping background dark for contrast with pastels */
+  --panel: #1e1e1e; /* Keeping panel dark */
 }
 
 .timeline {
   position: relative;
-  --date-col: 70px;   /* narrow date column */
+  --date-col: 70px;
   width: 100%;
   margin: 3rem 0;
   padding: 1rem 0;
@@ -18,17 +22,20 @@
 .timeline::before {
   content: "";
   position: absolute;
-  left: 3rem;   /* start at container edge */
+  left: 3rem;
   top: 0;
   bottom: 0;
   width: 2px;
+  /* Applying the gradient from the image */
   background: linear-gradient(to bottom,
-      rgba(255,107,107,0.95) 0%,
-      rgba(255,107,107,0.15) 45%,
-      rgba(255,107,107,0.15) 55%,
-      rgba(255,107,107,0.95) 100%);
+    #E5A8C8 0%, /* Soft Pink */
+    #A8A3E0 30%, /* Lavender Blue */
+    #FFC98C 60%, /* Pale Peach */
+    #E5A8C8 100% /* Soft Pink again to blend */
+  );
   z-index: 1;
-  box-shadow: 0 0 18px rgba(255,107,107,0.06);
+  /* Adjusting shadow to match new accent colors */
+  box-shadow: 0 0 18px rgba(229, 168, 200, 0.2); /* Soft pink shadow */
   border-radius: 1px;
 }
 
@@ -46,7 +53,7 @@
   text-align: right;
   padding-right: 0.75rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-peach); /* Using peach for dates */
   font-size: 0.95rem;
   line-height: 1.2;
 }
@@ -59,9 +66,10 @@
   height: 18px;
   border-radius: 50%;
   background: var(--bg);
-  border: 3px solid var(--accent);
-  box-shadow: 0 0 18px rgba(255,107,107,0.14);
-  z-index: 2; /* above the vertical line */
+  border: 3px solid var(--accent-lavender-blue); /* Using lavender blue for markers */
+  /* Adjusting shadow to match new accent colors */
+  box-shadow: 0 0 18px rgba(168, 163, 224, 0.3); /* Lavender blue shadow */
+  z-index: 2;
   margin-top: 0.35rem;
 }
 
@@ -82,7 +90,7 @@
 }
 
 .timeline-company {
-  color: var(--accent);
+  color: var(--accent-light-pink); /* Using soft pink for company names */
   font-weight: 600;
   font-size: 0.95rem;
   margin-left: 0.4rem;
@@ -91,7 +99,7 @@
 /* description text */
 .timeline-description {
   margin-top: 0.5rem;
-  line-height: 1.6; /* readable vertical spacing */
+  line-height: 1.6;
   font-size: 0.95rem;
 }
 
@@ -104,7 +112,7 @@
   }
 
   .timeline::before {
-    left: 1.05rem; /* keep a slim line on the left */
+    left: 1.05rem;
   }
 
   /* change grid so marker is in col 1, content occupies col 2 */
