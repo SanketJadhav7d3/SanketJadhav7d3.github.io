@@ -1,9 +1,51 @@
 /* === Root Theme Variables === */
 :root {
-  --highlight-color: #F76C6C; /* Main sky/highlight color */
-  --background-color: #111111; /* Base dark color */
-  --text-color: #FCF7F8;
+  --background-color: #111111;
+  /* Base dark color */
+  --bright-text-color: #FFFFFF;
+  --dim-text-color: #b0b0b0;
   --nav-blur-bg: #11111166;
+}
+
+.meddon-regular {
+  font-family: "Meddon", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.molle-regular-italic {
+  font-family: "Molle", cursive;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.quicksand-500 {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+.inter-400 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  word-spacing: 1px;
+}
+
+
+.bright-text {
+  color: #D3D3D3;
+  /* soft white */
+  font-weight: 400;
+}
+
+.dim-text {
+  color: #B0B0B0;
+  /* muted gray */
+  font-weight: 400;
 }
 
 /* === Global Behavior === */
@@ -13,11 +55,14 @@ html {
 
 .no-select {
   user-select: none;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none;     /* Old Edge */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* Old Edge */
 }
 
-html, body {
+html,
+body {
   overscroll-behavior: none;
 }
 
@@ -31,7 +76,11 @@ html, body {
 
 .title-font {
   font-size: 2.5rem;
-  line-height: 1.7;
+  font-weight: 500;
+}
+
+.secondary-title-font {
+  font-size: 2.5rem;
 }
 
 .body-text-font {
@@ -60,7 +109,6 @@ html, body {
   font-style: normal;
   font-size: 0.875rem;
   font-variation-settings: "wdth" 100;
-  letter-spacing: 0.044rem;
 }
 
 /* === Base Layout === */
@@ -69,17 +117,17 @@ body {
   margin: 0;
   background-color: var(--background-color);
   background-image:
-    radial-gradient(circle closest-side at 15% 20%, rgba(18,18,18,0.15), transparent 280%),
-    radial-gradient(circle closest-side at 75% 30%, rgba(32,32,32,0.12), transparent 300%),
-    radial-gradient(circle closest-side at 50% 80%, rgba(48,48,48,0.1), transparent 300%),
-    radial-gradient(circle closest-side at 30% 70%, rgba(28,28,28,0.08), transparent 250%),
-    radial-gradient(circle closest-side at 60% 60%, rgba(38,38,38,0.07), transparent 280%),
-    radial-gradient(circle closest-side at 85% 15%, rgba(25,25,25,0.1), transparent 285%);
+    radial-gradient(circle closest-side at 15% 20%, rgba(18, 18, 18, 0.15), transparent 280%),
+    radial-gradient(circle closest-side at 75% 30%, rgba(32, 32, 32, 0.12), transparent 300%),
+    radial-gradient(circle closest-side at 50% 80%, rgba(48, 48, 48, 0.1), transparent 300%),
+    radial-gradient(circle closest-side at 30% 70%, rgba(28, 28, 28, 0.08), transparent 250%),
+    radial-gradient(circle closest-side at 60% 60%, rgba(38, 38, 38, 0.07), transparent 280%),
+    radial-gradient(circle closest-side at 85% 15%, rgba(25, 25, 25, 0.1), transparent 285%);
   background-blend-mode: screen;
   background-attachment: fixed;
   background-repeat: no-repeat;
   position: relative;
-  color: var(--text-color);
+  color: var(--bright-text-color);
   font-family: "Raleway", sans-serif;
   font-weight: 350;
   font-size: 1rem;
@@ -119,84 +167,10 @@ body {
   z-index: -1;
 }
 
-.right-bar > img {
+.right-bar>img {
   height: 300px;
 }
 
-/* === Navigation Bar === */
-.navigation-bar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  padding: 1.6rem 4rem;
-  background-color: var(--nav-blur-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-.navigation-bar nav {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  position: relative;
-  width: 100%;
-}
-
-.navigation-bar nav a {
-  position: relative;
-  font-family: "Raleway", sans-serif;
-  font-weight: 500;
-  font-size: 1.5rem;
-  text-decoration: none;
-  color: #fff;
-  padding: 0.25rem 0;
-  transition: color 0.3s ease;
-}
-
-.navigation-bar nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.125rem;
-  width: 0%;
-  height: 0.125rem;
-  background-color: var(--highlight-color);
-  transition: width 0.3s ease;
-}
-
-.navigation-bar nav a:hover {
-  color: var(--highlight-color);
-}
-
-.navigation-bar nav a:hover::after {
-  width: 100%;
-}
-
-/* === Scroll Line === */
-.static-line {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 370px;
-  right: 40px;
-  height: 1px;
-  background-color: #fff;
-  opacity: 0.4;
-}
-
-.scroll-line {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 370px;
-  height: 1px;
-  background-color: var(--highlight-color);
-  width: 0%;
-  opacity: 1;
-  z-index: 10;
-}
 
 /* === Gradient Text === */
 .gradient-text {
@@ -237,7 +211,7 @@ body {
   right: 0;
   height: 100vh;
   width: 100%;
-  background: linear-gradient(to left, rgba(0,0,0,0.4), transparent);
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.4), transparent);
   z-index: 1;
 }
 

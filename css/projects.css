@@ -2,7 +2,7 @@
 /* === Root Theme Variables === */
 :root {
   /* Accent Colors */
-  --highlight-color: #F76C6C;        /* main highlight (sky tone) */
+  --highlight-color: #EAEAEA;        /* main highlight (sky tone) */
   --highlight-color-rgb: 247, 108, 108; /* for rgba usage */
   --accent-2: #FFB86B;              /* secondary warm tone */
   

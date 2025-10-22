@@ -1,0 +1,137 @@
+
+:root {
+    /* tweak these for color & balance */
+    --c1: #ff93c8;
+    /* pink/magenta */
+    --c2: #7fdcff;
+    /* light blue/cyan */
+    --c3: #baf08a;
+    /* green */
+    --c4: #ffe08a;
+    /* yellow/gold */
+    --c5: #ffc7a1;
+    /* peach/orange */
+    --bg: #0f0f0f;
+}
+
+.image-text {
+    font-size: 10.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+
+    /* Use your image here */
+    background: url('https://t3.ftcdn.net/jpg/04/58/66/20/360_F_458662061_FkN1rBzzPwXmQAb709ExKDEWD9Ws1TpS.jpg') repeat;
+
+    /* Keep image natural size or scale proportionally */
+    background-size: 150px 150px; /* adjust to a size that tiles well */
+    background-position: top left; /* aligns pattern neatly */
+    background-repeat: repeat;
+
+    overflow: visible;
+    padding: 0.0em 0.1em;
+
+    /* Makes the image visible only through the text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.image-text {
+    font-size: 10.5rem;
+    position: relative;
+
+    /* Use your image here */
+    background: url('https://t3.ftcdn.net/jpg/04/58/66/20/360_F_458662061_FkN1rBzzPwXmQAb709ExKDEWD9Ws1TpS.jpg') center/cover;
+
+    /* ensures full coverage of text area */
+    /* centers the image pattern */
+    overflow: visible;
+
+    /* This makes the image visible only through the text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-size: contain;
+}
+
+
+.gradient-headline {
+    font-size: 12vw;
+    /* responsive size */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    display: inline-block;
+    position: relative;
+
+    /* main pastel gradient */
+    background: linear-gradient(90deg,
+            var(--c1) 0%,
+            /* subtle extra stop to smooth */
+            #caa0e8 10%,
+            var(--c2) 28%,
+            var(--c3) 52%,
+            var(--c4) 72%,
+            var(--c5) 100%);
+
+    /* make gradient visible only inside the text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    /* a little glow and depth */
+    text-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.25),
+        0 6px 18px rgba(0, 0, 0, 0.55);
+    /* allow subtle movement if you want an animated sheen */
+    background-size: 300% 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* soft grain / metallic sheen layer */
+.gradient-headline::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 4px;
+    /* faint radial sheen + tiny noise-like pattern */
+    background-image:
+        radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.07), transparent 12%),
+        radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.03), transparent 10%),
+        repeating-linear-gradient(0deg,
+            rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 1px,
+            rgba(0, 0, 0, 0.00) 1px, rgba(0, 0, 0, 0.00) 2px);
+    mix-blend-mode: overlay;
+    transform: translateZ(0);
+    filter: blur(0.4px) saturate(1.02);
+}
+
+/* optional: subtle animated sheen sweep */
+@keyframes sheen {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* uncomment to enable a very slow sheen */
+/* .gradient-headline { animation: sheen 8s linear infinite; } */
+
+/* responsive tweak for very large screens */
+@media (min-width:1400px) {
+    .gradient-headline {
+        font-size: 160px;
+    }
+}
