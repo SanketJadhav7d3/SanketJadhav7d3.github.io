@@ -1,12 +1,65 @@
 /* === Root Theme Variables === */
 :root {
-  --background-color: #111111;
+  --background-color: #0f0f0f;
   /* Base dark color */
   --bright-text-color: #FFFFFF;
   --dim-text-color: #b0b0b0;
   --nav-blur-bg: #11111166;
 }
 
+@font-face {
+  font-family: "PixelArtFont";
+  src: url("04B_30__.TTF");
+}
+
+
+.manrope-400 {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.manrope-500 {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.manrope-600 {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.manrope-700 {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.manrope-900 {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+
+.pixel-art-header {
+  font-family: "PixelArtFont", sans-serif;
+  font-size: 3.7rem;
+  color: #e77354;
+}
+
+.pixel-art-secondary-header {
+  font-family: "PixelArtFont", sans-serif;
+  font-size: 2.7rem;
+}
 .meddon-regular {
   font-family: "Meddon", cursive;
   font-weight: 400;
@@ -43,9 +96,8 @@
 }
 
 .dim-text {
-  color: #B0B0B0;
+  color: #a3a3a3;
   /* muted gray */
-  font-weight: 400;
 }
 
 /* === Global Behavior === */
@@ -75,7 +127,7 @@ body {
 }
 
 .title-font {
-  font-size: 2.5rem;
+  font-size: 5.5rem;
   font-weight: 500;
 }
 
@@ -84,7 +136,7 @@ body {
 }
 
 .body-text-font {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   line-height: 1.7;
 }
 
@@ -111,11 +163,20 @@ body {
   font-variation-settings: "wdth" 100;
 }
 
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges; /* fallback */
+  width: 128px;   /* scale UP */
+  height: auto;
+}
+
 /* === Base Layout === */
 body {
   height: 100vh;
   margin: 0;
-  background-color: var(--background-color);
+  background-color: #efecde;
+
+  /*
   background-image:
     radial-gradient(circle closest-side at 15% 20%, rgba(18, 18, 18, 0.15), transparent 280%),
     radial-gradient(circle closest-side at 75% 30%, rgba(32, 32, 32, 0.12), transparent 300%),
@@ -123,12 +184,13 @@ body {
     radial-gradient(circle closest-side at 30% 70%, rgba(28, 28, 28, 0.08), transparent 250%),
     radial-gradient(circle closest-side at 60% 60%, rgba(38, 38, 38, 0.07), transparent 280%),
     radial-gradient(circle closest-side at 85% 15%, rgba(25, 25, 25, 0.1), transparent 285%);
+  */
+
   background-blend-mode: screen;
   background-attachment: fixed;
   background-repeat: no-repeat;
   position: relative;
   color: var(--bright-text-color);
-  font-family: "Raleway", sans-serif;
   font-weight: 350;
   font-size: 1rem;
 }
@@ -148,7 +210,7 @@ body {
   min-height: 100%;
   width: 100%;
   padding-left: 31.75rem;
-  padding-right: 27.75rem;
+  padding-right: 30.75rem;
 }
 
 .home-center-bar {
