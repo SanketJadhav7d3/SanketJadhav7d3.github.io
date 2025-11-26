@@ -1,153 +1,132 @@
-/* Timeline CSS - adapted for gradient colors */
+/* === Timeline Redesign === */
 :root {
-  /* Using key colors from the gradient image */
-  --accent-light-pink: #E5A8C8; /* A prominent soft pink */
-  --accent-lavender-blue: #A8A3E0; /* A cooler, purplish-blue */
-  --accent-peach: #FFC98C; /* A warm peach tone */
-  --accent-deep-blue: #7983CC; /* For deeper contrast if needed */
-
-  --bg: #121212; /* Keeping background dark for contrast with pastels */
-  --panel: #1e1e1e; /* Keeping panel dark */
+    --timeline-line-color: #444;
+    --timeline-highlight: #E5A8C8; /* Consistent highlight color */
+    --timeline-card-bg: #161616;
+    --timeline-card-border: #333;
+    --timeline-text-dim: #a0a0a0;
 }
 
 .timeline {
-  position: relative;
-  --date-col: 70px;
-  width: 100%;
-  margin: 3rem 0;
-  padding: 1rem 0;
-  font-size: 1.3rem;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 4rem 0;
+    padding: 1rem 0;
 }
 
+/* The main vertical line */
 .timeline::before {
-  content: "";
-  position: absolute;
-  left: 3rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  /* Applying the gradient from the image */
-  background: linear-gradient(to bottom,
-    #E5A8C8 0%, /* Soft Pink */
-    #A8A3E0 30%, /* Lavender Blue */
-    #FFC98C 60%, /* Pale Peach */
-    #E5A8C8 100% /* Soft Pink again to blend */
-  );
-  z-index: 1;
-  /* Adjusting shadow to match new accent colors */
-  box-shadow: 0 0 18px rgba(229, 168, 200, 0.2); /* Soft pink shadow */
-  border-radius: 1px;
+    content: "";
+    position: absolute;
+    left: 1.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--timeline-line-color);
+    /* Dashed line effect */
+    background-image: repeating-linear-gradient(0deg, var(--timeline-line-color), var(--timeline-line-color) 6px, transparent 6px, transparent 12px);
+    z-index: 1;
 }
 
 .timeline-item {
-  display: grid;
-  grid-template-columns: var(--date-col) 3rem 1fr;
-  gap: 0.5rem 1rem;
-  align-items: start;
-  padding: 1rem 0;
+    position: relative;
+    padding: 1.5rem 0 1.5rem 4.5rem; /* Left padding to make space for marker */
 }
 
-/* date/period column */
-.timeline-period {
-  grid-column: 1;
-  text-align: right;
-  padding-right: 0.75rem;
-  font-weight: 600;
-  color: var(--accent-peach); /* Using peach for dates */
-  font-size: 0.95rem;
-  line-height: 1.2;
-}
-
-/* the circular marker on the line */
+/* The square marker on the line */
 .timeline-marker {
-  grid-column: 2;
-  justify-self: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 3px solid var(--accent-lavender-blue); /* Using lavender blue for markers */
-  /* Adjusting shadow to match new accent colors */
-  box-shadow: 0 0 18px rgba(168, 163, 224, 0.3); /* Lavender blue shadow */
-  z-index: 2;
-  margin-top: 0.35rem;
+    position: absolute;
+    left: 1.5rem;
+    top: 2.2rem;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: var(--background-color);
+    border: 2px solid var(--timeline-line-color);
+    z-index: 2;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* content box */
+.timeline-item:hover .timeline-marker {
+    background-color: var(--timeline-highlight);
+    border-color: var(--timeline-highlight);
+}
+
+/* Content box */
 .timeline-body {
-  grid-column: 3;
-  background: var(--panel);
-  padding: 1rem 1.25rem;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.55);
-  color: inherit;
+    position: relative;
+    background-color: var(--timeline-card-bg);
+    border: 1px solid var(--timeline-card-border);
+    padding: 1.5rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
-/* title/company */
+.timeline-item:hover .timeline-body {
+    transform: translateX(8px);
+    border-color: var(--timeline-highlight);
+}
+
+/* Date/Period */
+.timeline-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--timeline-text-dim);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* Title/Role */
 .timeline-role {
-  margin: 0;
-  font-size: 1.05rem;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--bright-text-color);
+    margin: 0 0 0.25rem 0;
 }
 
 .timeline-company {
-  color: var(--accent-light-pink); /* Using soft pink for company names */
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-left: 0.4rem;
+    font-family: "Manrope", sans-serif;
+    color: var(--timeline-highlight);
+    font-weight: 500;
+    font-size: 1rem;
 }
 
-/* description text */
+/* Description text */
 .timeline-description {
-  margin-top: 0.5rem;
-  line-height: 1.6;
-  font-size: 0.95rem;
+    margin-top: 1rem;
+    line-height: 1.7;
+    font-size: 1rem;
+    color: var(--timeline-text-dim);
 }
 
-/* small screens: stack nicely */
-@media (max-width: 680px) {
-  .timeline {
-    --date-col: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+/* === Responsive adjustments for smaller screens === */
+@media (max-width: 768px) {
+    .timeline {
+        max-width: 100%;
+        padding: 1rem;
+    }
 
-  .timeline::before {
-    left: 1.05rem;
-  }
+    .timeline::before {
+        left: 1rem;
+    }
 
-  /* change grid so marker is in col 1, content occupies col 2 */
-  .timeline-item {
-    grid-template-columns: 28px 1fr;
-    grid-template-rows: auto auto;
-    gap: 0.25rem 0.75rem;
-    align-items: start;
-  }
+    .timeline-item {
+        padding-left: 3rem;
+    }
 
-  .timeline-period {
-    grid-column: 2;
-    grid-row: 1;
-    text-align: left;
-    padding-right: 0;
-    font-size: 0.95rem;
-  }
+    .timeline-marker {
+        left: 1rem;
+        top: 2rem;
+        width: 14px;
+        height: 14px;
+    }
 
-  .timeline-marker {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: start;
-    margin-top: 0.25rem;
-  }
+    .timeline-body {
+        padding: 1.25rem;
+    }
 
-  .timeline-body {
-    grid-column: 2;
-    grid-row: 2;
-    margin-top: 0.1rem;
-  }
-}
-
-/* small nicety: hover lift */
-.timeline-body:hover {
-  transform: translateY(-4px);
-  transition: transform 220ms ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.65);
+    .timeline-item:hover .timeline-body {
+        transform: none; /* Disable horizontal shift on mobile */
+    }
 }
