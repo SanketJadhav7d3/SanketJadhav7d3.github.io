@@ -20,6 +20,16 @@
   font-style: normal;
 }
 
+.font-pixel {
+  font-family: 'Silkscreen', cursive;
+}
+
+.font-mono-space {
+  font-family: 'Space Mono', monospace;
+}
+
+
+
 .manrope-500 {
   font-family: "Manrope", sans-serif;
   font-optical-sizing: auto;
@@ -116,7 +126,11 @@ html {
 html,
 body {
   overscroll-behavior: none;
+  /* Hide default cursor for custom one */
+  /* cursor: none; */ /* Uncomment this when you implement the JS for the custom cursor */
 }
+
+/* a, button { cursor: none; } */ /* Uncomment this when you implement the JS for the custom cursor */
 
 /* === Typography === */
 .raleway-400 {
@@ -159,7 +173,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-variation-settings: "wdth" 100;
 }
 
@@ -174,7 +188,7 @@ body {
 body {
   height: 100vh;
   margin: 0;
-  background-color: #efecde;
+  background-color: #08090a;
 
   /*
   background-image:
@@ -211,13 +225,15 @@ body {
   width: 100%;
   padding-left: 31.75rem;
   padding-right: 30.75rem;
+  box-sizing: border-box;
 }
 
 .home-center-bar {
   min-height: 100%;
   width: 100%;
-  padding: 0 30.75rem;
-  padding-right: 35.75rem;
+  padding-left: 34.75rem;
+  padding-right: 30.75rem;
+  box-sizing: border-box;
 }
 
 /* === Right Bar === */
@@ -286,4 +302,91 @@ body {
   font-variation-settings:
     "BLED" 0,
     "SCAN" 0;
+}
+
+/* === Custom Cursor === */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--bright-text-color);
+  border-radius: 0;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition: transform 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out, border-radius 0.2s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cursor.text-hover {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.custom-cursor-dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--bright-text-color);
+  transition: opacity 0.2s ease-out;
+}
+
+.custom-cursor.text-hover .custom-cursor-dot {
+  opacity: 0;
+}
+
+/* === Animations & Effects === */
+
+/* CRT Scanline Effect */
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.05) 50%,
+      rgba(0, 0, 0, 0.05));
+  background-size: 100% 4px;
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* Glitch Effect on Hover */
+.glitch-hover:hover {
+  animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+}
+
+@keyframes glitch-anim {
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    transform: translate(2px, -2px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
 }

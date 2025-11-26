@@ -43,3 +43,28 @@ I’m currently interning at Clarion Analytics, where I work on extracting struc
   </div>
 </section>
 
+<div class="home-projects-section">
+  <h2 class="pixel-art-secondary-header">Featured Projects</h2>
+  <section class="projects-grid body-text-font">
+    {% for project in collections.projects %}
+      <article class="project-card">
+        <a href="{{ project.url }}" class="project-card-link">
+          <div class="project-card-content">
+            <div class="project-card-pixel-cover" aria-hidden="true">{{ project.data.title | first }}</div>
+            <h2 class="project-title">{{ project.data.title }}</h2>
+            <p class="project-excerpt">
+              {{ project.data.summary or project.templateContent | striptags | truncate(160) }}
+            </p>
+            {% if project.data.tech %}
+              <ul class="project-tech">
+                {% for t in project.data.tech %}
+                  <li>{{ t }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  </section>
+</div>

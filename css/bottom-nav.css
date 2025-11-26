@@ -1,0 +1,90 @@
+/* === Root Variables for Bottom Nav === */
+:root {
+    --bottom-nav-bg: #1f1f1f;
+    --bottom-nav-border: #333;
+    --bottom-nav-icon: #f0f0f0;
+    --bottom-nav-highlight: #E5A8C8; /* From your theme */
+}
+
+/* === Main Nav Container === */
+.bottom-nav {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    background-color: var(--bottom-nav-bg);
+    border: 1px solid var(--bottom-nav-border);
+    border-radius: 50px; /* Fully rounded edges for a pill shape */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+/* Vertical separator */
+.nav-separator {
+    width: 1px;
+    align-self: stretch;
+    background-color: var(--bottom-nav-border);
+    margin: -0.85rem 0.25rem; /* Negative margin to fill height */
+}
+
+
+/* === Individual Nav Item === */
+.bottom-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-nav-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: var(--bottom-nav-icon);
+    font-size: 1.4rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bottom-nav-item a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--bottom-nav-highlight);
+}
+
+/* === Hover Text Label === */
+.nav-item-label {
+    position: absolute;
+    bottom: 130%; /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 0.3rem 0.75rem;
+    background-color: var(--bottom-nav-bg);
+    color: var(--bottom-nav-icon);
+    border-radius: 6px;
+    border: 1px solid var(--bottom-nav-border);
+
+    font-size: 0.85rem;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    pointer-events: none;
+}
+
+.bottom-nav-item:hover .nav-item-label {
+    opacity: 1;
+    visibility: visible;
+}

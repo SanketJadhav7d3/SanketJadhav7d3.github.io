@@ -48,13 +48,14 @@
   <!-- Local Styles -->
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/links_styles.css">
-  <link rel="stylesheet" href="/css/navigation.css">
   <link rel="stylesheet" href="/css/timeline.css">
   <link rel="stylesheet" href="/css/projects.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/gradient.css">
   <link rel="stylesheet" href="/css/blog.css">
   <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/radial-nav.css">
+  <link rel="stylesheet" href="/css/bottom-nav.css">
 </head>
 
 <body>
@@ -62,32 +63,43 @@
     
     
 
-    <!-- Navigation 
-    <div class="navigation-bar no-select">
-      <nav>
-        <a href="/">Home</a>
-        <a href="/projects/">Projects</a>
-        <a href="/blogs/">Blog</a>
-      </nav>
-      <div class="static-line"></div>
-      <div class="scroll-line"></div>
-    </div>
-    -->
+    <!-- New Bottom Navigation Bar -->
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <div class="bottom-nav-item">
+        <a href="/" aria-label="Home"><i class="fa-solid fa-house-chimney"></i></a>
+        <span class="nav-item-label">Home</span>
+      </div>
+      <div class="bottom-nav-item">
+        <a href="/projects/" aria-label="Projects"><i class="fa-solid fa-layer-group"></i></a>
+        <span class="nav-item-label">Projects</span>
+      </div>
+      <div class="bottom-nav-item">
+        <a href="/blog/" aria-label="Blog"><i class="fa-solid fa-feather-pointed"></i></a>
+        <span class="nav-item-label">Blog</span>
+      </div>
+      <!-- Separator -->
+      <div class="nav-separator"></div>
+      <div class="bottom-nav-item">
+        <a href="https://github.com/SanketJadhav7d3" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <span class="nav-item-label">GitHub</span>
+      </div>
+      <div class="bottom-nav-item">
+        <a href="https://linkedin.com/in/sanket-jadhav-b01398237" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <span class="nav-item-label">LinkedIn</span>
+      </div>
+      <div class="bottom-nav-item">
+        <a href="https://x.com/SanketJadhav7d3" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <span class="nav-item-label">X</span>
+      </div>
+    </nav>
 
     <!-- Main Content -->
     <div class="main-content">
-      
-      <div class="left-bar">
-        <ul class="social-links">
-          <li><a href="https://twitter.com/yourprofile" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-          <li><a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
-          <li><a href="https://github.com/yourprofile" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-        </ul>
-      </div>
 
       <div class="center-bar">
         
 <main class="project-page">
+  <a href="/projects/" class="project-back-button" aria-label="Back to Projects">←</a>
 <header class="project-header">
 <h1>AI Builder Agent</h1>
 
@@ -133,7 +145,6 @@
 </div>
 </main>
       </div>
-
     </div>
       
 
@@ -159,38 +170,47 @@
 
   </div>
 
-  <!-- JS: auto year + smooth scroll -->
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const yearEls = document.querySelectorAll('.current-year');
-      const y = new Date().getFullYear();
-      yearEls.forEach(e => e.textContent = y);
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    /* === NEW CURSOR LOGIC === */
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    const cursorDot = document.createElement('div');
+    cursorDot.className = 'custom-cursor-dot';
+    cursor.appendChild(cursorDot);
+    document.body.appendChild(cursor);
 
-      const topBtn = document.getElementById('back-to-top');
-      if (topBtn)
-        topBtn.addEventListener('click', e => {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    });
+    // Hide on mobile
+    if ('ontouchstart' in window) {
+      cursor.style.display = 'none';
+    } else {
+      // Hide default cursor on non-touch devices
+      document.body.style.cursor = 'none';
+      document.querySelectorAll('a, button, [data-cursor-text]').forEach(el => {
+        el.style.cursor = 'none';
+      });
 
-    const scrollLine = document.querySelector(".scroll-line");
-    const staticLine = document.querySelector(".static-line");
+      let mouseX = 0;
+      let mouseY = 0;
 
-    const updateScrollLine = () => {
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollPercent = scrollTop / scrollHeight;
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        // The transform needs to account for the cursor's own size to center it
+        cursor.style.transform = `translate(${mouseX - cursor.offsetWidth / 2}px, ${mouseY - cursor.offsetHeight / 2}px)`;
+      });
 
-      const lineWidth = staticLine.offsetWidth; // get the exact width of static line
-      scrollLine.style.width = `${scrollPercent * lineWidth}px`;
-    };
+      const textHoverElements = document.querySelectorAll('a, button, h1, h2, h3, [data-cursor-text]');
 
-    window.addEventListener("scroll", updateScrollLine);
-    window.addEventListener("resize", updateScrollLine); // keeps it aligned on resize
-    updateScrollLine(); // initialize
+      textHoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('text-hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('text-hover'));
+      });
+    }
 
-
+  });
   </script>
 </body>
 </html>

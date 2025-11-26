@@ -5,19 +5,17 @@ permalink: /projects/
 ---
 
 <section class="projects-intro montserrat-400">
-  <h1 class="montserrat-400">{{ title }}</h1>
+  <h1 class="pixel-art-secondary-header">{{ title }}</h1>
 </section>
 
 <section class="projects-grid body-text-font">
   {% for project in collections.projects %}
-    <article class="project-card body-text-font">
-      <a href="{{ project.url }}" class="project-link">
-        {% if project.data.cover %}
-          <div class="project-cover" style="background-image: url('{{ project.data.cover }}');" aria-hidden="true"></div>
-        {% endif %}
-        <div class="project-content">
-          <h2 class="project-title body-text-font">{{ project.data.title }}</h2>
-          <p class="project-excerpt body-text-font">
+    <article class="project-card">
+      <a href="{{ project.url }}" class="project-card-link">
+        <div class="project-card-content">
+          <div class="project-card-pixel-cover" aria-hidden="true">{{ project.data.title | first }}</div>
+          <h2 class="project-title">{{ project.data.title }}</h2>
+          <p class="project-excerpt">
             {{ project.data.summary or project.templateContent | striptags | truncate(160) }}
           </p>
           {% if project.data.tech %}
