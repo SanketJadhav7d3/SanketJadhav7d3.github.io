@@ -1,0 +1,56 @@
+/* === Star Panning Effect === */
+@keyframes rotate-stars {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.stars-background,
+.stars-background::before,
+.stars-background::after {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+}
+
+.stars-background {
+  z-index: -2; /* Behind meteors (-1) and content (0+) */
+  
+  /* Layer 3: Farthest, slowest stars */
+  background-image: radial-gradient(1px 1px at 20px 30px, #eee, transparent),
+                    radial-gradient(1px 1px at 40px 70px, #fff, transparent),
+                    radial-gradient(1px 1px at 50px 160px, #ddd, transparent),
+                    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+                    radial-gradient(1px 1px at 160px 120px, #ddd, transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: rotate-stars 1000s linear infinite;
+}
+
+/* Layer 2: Middle distance stars */
+.stars-background::before {
+  content: '';
+  background-image: radial-gradient(2px 2px at 50px 50px, #fff, transparent),
+                    radial-gradient(2px 2px at 100px 150px, #ddd, transparent),
+                    radial-gradient(2px 2px at 250px 60px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 350px 350px;
+  animation: rotate-stars 800s linear infinite;
+}
+
+/* Layer 1: Closest, fastest stars */
+.stars-background::after {
+  content: '';
+  background-image: radial-gradient(3px 3px at 10px 200px, #fff, transparent),
+                    radial-gradient(3px 3px at 200px 310px, #ddd, transparent);
+  background-repeat: repeat;
+  background-size: 500px 500px;
+  animation: rotate-stars 200s linear infinite;
+}
+
+body.effects-off .stars-background {
+  display: none;
+}
