@@ -2,7 +2,7 @@
 title: "AI Agent for Atari Breakout"
 date: 2024-08-15
 layout: project.njk        # directly in _includes/
-summary: "Short description."
+summary: "Trained an AI to play Atari Breakout game using python NEAT."
 cover: /assets/images/AI-Plays-Atari.png
 tech:
   - NEAT
@@ -13,6 +13,11 @@ permalink: /projects/atari-breakout/
 
 
 Trained an AI to play Atari Breakout game using python NEAT.
+
+<video controls autoplay muted loop width="100%">
+  <source src="https://github.com/user-attachments/assets/e6ce91d1-92af-4bd5-8259-850f37b9da01" type="video/mp4">
+</video>
+
 
 More about NEAT Algorithm - https://nn.cs.utexas.edu/downloads/papers/stanley.cec02.pdf
 
@@ -209,4 +214,3 @@ AI-plays-Atari-Breakout/
 ├─ speciation.svg     # Sample speciation plot
 └─ README.md          # Project documentation
 ```
-

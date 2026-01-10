@@ -2,12 +2,12 @@
   {% for item in collections.experiences %}
     <div class="timeline-item">
       <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <span class="timeline-date">
+      <div class="timeline-body">
+        <span class="timeline-period">
           {{ item.data.start }} – {{ item.data.end }}
         </span>
-        <h3>{{ item.data.title }}</h3>
-        <p>{{ item.templateContent | safe }}</p>
+        <h3 class="timeline-role">{{ item.data.title }}</h3>
+        <div class="timeline-description">{{ item.templateContent | safe }}</div>
       </div>
     </div>
   {% endfor %}
