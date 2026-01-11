@@ -1,0 +1,75 @@
+/* Styles for the expandable tech stack section */
+.tech-stack-expandable {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.expand-btn {
+  background-color: transparent;
+  border: 1px solid #555; /* A neutral border color */
+  color: #ccc; /* Light text color for dark theme */
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.expand-btn:hover {
+  background-color: var(--c2, #7fdcff);
+  color: var(--bg, #0f0f0f);
+  border-color: var(--c2, #7fdcff);
+}
+
+.tech-stack-details-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  text-align: left;
+  margin-top: 2rem;
+  opacity: 0;
+}
+
+.tech-stack-details-container.expanded {
+  max-height: 1000px; /* A large enough value to show all content */
+  opacity: 1;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out 0.2s;
+}
+
+.tech-category {
+  margin-bottom: 2rem;
+}
+
+.tech-category h3 {
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tech-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tech-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-item img {
+  height: 24px;
+  width: 24px;
+}
+
+.tech-item span {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #ddd;
+}

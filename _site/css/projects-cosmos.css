@@ -1,0 +1,69 @@
+/* Cosmic theme for project cards */
+
+.project-card {
+  position: relative;
+  border-radius: 12px;
+  padding: 1px; /* Creates space for the gradient "border" */
+  background: transparent;
+  transition: transform 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+  border: none; /* Override any existing border */
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Animated glowing border effect using two layers */
+.project-card::before,
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+}
+
+.project-card::before {
+  background: conic-gradient(
+    transparent,
+    rgba(168, 85, 247, 0.2), /* Purple nebula color */
+    transparent 30%
+  );
+  animation: rotate-project-card 8s linear infinite;
+}
+
+.project-card::after {
+  background: conic-gradient(
+    transparent,
+    rgba(59, 130, 246, 0.3), /* Blue star color */
+    transparent 40%
+  );
+  animation: rotate-project-card 12s linear infinite -6s; /* Different speed and offset */
+}
+
+@keyframes rotate-project-card {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.project-card-link {
+  background: #16181d; /* Deep space color, slightly darker than page bg */
+  border-radius: 11px; /* To show the parent's padding as a border */
+}
+
+.project-title {
+  color: #f0f0f0;
+}
+
+.project-excerpt {
+  color: #a0a0a0;
+}
+
+.project-tech li {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ccc;
+}

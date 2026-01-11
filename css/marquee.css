@@ -1,0 +1,35 @@
+/* Marquee for Tech Stack */
+.marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  /* Fades out the logos at the edges for a smoother effect */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.marquee-content {
+  display: flex;
+  /* Adjust the duration to control speed (e.g., 20s for faster, 40s for slower) */
+  animation: marquee 20s linear infinite;
+  gap: 60px; /* Adjust space between logos */
+  align-items: center;
+  height: 120px; /* Explicitly set the container height */
+}
+
+/* Pause animation on hover for accessibility */
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+.marquee-content img {
+  height: 100%; /* Let the image fill the container's height */
+  width: auto;  /* Allow width to adjust to maintain aspect ratio */
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
