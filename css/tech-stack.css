@@ -10,7 +10,6 @@
   color: #ccc; /* Light text color for dark theme */
   padding: 8px 16px;
   border-radius: 20px;
-  cursor: pointer;
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
   transition: all 0.3s ease;
