@@ -1,5 +1,5 @@
 ---
-title: Projects
+title: projects
 layout: base.njk
 permalink: /projects/
 ---
@@ -13,18 +13,10 @@ permalink: /projects/
     <article class="project-card">
       <a href="{{ project.url }}" class="project-card-link">
         <div class="project-card-content">
-          <div class="project-card-pixel-cover" aria-hidden="true">{{ project.data.title | first }}</div>
           <h2 class="project-title">{{ project.data.title }}</h2>
           <p class="project-excerpt">
             {{ project.data.summary or project.templateContent | striptags | truncate(160) }}
           </p>
-          {% if project.data.tech %}
-            <ul class="project-tech">
-              {% for t in project.data.tech %}
-                <li>{{ t }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
         </div>
       </a>
     </article>

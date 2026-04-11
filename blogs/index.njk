@@ -1,5 +1,5 @@
 ---
-title: Blogs
+title: blogs
 layout: base.njk
 permalink: /blogs/
 ---
@@ -11,16 +11,12 @@ permalink: /blogs/
   </p>
 </section>
 
-<section class="projects-grid body-text-font">
-  {% for blog in collections.blogs %}
-    <article class="project-card body-text-font">
-      <a href="{{ blog.url }}" class="project-link">
-        {% if blog.data.cover %}
-          <div class="project-cover" style="background-image: url('{{ blog.data.cover }}');" aria-hidden="true"></div>
-        {% endif %}
-        <div class="project-content">
-          <h2 class="project-title body-text-font">{{ blog.data.title }}</h2>
-        </div>
+<section class="blog-index-list body-text-font">
+  {% for blog in collections.blog %}
+    <article class="blog-item">
+      <a href="{{ blog.url }}" class="blog-item-link">
+        <span class="blog-item-date dim-text">{{ blog.date.toDateString() }}</span>
+        <h2 class="blog-item-title">{{ blog.data.title }}</h2>
       </a>
     </article>
   {% endfor %}

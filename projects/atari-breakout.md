@@ -1,216 +1,214 @@
 ---
-title: "AI Agent for Atari Breakout"
+title: "ai agent for atari breakout"
 date: 2024-08-15
 layout: project.njk        # directly in _includes/
-summary: "Trained an AI to play Atari Breakout game using python NEAT."
+summary: "trained an ai to play atari breakout game using python neat."
 cover: /assets/images/AI-Plays-Atari.png
 tech:
-  - NEAT
-  - Genetic Algorithms
-  - Pygame
+  - neat
+  - genetic algorithms
+  - pygame
 permalink: /projects/atari-breakout/
 ---
 
-
-Trained an AI to play Atari Breakout game using python NEAT.
+trained an ai to play atari breakout game using python neat.
 
 <video controls autoplay muted loop width="100%">
   <source src="https://github.com/user-attachments/assets/e6ce91d1-92af-4bd5-8259-850f37b9da01" type="video/mp4">
 </video>
 
+more about neat algorithm - https://nn.cs.utexas.edu/downloads/papers/stanley.cec02.pdf
 
-More about NEAT Algorithm - https://nn.cs.utexas.edu/downloads/papers/stanley.cec02.pdf
-
-This project uses the NEAT (NeuroEvolution of Augmenting Topologies) algorithm to evolve neural network controllers that learn to play a simplified version of Atari Breakout. Pygame provides the game simulation (ball, bricks, paddle), while NEAT-Python drives the evolutionary process. Training progress and results are visualized using Matplotlib and Graphviz.
-
----
-
-## Features
-
-- **Game Environment**: Implemented in Pygame with realistic ball physics, brick layouts, and paddle control.
-- **NEAT Integration**: Uses NEAT-Python to evolve paddle-control neural networks based on fitness from bricks broken.
-- **Configurable Hyperparameters**: NEAT parameters (population size, mutation rates, species thresholds, network topology) are easily adjusted via `config.txt`.
-- **Visualization**: Generates average/best fitness and speciation plots (`avg_fitness.svg`, `speciation.svg`) to track evolutionary dynamics.
-- **Modular Design**: Separate modules for game logic (`ball.py`, `tiles.py`, `player_block.py`) and training/visualization (`main.py`, `visualize.py`).
+this project uses the neat (neuroevolution of augmenting topologies) algorithm to evolve neural network controllers that learn to play a simplified version of atari breakout. pygame provides the game simulation (ball, bricks, paddle), while neat-python drives the evolutionary process. training progress and results are visualized using matplotlib and graphviz.
 
 ---
 
-## Installation
+## features
 
-1. **Clone the repository**
+- **game environment**: implemented in pygame with realistic ball physics, brick layouts, and paddle control.
+- **neat integration**: uses neat-python to evolve paddle-control neural networks based on fitness from bricks broken.
+- **configurable hyperparameters**: neat parameters (population size, mutation rates, species thresholds, network topology) are easily adjusted via `config.txt`.
+- **visualization**: generates average/best fitness and speciation plots (`avg_fitness.svg`, `speciation.svg`) to track evolutionary dynamics.
+- **modular design**: separate modules for game logic (`ball.py`, `tiles.py`, `player_block.py`) and training/visualization (`main.py`, `visualize.py`).
+
+---
+
+## installation
+
+1. **clone the repository**
    ```bash
    git clone https://github.com/SanketJadhav7d3/AI-plays-Atari-Breakout.git
-   cd AI-plays-Atari-Breakout
+   cd ai-plays-atari-breakout
    ```
 
-2. **Create a virtual environment**
+2. **create a virtual environment**
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
 
-3. **Install dependencies**
+3. **install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-*Note: Ensure your system has Pygame, NEAT-Python, Matplotlib, and Graphviz installed.*
+*note: ensure your system has pygame, neat-python, matplotlib, and graphviz installed.*
 
 ---
 
-## Configuration
+## configuration
 
-All NEAT hyperparameters are specified in `config.txt`. Key settings include:
+all neat hyperparameters are specified in `config.txt`. key settings include:
 
-- `pop_size`: Number of genomes per generation
-- `max_fitness_threshold`: Fitness at which training stops
-- Mutation and crossover probabilities
-- Network architecture parameters (number of hidden layers, nodes)
+- `pop_size`: number of genomes per generation
+- `max_fitness_threshold`: fitness at which training stops
+- mutation and crossover probabilities
+- network architecture parameters (number of hidden layers, nodes)
 
-Edit `config.txt` to experiment with different evolutionary strategies.
+edit `config.txt` to experiment with different evolutionary strategies.
 
 ---
 
-## Usage
+## usage
 
-### Training
+### training
 
-Run the evolutionary training loop for 40 generations (default):
+run the evolutionary training loop for 40 generations (default):
 
 ```bash
 python main.py
 ```
 
-- Each genome represents a paddle controller receiving three inputs: paddle x-position, ball x-position, ball y-position.
-- Actions: move left, move right, or stay.
-- Fitness: +10 points per brick broken; game ends when the ball falls below the paddle or a high-score is reached.
+- each genome represents a paddle controller receiving three inputs: paddle x-position, ball x-position, ball y-position.
+- actions: move left, move right, or stay.
+- fitness: +10 points per brick broken; game ends when the ball falls below the paddle or a high-score is reached.
 
-### Visualization
+### visualization
 
-After training, generate performance plots:
+after training, generate performance plots:
 
 ```bash
 python visualize.py
 ```
 
-- `avg_fitness.svg`: Mean and best fitness over generations.
-- `speciation.svg`: Species sizes across generations.
+- `avg_fitness.svg`: mean and best fitness over generations.
+- `speciation.svg`: species sizes across generations.
 
-You can also render the winning genome’s network topology using Graphviz (requires `neat-python`’s visualization helpers).
+you can also render the winning genome’s network topology using graphviz (requires `neat-python`’s visualization helpers).
 
 ---
 
-## File Structure
+## file structure
 
 ```
-AI-plays-Atari-Breakout/
-├─ ball.py            # Ball sprite & physics logic
-├─ tiles.py           # Brick grid manager
-├─ player_block.py    # Paddle sprites & NEAT genome integration
-├─ main.py            # Training loop & NEAT setup
-├─ visualize.py       # Plotting training statistics
-├─ config.txt         # NEAT-Python configuration
-├─ avg_fitness.svg    # Sample fitness plot
-├─ speciation.svg     # Sample speciation plot
-└─ README.md          # Project documentation
+ai-plays-atari-breakout/
+├─ ball.py            # ball sprite & physics logic
+├─ tiles.py           # brick grid manager
+├─ player_block.py    # paddle sprites & neat genome integration
+├─ main.py            # training loop & neat setup
+├─ visualize.py       # plotting training statistics
+├─ config.txt         # neat-python configuration
+├─ avg_fitness.svg    # sample fitness plot
+├─ speciation.svg     # sample speciation plot
+└─ readme.md          # project documentation
 ```
 
-Trained an AI to play Atari Breakout game using python NEAT.
+trained an ai to play atari breakout game using python neat.
 
 https://github.com/user-attachments/assets/e6ce91d1-92af-4bd5-8259-850f37b9da01
 
-More about NEAT Algorithm - https://nn.cs.utexas.edu/downloads/papers/stanley.cec02.pdf
+more about neat algorithm - https://nn.cs.utexas.edu/downloads/papers/stanley.cec02.pdf
 
-This project uses the NEAT (NeuroEvolution of Augmenting Topologies) algorithm to evolve neural network controllers that learn to play a simplified version of Atari Breakout. Pygame provides the game simulation (ball, bricks, paddle), while NEAT-Python drives the evolutionary process. Training progress and results are visualized using Matplotlib and Graphviz.
-
----
-
-## Features
-
-- **Game Environment**: Implemented in Pygame with realistic ball physics, brick layouts, and paddle control.
-- **NEAT Integration**: Uses NEAT-Python to evolve paddle-control neural networks based on fitness from bricks broken.
-- **Configurable Hyperparameters**: NEAT parameters (population size, mutation rates, species thresholds, network topology) are easily adjusted via `config.txt`.
-- **Visualization**: Generates average/best fitness and speciation plots (`avg_fitness.svg`, `speciation.svg`) to track evolutionary dynamics.
-- **Modular Design**: Separate modules for game logic (`ball.py`, `tiles.py`, `player_block.py`) and training/visualization (`main.py`, `visualize.py`).
+this project uses the neat (neuroevolution of augmenting topologies) algorithm to evolve neural network controllers that learn to play a simplified version of atari breakout. pygame provides the game simulation (ball, bricks, paddle), while neat-python drives the evolutionary process. training progress and results are visualized using matplotlib and graphviz.
 
 ---
 
-## Installation
+## features
 
-1. **Clone the repository**
+- **game environment**: implemented in pygame with realistic ball physics, brick layouts, and paddle control.
+- **neat integration**: uses neat-python to evolve paddle-control neural networks based on fitness from bricks broken.
+- **configurable hyperparameters**: neat parameters (population size, mutation rates, species thresholds, network topology) are easily adjusted via `config.txt`.
+- **visualization**: generates average/best fitness and speciation plots (`avg_fitness.svg`, `speciation.svg`) to track evolutionary dynamics.
+- **modular design**: separate modules for game logic (`ball.py`, `tiles.py`, `player_block.py`) and training/visualization (`main.py`, `visualize.py`).
+
+---
+
+## installation
+
+1. **clone the repository**
    ```bash
    git clone https://github.com/SanketJadhav7d3/AI-plays-Atari-Breakout.git
-   cd AI-plays-Atari-Breakout
+   cd ai-plays-atari-breakout
    ```
 
-2. **Create a virtual environment**
+2. **create a virtual environment**
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
 
-3. **Install dependencies**
+3. **install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-*Note: Ensure your system has Pygame, NEAT-Python, Matplotlib, and Graphviz installed.*
+*note: ensure your system has pygame, neat-python, matplotlib, and graphviz installed.*
 
 ---
 
-## Configuration
+## configuration
 
-All NEAT hyperparameters are specified in `config.txt`. Key settings include:
+all neat hyperparameters are specified in `config.txt`. key settings include:
 
-- `pop_size`: Number of genomes per generation
-- `max_fitness_threshold`: Fitness at which training stops
-- Mutation and crossover probabilities
-- Network architecture parameters (number of hidden layers, nodes)
+- `pop_size`: number of genomes per generation
+- `max_fitness_threshold`: fitness at which training stops
+- mutation and crossover probabilities
+- network architecture parameters (number of hidden layers, nodes)
 
-Edit `config.txt` to experiment with different evolutionary strategies.
+edit `config.txt` to experiment with different evolutionary strategies.
 
 ---
 
-## Usage
+## usage
 
-### Training
+### training
 
-Run the evolutionary training loop for 40 generations (default):
+run the evolutionary training loop for 40 generations (default):
 
 ```bash
 python main.py
 ```
 
-- Each genome represents a paddle controller receiving three inputs: paddle x-position, ball x-position, ball y-position.
-- Actions: move left, move right, or stay.
-- Fitness: +10 points per brick broken; game ends when the ball falls below the paddle or a high-score is reached.
+- each genome represents a paddle controller receiving three inputs: paddle x-position, ball x-position, ball y-position.
+- actions: move left, move right, or stay.
+- fitness: +10 points per brick broken; game ends when the ball falls below the paddle or a high-score is reached.
 
-### Visualization
+### visualization
 
-After training, generate performance plots:
+after training, generate performance plots:
 
 ```bash
 python visualize.py
 ```
 
-- `avg_fitness.svg`: Mean and best fitness over generations.
-- `speciation.svg`: Species sizes across generations.
+- `avg_fitness.svg`: mean and best fitness over generations.
+- `speciation.svg`: species sizes across generations.
 
-You can also render the winning genome’s network topology using Graphviz (requires `neat-python`’s visualization helpers).
+you can also render the winning genome’s network topology using graphviz (requires `neat-python`’s visualization helpers).
 
 ---
 
-## File Structure
+## file structure
 
 ```
-AI-plays-Atari-Breakout/
-├─ ball.py            # Ball sprite & physics logic
-├─ tiles.py           # Brick grid manager
-├─ player_block.py    # Paddle sprites & NEAT genome integration
-├─ main.py            # Training loop & NEAT setup
-├─ visualize.py       # Plotting training statistics
-├─ config.txt         # NEAT-Python configuration
-├─ avg_fitness.svg    # Sample fitness plot
-├─ speciation.svg     # Sample speciation plot
-└─ README.md          # Project documentation
+ai-plays-atari-breakout/
+├─ ball.py            # ball sprite & physics logic
+├─ tiles.py           # brick grid manager
+├─ player_block.py    # paddle sprites & neat genome integration
+├─ main.py            # training loop & neat setup
+├─ visualize.py       # plotting training statistics
+├─ config.txt         # neat-python configuration
+├─ avg_fitness.svg    # sample fitness plot
+├─ speciation.svg     # sample speciation plot
+└─ readme.md          # project documentation
 ```

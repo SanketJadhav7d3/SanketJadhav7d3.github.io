@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: Home
+title: home
 ---
 
-# About page
+# about page

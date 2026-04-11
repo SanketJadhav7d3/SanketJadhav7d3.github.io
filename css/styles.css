@@ -3,87 +3,75 @@
   --background-color: #0f0f0f;
   /* Base dark color */
   --bright-text-color: #FFFFFF;
-  --dim-text-color: #b0b0b0;
+  --dim-text-color: #7a7a7a;
+  --warm-text-color: #c2b38f;
   --nav-blur-bg: #11111166;
+  --warm-gray-color: #c2beb7;
+  --soft-blue-color: #9fb3c8;
+  --soft-green-color: #a3b8a5;
+  --soft-purple-color: #b0a7c0;
 }
-
-@font-face {
-  font-family: "PixelArtFont";
-  src: url("04B_30__.TTF");
-}
-
 
 .manrope-400 {
-  font-family: "Manrope", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
 .font-pixel {
-  font-family: 'Silkscreen', cursive;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .font-mono-space {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Inter', sans-serif;
 }
 
-
-
 .manrope-500 {
-  font-family: "Manrope", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 }
 
 .manrope-600 {
-  font-family: "Manrope", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
 }
 
 .manrope-700 {
-  font-family: "Manrope", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
 
 .manrope-900 {
-  font-family: "Manrope", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
 }
 
-
-
 .pixel-art-header {
-  font-family: "PixelArtFont", sans-serif;
-  font-size: 3.7rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: #e77354;
 }
 
 .pixel-art-secondary-header {
-  font-family: "PixelArtFont", sans-serif;
-  font-size: 2.7rem;
-}
-.meddon-regular {
-  font-family: "Meddon", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.molle-regular-italic {
-  font-family: "Molle", cursive;
-  font-weight: 400;
-  font-style: italic;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .quicksand-500 {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -126,21 +114,26 @@ html {
 html,
 body {
   overscroll-behavior: none;
+  font-family: "Inter", sans-serif;
 }
 
 /* Hide the default system cursor */
-body, a, button {
+body,
+a,
+button {
   cursor: none;
 }
 
 /* Style the custom cursor element */
 .custom-cursor {
   position: fixed;
-  width: 24px; /* Set the size of your cursor image */
+  width: 24px;
+  /* Set the size of your cursor image */
   height: 24px;
-  
+
   /* The image for the cursor */
-  background-image: url('Arrows/Arrow4.png'); /* <<< IMPORTANT: Replace with your cursor image path */
+  background-image: url('Arrows/Arrow4.png');
+  /* <<< IMPORTANT: Replace with your cursor image path */
   background-size: contain;
   background-repeat: no-repeat;
 
@@ -154,7 +147,8 @@ body, a, button {
 
 /* Style for the cursor when hovering over interactive elements */
 .custom-cursor.cursor-hover {
-  background-image: url('Arrows/Hand3.png'); /* <<< IMPORTANT: Replace with your HOVER cursor image path */
+  background-image: url('Arrows/Hand3.png');
+  /* <<< IMPORTANT: Replace with your HOVER cursor image path */
   width: 24px;
   height: 24px;
 }
@@ -162,7 +156,7 @@ body, a, button {
 
 /* === Typography === */
 .raleway-400 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -178,13 +172,13 @@ body, a, button {
 }
 
 .body-text-font {
-  font-size: 1.4rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
   line-height: 1.7;
 }
 
 .montserrat-400 {
   font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
@@ -207,8 +201,10 @@ body, a, button {
 
 .pixelated {
   image-rendering: pixelated;
-  image-rendering: crisp-edges; /* fallback */
-  width: 128px;   /* scale UP */
+  image-rendering: crisp-edges;
+  /* fallback */
+  width: 128px;
+  /* scale UP */
   height: auto;
 }
 
@@ -217,6 +213,7 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #08090a;
+  font-family: "Inter", sans-serif;
 
   /*
   background-image:

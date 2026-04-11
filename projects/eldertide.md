@@ -1,8 +1,8 @@
 ---
-title: "Eldertide"
+title: "eldertide"
 date: 2026-01-11
 layout: project.njk        # directly in _includes/
-summary: "An Age of Empires styled 2D RPG"
+summary: "an age of empires styled 2D RPG"
 cover: /assets/images/Eldertide.png
 tech:
   - Phaser.js
@@ -11,43 +11,43 @@ tech:
 permalink: /projects/eldertide/
 ---
 
-# ⚔️ Eldertide ⚔️
+# ⚔️ eldertide ⚔️
 
-**[Play the game live here!](https://sanketjadhav7d3.github.io/eldertide/)**
+**[play the game live here!](https://sanketjadhav7d3.github.io/eldertide/)**
 
-In Eldertide, a goblin horde threatens your village. You must command your people to build defenses, gather resources, and raise an army to survive the onslaught.
+in eldertide, a goblin horde threatens your village. You must command your people to build defenses, gather resources, and raise an army to survive the onslaught.
 
 ![background-inf](https://github.com/user-attachments/assets/61afc22c-aedb-4e60-8f70-954dce3d0a5b)
 
-## The Goal
+## the goal
 
-Your objective is to survive **five waves** of increasingly difficult goblin attacks. Protect your castle, manage your resources, and lead your army to victory.
-
----
-
-## Your Units
-
-*   **👷 Worker:** Essential for gathering resources (wood, food, gold) and constructing buildings. They will continue their assigned task until the resource is depleted or they are given a new order.
-*   **🛡️ Warrior:** A standard melee unit, effective in close-quarters combat.
-*   **🐴 Lancer:** A melee unit with extended reach, ideal for engaging enemies from a safer distance and breaking through enemy lines.
-*   **🏹 Archer:** A ranged unit that can attack enemies from a distance. Crucial for eliminating high-threat targets before they reach your lines.
+your objective is to survive **five waves** of increasingly difficult goblin attacks. protect your castle, manage your resources, and lead your army to victory.
 
 ---
 
-## Your Structures
+## your units
 
-*   **🏰 Castle:** The heart of your village. If it's destroyed, you lose. The Castle is also used to train new Workers.
-*   **⚔️ Barracks:** Trains Warriors and Lancers.
-*   **🎯 Archery Range:** Trains Archers.
-*   **🗼 Tower:** A defensive structure that automatically attacks nearby enemies.
+*   **👷 worker:** essential for gathering resources (wood, food, gold) and constructing buildings. they will continue their assigned task until the resource is depleted or they are given a new order.
+*   **🛡️ warrior:** a standard melee unit, effective in close-quarters combat.
+*   **🐴 lancer:** a melee unit with extended reach, ideal for engaging enemies from a safer distance and breaking through enemy lines.
+*   **🏹 archer:** a ranged unit that can attack enemies from a distance. crucial for eliminating high-threat targets before they reach your lines.
 
 ---
 
-## Enemy Forces
+## your structures
 
-*   **👺 Goblin:** A basic melee unit that attacks in large numbers.
-*   **💣 Bomber:** A ranged unit that throws bombs, causing area damage. A high-priority target.
-*   **💥 Barrel Goblin:** Carries an explosive barrel that detonates on impact with your units or buildings, causing massive damage. Must be stopped at all costs.
+*   **🏰 castle:** the heart of your village. if it's destroyed, you lose. the castle is also used to train new Workers.
+*   **⚔️ barracks:** trains warriors and lancers.
+*   **🎯 archery Range:** trains archers.
+*   **🗼 tower:** a defensive structure that automatically attacks nearby enemies.
+
+---
+
+## enemy forces
+
+*   **👺 goblin:** a basic melee unit that attacks in large numbers.
+*   **💣 bomber:** a ranged unit that throws bombs, causing area damage. a high-priority target.
+*   **💥 barrel goblin:** carries an explosive barrel that detonates on impact with your units or buildings, causing massive damage. must be stopped at all costs.
 
 ---
 
