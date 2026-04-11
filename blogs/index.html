@@ -3,44 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blogs</title>
+  <title>blogs</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Molle&display=swap" rel="stylesheet">
-
-  <!-- Sixtyfour -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
-
-  <!-- Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-  <!-- Quicksand -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-
-  
-  <!-- Meddon -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Meddon&display=swap" rel="stylesheet">
-
-  <!-- Manrope and Lato -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -106,6 +74,11 @@
         <span class="nav-item-label">Projects</span>
       </div>
       
+      <div class="bottom-nav-item">
+        <a href="/blogs/" aria-label="Blog"><i class="fa-solid fa-pen-nib"></i></a>
+        <span class="nav-item-label">Blog</span>
+      </div>
+      
 
       <div class="bottom-nav-item">
         <button id="toggle-effects-btn" type="button" aria-label="Toggle background effects" aria-pressed="false">
@@ -137,22 +110,18 @@
       <div class="center-bar">
         
 <section class="projects-intro montserrat-400">
-  <h1 class="pixel-art-secondary-header">Blogs</h1>
+  <h1 class="pixel-art-secondary-header">blogs</h1>
   <p class="body-text-font">
     Explore my latest blog posts. Click on any card to read the full post.
   </p>
 </section>
 
-<section class="projects-grid body-text-font">
+<section class="blog-index-list body-text-font">
   
-    <article class="project-card body-text-font">
-      <a href="/blogs/my-first-blog/" class="project-link">
-        
-          <div class="project-cover" style="background-image: url('/assets/images/blog cover image.png');" aria-hidden="true"></div>
-        
-        <div class="project-content">
-          <h2 class="project-title body-text-font">My First Blog Post</h2>
-        </div>
+    <article class="blog-item">
+      <a href="/blogs/my-first-blog/" class="blog-item-link">
+        <span class="blog-item-date dim-text">Sun Oct 12 2025</span>
+        <h2 class="blog-item-title">my first blog post</h2>
       </a>
     </article>
   
@@ -168,7 +137,7 @@
         <div class="footer-brand">
           <a href="/" class="logo montserrat-400">Sanket</a>
           <p class="tagline body-text-font">
-            Small things, carefully made — <span class="current-year"></span>
+            small things, carefully made — <span class="current-year"></span>
           </p>
         </div>
 

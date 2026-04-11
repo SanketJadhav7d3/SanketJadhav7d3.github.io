@@ -70,7 +70,7 @@
 /* Date/Period */
 .timeline-period,
 .timeline-date {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
     color: var(--timeline-text-dim);
     margin-bottom: 0.75rem;
@@ -79,7 +79,7 @@
 
 /* Title/Role */
 .timeline-role {
-    font-family: "Manrope", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--bright-text-color);
@@ -87,7 +87,7 @@
 }
 
 .timeline-company {
-    font-family: "Manrope", sans-serif;
+    font-family: "Inter", sans-serif;
     color: var(--timeline-highlight);
     font-weight: 500;
     font-size: 1rem;

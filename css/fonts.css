@@ -1,10 +1,7 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Silkscreen&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
-
 .bold { font-weight: bold; }
 
 .lato-thin {
-  font-family: "Lato", sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 100;
   font-style: normal;
 }
@@ -61,4 +58,22 @@
   font-family: "Lato", sans-serif;
   font-weight: 900;
   font-style: italic;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+.inter-400 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inter-600 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
