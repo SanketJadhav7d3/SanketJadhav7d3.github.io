@@ -78,14 +78,15 @@
   .main-content {
     flex: 1;
     width: 100%;
-    display: block; /* Ensure it stays a block for centering children */
-    padding: 0 1.5rem; /* Responsive side gutters */
+    display: block;
+    padding: 0; /* Removing side padding here to allow children to be truly full-width on mobile */
   }
 
   .center-bar, .home-center-bar {
-    width: 100%;
-    max-width: 1200px; /* Standard wide desktop width */
+    width: 90%;
+    max-width: 850px; /* Narrower measure for better reading experience on desktop */
     margin: 0 auto;
+    padding: 4rem 3rem; /* Enhanced padding for a more spacious feel on large screens */
   }
 
   /* 4. Fluid Media */
@@ -99,12 +100,13 @@
   /* 5. Mobile-Specific Breakpoint (approx. for most phones) */
   @media screen and (max-width: 600px) {
     .main-content {
-      padding: 0 1rem; /* Slightly smaller gutters on mobile */
+      padding: 0;
     }
-
+    
     /* Mobile-specific layout improvements */
     .center-bar, .home-center-bar {
-      padding: 0; /* Let main-content handle padding */
+      width: 100%; /* Occupy the whole screen on mobile */
+      padding: 0 1.25rem; /* Internal padding so text doesn't touch the screen edges */
     }
 
     /* Scale down headers on mobile */
@@ -214,7 +216,7 @@ i’m a master's student, curious about all things ai and how intelligent system
     <div class="timeline-marker"></div>
     <div class="timeline-content">
       <div class="timeline-header-container">
-        <img src="assets/logos/RPTU Logo_minimal12.png" alt="Rheinland-Pfälzische Technische Universität Kaiserslautern" class="timeline-logo" style="height: 40px;">
+        <img src="assets/logos/RPTU Logo_minimal12.png" alt="Rheinland-Pfälzische Technische Universität Kaiserslautern" class="timeline-logo" style="height: 32px;">
         <div>
           <span class="manrope-500 timeline-date">2026 – Present</span>
           <h3 class="manrope-500 body-text-font" style="margin: 0;">Master of Science in Computer Science — Rheinland-Pfälzische Technische Universität Kaiserslautern</h3>
