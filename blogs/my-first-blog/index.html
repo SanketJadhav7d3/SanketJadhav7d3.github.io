@@ -116,12 +116,28 @@
     .pixel-art-secondary-header {
       font-size: 1.6rem;
     }
+  }
 
-    /* Prevent navigation labels from overlapping on very small screens */
-    @media (max-width: 480px) {
-      .nav-item-label {
-        display: none;
-      }
+  /* 6. Bottom Navigation Flexibility */
+  
+  /* When the screen is too narrow for all icons (roughly 550px), 
+     hide the separator and social media links to prioritize site navigation. */
+  @media screen and (max-width: 550px) {
+    .nav-separator,
+    .nav-separator ~ .bottom-nav-item {
+      display: none;
+    }
+    
+    .bottom-nav {
+      justify-content: space-around; /* Distribute the remaining 4 items evenly */
+    }
+  }
+
+  /* On very small screens (400px and below), hide the labels 
+     entirely to keep the bar clean and prevent overflow. */
+  @media screen and (max-width: 400px) {
+    .nav-item-label {
+      display: none;
     }
   }
 </style>
