@@ -35,6 +35,13 @@
   <link rel="stylesheet" href="/css/marquee.css">
   <link rel="stylesheet" href="/css/tech-stack.css">
   <link rel="stylesheet" href="/css/stars.css">
+
+  
+  <link rel="stylesheet" href="/katex/katex.min.css">
+
+  <script defer src="/katex/katex.min.js"></script>
+  <script defer src="/katex/contrib/auto-render.min.js"></script>
+  
 </head>
 
 <style>
@@ -114,30 +121,70 @@
 </div>
 <h1 class="pixel-art-secondary-header">hi, i am sanket</h1>
 <div class="manrope-500 body-text-font dim-text">
-i’m a master's student, curious about all things ai and how intelligent systems shape the world around us. iilove learning by building and experimenting, and when i’m not diving into tech, iienjoy game development as a fun creative outlet, playing around with ideas and interactive experiences.
+i’m a master's student, curious about all things ai and how intelligent systems shape the world around us. i love learning by building and experimenting, and when i’m not diving into tech, i enjoy game development as a fun creative outlet, playing around with ideas and interactive experiences.
 </div>
 <h2 class="pixel-art-secondary-header">experience</h2>
 <section class="timeline">
   <div class="timeline-item">
     <div class="timeline-marker"></div>
     <div class="timeline-content">
-      <span class="manrope-500 timeline-date">jun 2025 – oct 2025</span>
-      <h3 class="manrope-500 body-text-font">intern — clarion analytics</h3>
-      <p class="manrope-500 dim-text">
-        worked on extracting structured data from pharmacy bills, hospital
-        invoices, and identity documents. converting unstructured info into
-        usable data for downstream processing.
+      <div class="timeline-header-container">
+        <img src="assets/logos/clarion analytics.png" alt="clarion analytics" class="timeline-logo" style="height: 60px;">
+        <div>
+          <span class="manrope-500 timeline-date">jun 2025 – oct 2025</span>
+          <h3 class="manrope-500 body-text-font" style="margin: 0;">intern — clarion analytics</h3>
+        </div>
+      </div>
+      <p class="manrope-500 body-text-font dim-text">
+        worked on extracting structured data from pharmacy bills, hospital invoices, and identity documents. converting unstructured info into usable data for downstream processing.
+      </p>
+    </div>
+  </div>
+</section>
+<h2 class="pixel-art-secondary-header">education</h2>
+<section class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header-container">
+        <img src="assets/logos/RPTU Logo_minimal12.png" alt="Rheinland-Pfälzische Technische Universität Kaiserslautern" class="timeline-logo" style="height: 40px;">
+        <div>
+          <span class="manrope-500 timeline-date">2026 – Present</span>
+          <h3 class="manrope-500 body-text-font" style="margin: 0;">Master of Science in Computer Science — Rheinland-Pfälzische Technische Universität Kaiserslautern</h3>
+        </div>
+      </div>
+      <p class="manrope-500 body-text-font dim-text">
+        Focusing on deep learning, computer vision, and natural language processing. Researching efficient transformer architectures.
       </p>
     </div>
   </div>
   <div class="timeline-item">
     <div class="timeline-marker"></div>
     <div class="timeline-content">
-      <span class="manrope-500 timeline-date">jan 2023 – jun 2023</span>
-      <h3 class="manrope-500 body-text-font">trainee — intel unnati</h3>
-      <p class="manrope-500 dim-text">
-        developed an ai-powered contract validation system using large language
-        models, with a web upload interface for real-time feedback.
+      <div class="timeline-header-container">
+        <img src="assets/logos/kit.png" alt="KIT&#39;s College of Engineering, Kolhapur" class="timeline-logo" style="height: 60px;">
+        <div>
+          <span class="manrope-500 timeline-date">2022 – 2025</span>
+          <h3 class="manrope-500 body-text-font" style="margin: 0;">Bachelor of Technology in Computer Science (AIML) — KIT&#39;s College of Engineering, Kolhapur</h3>
+        </div>
+      </div>
+      <p class="manrope-500 body-text-font dim-text">
+        Core computer science fundamentals, data structures, and algorithms.
+      </p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header-container">
+        <img src="assets/logos/SGP.png" alt="Sanjay Ghodawat Polytechnic, Kolhapur" class="timeline-logo" style="height: 80px;">
+        <div>
+          <span class="manrope-500 timeline-date">2019 – 2022</span>
+          <h3 class="manrope-500 body-text-font" style="margin: 0;">Diploma in Computer Science — Sanjay Ghodawat Polytechnic, Kolhapur</h3>
+        </div>
+      </div>
+      <p class="manrope-500 body-text-font dim-text">
+        Core computer science fundamentals, data structures, and algorithms.
       </p>
     </div>
   </div>
@@ -208,19 +255,6 @@ technologies and tools i work with to build innovative solutions.
 </div></p>
   </div>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const expandBtn = document.getElementById('expand-tech-stack-btn');
-    const techDetails = document.getElementById('tech-stack-details');
-
-    if (expandBtn && techDetails) {
-      expandBtn.addEventListener('click', () => {
-        const isExpanded = techDetails.classList.toggle('expanded');
-        expandBtn.textContent = isExpanded ? 'show less <' : 'show all >';
-      });
-    }
-  });
-</script>
 <div class="home-projects-section">
   <h2 class="pixel-art-secondary-header">projects</h2>
   <section class="projects-grid body-text-font">
@@ -236,6 +270,32 @@ technologies and tools i work with to build innovative solutions.
     </article>
   </section>
 </div>
+<div class="home-blogs-section">
+  <h2 class="pixel-art-secondary-header">blogs</h2>
+  <section class="blog-grid body-text-font"><article class="blog-card">
+      <a href="/blogs/my-first-blog/" class="blog-card-link">
+        <div class="blog-card-content">
+          <h2 class="blog-title">my first blog post</h2>
+          <p class="manrope-500 blog-excerpt">
+            Blog description
+          </p>
+        </div>
+      </a>
+    </article></section>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const expandBtn = document.getElementById('expand-tech-stack-btn');
+    const techDetails = document.getElementById('tech-stack-details');
+
+    if (expandBtn && techDetails) {
+      expandBtn.addEventListener('click', () => {
+        const isExpanded = techDetails.classList.toggle('expanded');
+        expandBtn.textContent = isExpanded ? 'show less <' : 'show all >';
+      });
+    }
+  });
+</script>
 
       </div>
     </div>
@@ -348,6 +408,15 @@ technologies and tools i work with to build innovative solutions.
       // Initial setup and listeners
       updateLayout();
       window.addEventListener('resize', updateLayout, { passive: true });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false}
+        ]
+      });
     });
   </script>
 </body>

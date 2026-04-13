@@ -35,6 +35,13 @@
   <link rel="stylesheet" href="/css/marquee.css">
   <link rel="stylesheet" href="/css/tech-stack.css">
   <link rel="stylesheet" href="/css/stars.css">
+
+  
+  <link rel="stylesheet" href="/katex/katex.min.css">
+
+  <script defer src="/katex/katex.min.js"></script>
+  <script defer src="/katex/contrib/auto-render.min.js"></script>
+  
 </head>
 
 <style>
@@ -281,6 +288,15 @@ bun dev
       // Initial setup and listeners
       updateLayout();
       window.addEventListener('resize', updateLayout, { passive: true });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false}
+        ]
+      });
     });
   </script>
 </body>

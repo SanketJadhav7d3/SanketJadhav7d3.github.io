@@ -1,9 +1,9 @@
 /* === Root Theme Variables === */
 :root {
-  --background-color: #0f0f0f;
+  --background-color: #05060a;
   /* Base dark color */
-  --bright-text-color: #FFFFFF;
-  --dim-text-color: #7a7a7a;
+  --bright-text-color: #ffffff;
+  --dim-text-color: #e1e1e1;
   --warm-text-color: #c2b38f;
   --nav-blur-bg: #11111166;
   --warm-gray-color: #c2beb7;
@@ -94,8 +94,8 @@
 }
 
 .dim-text {
-  color: var(--dim-text-color);
   /* muted gray */
+  color: var(--dim-text-color);
 }
 
 /* === Global Behavior === */
