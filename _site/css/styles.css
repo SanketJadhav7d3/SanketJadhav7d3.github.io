@@ -242,22 +242,26 @@ body {
 }
 
 .main-content {
-  display: flex;
   width: 100%;
+  display: block; /* Changed from flex to block for easier child centering */
 }
 
 .center-bar {
   min-height: 100%;
-  width: 100%;
-  padding: 0 1.5rem;
+  width: 90%; /* Occupies most of the screen on tablet/small desktop */
+  max-width: 900px; /* Narrower restricted width for large screens */
+  margin: 0 auto; /* Centers the container */
   box-sizing: border-box;
+  padding: 4rem 2rem; /* Increased vertical and horizontal padding for desktop */
 }
 
 .home-center-bar {
   min-height: 100%;
-  width: 100%;
-  padding: 0 1.5rem;
+  width: 95%; /* Home page can be slightly wider if desired */
+  max-width: 1000px;
+  margin: 0 auto; /* Centers the container */
   box-sizing: border-box;
+  padding: 4rem 2rem; /* Increased vertical and horizontal padding for desktop */
 }
 
 /* === Right Bar === */
