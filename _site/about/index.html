@@ -88,16 +88,47 @@
     margin: 0 auto;
     padding: 4rem 3rem; /* Enhanced padding for a more spacious feel on large screens */
   }
+  
+  /* 4. Flexible Content Assets (Experience/Education Logos & Icons) */
+  .experience-logo, 
+  .education-logo, 
+  .timeline-logo,
+  .experience-item i, 
+  .education-item i {
+    width: clamp(32px, 15vw, 64px) !important; /* Proactively shrinks to prevent squashing text */
+    font-size: clamp(1.2rem, 8vw, 2rem);
+    height: auto; 
+    display: inline-block;
+    flex-shrink: 0; /* Prevents the logo itself from being squashed */
+  }
 
-  /* 4. Fluid Media */
+  /* Constrain marquee images to stay as small icons regardless of screen size */
+  .marquee-content img {
+    height: 120px !important; /* Increased from 35px for better visibility */
+    width: auto !important;
+    max-width: none !important; /* Prevents global img rules from stretching SVGs */
+    margin: 0 1rem;
+    flex-shrink: 0;
+  }
+
+  /* Static tech stack icons in the expandable section */
+  .tech-item img {
+    height: 32px !important; /* Increased from 24px */
+    width: 32px !important;
+  }
+
+  /* 5. Fluid Media */
   .hero-image {
     max-width: 100%;
     height: auto;
+  }
+
+  .hero-image {
     display: block;
     margin: 0 auto;
   }
-
-  /* 5. Mobile-Specific Breakpoint (approx. for most phones) */
+  
+  /* 6. Mobile-Specific Breakpoint (approx. for most phones) */
   @media screen and (max-width: 600px) {
     .main-content {
       padding: 0;
@@ -107,6 +138,11 @@
     .center-bar, .home-center-bar {
       width: 100%; /* Occupy the whole screen on mobile */
       padding: 0 1.25rem; /* Internal padding so text doesn't touch the screen edges */
+    }
+
+    .experience-logo, .education-logo, .timeline-logo {
+      width: 40px; /* Specific smaller size for mobile to prioritize text */
+      margin-bottom: 0.5rem;
     }
 
     /* Scale down headers on mobile */

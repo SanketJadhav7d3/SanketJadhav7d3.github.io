@@ -172,8 +172,7 @@
 }
 
 .timeline-logo {
-    height: 40px;
-    width: auto;
+    width: 100%; /* Respects the container/clamp width from base.njk */
     object-fit: contain;
     flex-shrink: 0;
 }
