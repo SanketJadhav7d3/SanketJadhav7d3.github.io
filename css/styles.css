@@ -210,7 +210,7 @@ button {
 
 /* === Base Layout === */
 body {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   background-color: #08090a;
   font-family: "Inter", sans-serif;
@@ -236,28 +236,27 @@ body {
 
 .page-container {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .main-content {
   display: flex;
+  width: 100%;
 }
 
 .center-bar {
   min-height: 100%;
   width: 100%;
-  padding-left: 31.75rem;
-  padding-right: 30.75rem;
+  padding: 0 1.5rem;
   box-sizing: border-box;
 }
 
 .home-center-bar {
   min-height: 100%;
   width: 100%;
-  padding-left: 34.75rem;
-  padding-right: 30.75rem;
+  padding: 0 1.5rem;
   box-sizing: border-box;
 }
 
@@ -295,6 +294,18 @@ body {
   justify-content: flex-end;
   overflow: hidden;
   z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+  .pixel-art {
+    position: absolute;
+    top: 2rem;
+    height: 40vh;
+    opacity: 0.4; /* Fade it more on mobile so text remains readable */
+  }
+  .pixel-art .hero-image {
+    height: 40vh;
+  }
 }
 
 .pixel-art .hero-image {
