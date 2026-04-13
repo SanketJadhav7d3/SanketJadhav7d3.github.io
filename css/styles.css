@@ -203,8 +203,6 @@ button {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   /* fallback */
-  width: 128px;
-  /* scale UP */
   height: auto;
 }
 
