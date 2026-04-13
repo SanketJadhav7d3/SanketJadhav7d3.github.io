@@ -1,0 +1,26 @@
+[
+  {
+    "institution": "Rheinland-Pfälzische Technische Universität Kaiserslautern",
+    "degree": "Master of Science in Computer Science",
+    "date": "2026 – Present",
+    "description": "Focusing on deep learning, computer vision, and natural language processing. Researching efficient transformer architectures.",
+    "logo": "assets/logos/RPTU Logo_minimal12.png",
+    "scale": 1.0
+  },
+  {
+    "institution": "KIT's College of Engineering, Kolhapur",
+    "degree": "Bachelor of Technology in Computer Science (AIML)",
+    "date": "2022 – 2025",
+    "description": "Core computer science fundamentals, data structures, and algorithms.",
+    "logo": "assets/logos/kit.png",
+    "scale": 1.5
+  },
+  {
+    "institution": "Sanjay Ghodawat Polytechnic, Kolhapur",
+    "degree": "Diploma in Computer Science",
+    "date": "2019 – 2022",
+    "description": "Core computer science fundamentals, data structures, and algorithms.",
+    "logo": "assets/logos/SGP.png",
+    "scale": 2.0
+  }
+]

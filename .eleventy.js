@@ -1,3 +1,7 @@
+
+const TeXZilla = require("texzilla");
+
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css/");
   eleventyConfig.addPassthroughCopy("assets/");
@@ -6,7 +10,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("js/");
 
 
-
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/katex/dist": "katex"
+  });
 
   eleventyConfig.addCollection("experiences", function (collectionApi) {
     return collectionApi.getFilteredByTag("experience").sort(function (a, b) {
@@ -34,6 +40,7 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: ".",
       includes: "_includes",
+      data: "_data",
       output: "_site"
     },
     markdownTemplateEngine: "njk",

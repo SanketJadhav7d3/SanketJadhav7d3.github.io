@@ -41,13 +41,15 @@ html {
   position: relative;
   background-color: var(--project-card-bg);
   border-radius: 12px;
-  transition: opacity 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   z-index: 1;
   overflow: hidden;
 }
 
 .project-card:hover {
-  opacity: 0.8;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  opacity: 1;
 }
 
 .project-card-link {

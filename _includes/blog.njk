@@ -2,7 +2,11 @@
 layout: base.njk
 ---
 
-<article class="blog-post montserrat-400 body-text-font">
+<article class="blog-post montserrat-400 body-text-font {% if cover %}has-cover{% endif %}">
+
+  {% if cover %}
+    <div class="blog-cover-full" style="background-image: url('{{ cover }}');" aria-hidden="true"></div>
+  {% endif %}
 
   {% if title %}
     <h1 class="blog-title montserrat-400">{{ title }}</h1>
@@ -10,10 +14,6 @@ layout: base.njk
 
   {% if date %}
     <p class="blog-date inter-300" style="opacity: 0.8; margin-bottom: 20px;">{{ date.toDateString() }}</p>
-  {% endif %}
-
-  {% if cover %}
-    <div class="blog-cover" style="background-image: url('{{ cover }}');" aria-hidden="true"></div>
   {% endif %}
 
   <div class="blog-content inter-300">

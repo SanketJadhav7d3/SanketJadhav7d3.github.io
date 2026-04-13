@@ -12,7 +12,7 @@ permalink: /blogs/
 </section>
 
 <section class="blog-index-list body-text-font">
-  {% for blog in collections.blog %}
+  {% for blog in collections.blogs %}
     <article class="blog-item">
       <a href="{{ blog.url }}" class="blog-item-link">
         <span class="blog-item-date dim-text">{{ blog.date.toDateString() }}</span>

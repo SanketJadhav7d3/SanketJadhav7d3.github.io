@@ -149,3 +149,31 @@
     object-fit: cover;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
+
+.blog-cover-full {
+    width: 100vw;
+    height: 50vh; /* Adjust this to control how much of the screen the height takes */
+    min-height: 300px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 2.5rem;
+}
+
+.timeline-header-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.timeline-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}

@@ -35,6 +35,13 @@
   <link rel="stylesheet" href="/css/marquee.css">
   <link rel="stylesheet" href="/css/tech-stack.css">
   <link rel="stylesheet" href="/css/stars.css">
+
+  
+  <link rel="stylesheet" href="/katex/katex.min.css">
+
+  <script defer src="/katex/katex.min.js"></script>
+  <script defer src="/katex/contrib/auto-render.min.js"></script>
+  
 </head>
 
 <style>
@@ -109,7 +116,11 @@
 
       <div class="center-bar">
         
-<article class="blog-post montserrat-400 body-text-font">
+<article class="blog-post montserrat-400 body-text-font has-cover">
+
+  
+    <div class="blog-cover-full" style="background-image: url('/assets/images/blog cover image.png');" aria-hidden="true"></div>
+  
 
   
     <h1 class="blog-title montserrat-400">my first blog post</h1>
@@ -117,14 +128,15 @@
 
   
 
-  
-    <div class="blog-cover" style="background-image: url('/assets/images/blog cover image.png');" aria-hidden="true"></div>
-  
-
   <div class="blog-content inter-300">
     <p>welcome to my first blog post! this is a sample entry to demonstrate how your blog layout will display content.</p>
 <h2>introduction</h2>
 <p>here, you can write an introductory paragraph about your topic. for example, share insights, experiences, or tutorials.</p>
+<p>Inline: $E = mc^2$</p>
+<p>Block:</p>
+<p>$$
+\int_0^\infty e^{-x} dx = 1
+$$</p>
 
   </div>
 
@@ -240,6 +252,15 @@
       // Initial setup and listeners
       updateLayout();
       window.addEventListener('resize', updateLayout, { passive: true });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false}
+        ]
+      });
     });
   </script>
 </body>

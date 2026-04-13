@@ -1,7 +1,9 @@
 ---
 layout: base.njk
 title: home
+templateEngineOverride: njk, md
 ---
+
 
 <br>
 <div class="profile-pic-container">
@@ -11,38 +13,52 @@ title: home
 <h1 class="pixel-art-secondary-header">hi, i am sanket</h1>
 
 
-
 <div class="manrope-500 body-text-font dim-text">
-i’m a master's student, curious about all things ai and how intelligent systems shape the world around us. iilove learning by building and experimenting, and when i’m not diving into tech, iienjoy game development as a fun creative outlet, playing around with ideas and interactive experiences.
+i’m a master's student, curious about all things ai and how intelligent systems shape the world around us. i love learning by building and experimenting, and when i’m not diving into tech, i enjoy game development as a fun creative outlet, playing around with ideas and interactive experiences.
 </div>
 
 
 <h2 class="pixel-art-secondary-header">experience</h2>
 <section class="timeline">
-  <div class="timeline-item">
-    <div class="timeline-marker"></div>
-    <div class="timeline-content">
-      <span class="manrope-500 timeline-date">jun 2025 – oct 2025</span>
-      <h3 class="manrope-500 body-text-font">intern — clarion analytics</h3>
-      <p class="manrope-500 dim-text">
-        worked on extracting structured data from pharmacy bills, hospital
-        invoices, and identity documents. converting unstructured info into
-        usable data for downstream processing.
-      </p>
-    </div>
-  </div>
 
+  {% for item in experience %}
   <div class="timeline-item">
     <div class="timeline-marker"></div>
     <div class="timeline-content">
-      <span class="manrope-500 timeline-date">jan 2023 – jun 2023</span>
-      <h3 class="manrope-500 body-text-font">trainee — intel unnati</h3>
-      <p class="manrope-500 dim-text">
-        developed an ai-powered contract validation system using large language
-        models, with a web upload interface for real-time feedback.
+      <div class="timeline-header-container">
+        {% if item.logo %}<img src="{{ item.logo }}" alt="{{ item.company }}" class="timeline-logo" style="height: {{ (item.scale or 1) * 40 }}px;">{% endif %}
+        <div>
+          <span class="manrope-500 timeline-date">{{ item.date }}</span>
+          <h3 class="manrope-500 body-text-font" style="margin: 0;">{{ item.role }} — {{ item.company }}</h3>
+        </div>
+      </div>
+      <p class="manrope-500 body-text-font dim-text">
+        {{ item.description }}
       </p>
     </div>
   </div>
+  {% endfor %}
+</section>
+
+<h2 class="pixel-art-secondary-header">education</h2>
+<section class="timeline">
+  {% for item in education %}
+  <div class="timeline-item">
+    <div class="timeline-marker"></div>
+    <div class="timeline-content">
+      <div class="timeline-header-container">
+        {% if item.logo %}<img src="{{ item.logo }}" alt="{{ item.institution }}" class="timeline-logo" style="height: {{ (item.scale or 1) * 40 }}px;">{% endif %}
+        <div>
+          <span class="manrope-500 timeline-date">{{ item.date }}</span>
+          <h3 class="manrope-500 body-text-font" style="margin: 0;">{{ item.degree }} — {{ item.institution }}</h3>
+        </div>
+      </div>
+      <p class="manrope-500 body-text-font dim-text">
+        {{ item.description }}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
 </section>
 
 <h2 class="pixel-art-secondary-header">tech stack</h2>
@@ -121,19 +137,6 @@ technologies and tools i work with to build innovative solutions.
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const expandBtn = document.getElementById('expand-tech-stack-btn');
-    const techDetails = document.getElementById('tech-stack-details');
-
-    if (expandBtn && techDetails) {
-      expandBtn.addEventListener('click', () => {
-        const isExpanded = techDetails.classList.toggle('expanded');
-        expandBtn.textContent = isExpanded ? 'show less <' : 'show all >';
-      });
-    }
-  });
-</script>
 
 <div class="home-projects-section">
   <h2 class="pixel-art-secondary-header">projects</h2>
@@ -150,3 +153,35 @@ technologies and tools i work with to build innovative solutions.
     </article>
   </section>
 </div>
+
+<div class="home-blogs-section">
+  <h2 class="pixel-art-secondary-header">blogs</h2>
+  <section class="blog-grid body-text-font">
+    {%- for post in collections.blogs.slice(0, 4) -%}
+    <article class="blog-card">
+      <a href="{{ post.url }}" class="blog-card-link">
+        <div class="blog-card-content">
+          <h2 class="blog-title">{{ post.data.title }}</h2>
+          <p class="manrope-500 blog-excerpt">
+            {{ post.data.description or post.data.summary }}
+          </p>
+        </div>
+      </a>
+    </article>
+    {%- endfor -%}
+  </section>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const expandBtn = document.getElementById('expand-tech-stack-btn');
+    const techDetails = document.getElementById('tech-stack-details');
+
+    if (expandBtn && techDetails) {
+      expandBtn.addEventListener('click', () => {
+        const isExpanded = techDetails.classList.toggle('expanded');
+        expandBtn.textContent = isExpanded ? 'show less <' : 'show all >';
+      });
+    }
+  });
+</script>
