@@ -2,6 +2,15 @@
 layout: base.njk
 ---
 
+{% if cover %}
+<style>
+  /* Remove top padding of the container to align the cover image flush with the top of the page */
+  .center-bar {
+    padding-top: 0;
+  }
+</style>
+{% endif %}
+
 <article class="blog-post montserrat-400 body-text-font {% if cover %}has-cover{% endif %}">
 
   {% if cover %}

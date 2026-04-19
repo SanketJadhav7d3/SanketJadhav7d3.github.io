@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>blogs</title>
+  <title>Naive Bayes Classifier</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -237,24 +237,138 @@
 
       <div class="center-bar">
         
-<section class="projects-intro montserrat-400">
-  <h1 class="pixel-art-secondary-header">blogs</h1>
-  <p class="body-text-font">
-    Explore my latest blog posts. Click on any card to read the full post.
-  </p>
-</section>
 
-<section class="blog-index-list body-text-font">
-  
-    <article class="blog-item">
-      <a href="/blogs/naive-bayes-classifier/" class="blog-item-link">
-        <span class="blog-item-date dim-text">Sat Apr 18 2026</span>
-        <h2 class="blog-item-title">Naive Bayes Classifier</h2>
-      </a>
-    </article>
-  
-</section>
+<style>
+  /* Remove top padding of the container to align the cover image flush with the top of the page */
+  .center-bar {
+    padding-top: 0;
+  }
+</style>
 
+
+<article class="blog-post montserrat-400 body-text-font has-cover">
+
+  
+    <div class="blog-cover-full" style="background-image: url('/assets/images/blog cover image.png');" aria-hidden="true"></div>
+  
+
+  
+    <h1 class="blog-title montserrat-400">Naive Bayes Classifier</h1>
+  
+
+  
+
+  <div class="blog-content inter-300">
+    <h1>Bayes’ Theorem</h1>
+<p>Before jumping into the Naive Bayes Classifier, it helps to build some intuition around <strong>Bayes’ Theorem</strong> itself. It is one of the central ideas in probability theory. At its core, it gives you a principled way to <strong>update what you believe when new evidence appears</strong>.</p>
+<hr>
+<h2>A motivating example</h2>
+<p>Imagine a medical test for a rare disease.</p>
+<ul>
+<li>The disease affects <strong>1 in 1000 people</strong> (0.1%)</li>
+<li>The test is <strong>99% accurate</strong> for detecting the disease (true positive rate)</li>
+<li>However, even if you do not have the disease, the test still gives a <strong>false positive 5% of the time</strong></li>
+</ul>
+<p>Now suppose you take the test, and the result comes back <strong>positive</strong>.</p>
+<blockquote>
+<p><strong>What is the actual probability that you have the disease?</strong></p>
+</blockquote>
+<p>At first glance, it is tempting to think:
+“99% accurate test means I probably have it.”</p>
+<p>This intuition turns out to be misleading, and this is exactly where Bayes’ Theorem becomes useful.</p>
+<hr>
+<h2>Terminology</h2>
+<p>What we are trying to compute is:</p>
+<blockquote>
+<p>The probability that you <strong>have the disease given that the test is positive</strong></p>
+</blockquote>
+<p>This is written as:</p>
+<p>$$
+P(\text{Disease} \mid \text{Positive})
+$$</p>
+<ul>
+<li>The <strong>evidence</strong> is that the test result is positive</li>
+<li>The <strong>hypothesis</strong> is that you have the disease</li>
+<li>The vertical bar “|” is read as <strong>“given”</strong></li>
+</ul>
+<p>So this reads:</p>
+<blockquote>
+<p>“Probability of the hypothesis being true, given the evidence”</p>
+</blockquote>
+<p>This is also called the <strong>posterior probability</strong>, since it represents your updated belief after observing new information.</p>
+<hr>
+<h2>A visual way to think about it</h2>
+<p>It helps to imagine this using sets.</p>
+<ul>
+<li>The entire rectangle represents the <strong>sample space</strong> or all possible outcomes</li>
+<li>Circle <strong>A</strong> represents people who have the disease</li>
+<li>Circle <strong>B</strong> represents people who test positive</li>
+<li>The overlap $$(A \cap B)$$ represents people who both have the disease and test positive</li>
+</ul>
+<p>Bayes’ Theorem is essentially answering:</p>
+<blockquote>
+<p>“Given that I am already inside B, how much of B actually belongs to A?”</p>
+</blockquote>
+<hr>
+<h2>Building the formula step by step</h2>
+<p>Start by looking at the overlap from inside <strong>B</strong>:</p>
+<p>$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}
+$$</p>
+<p>This says:
+Take the overlap and view it as a fraction of all outcomes in B.</p>
+<p>Rewriting:</p>
+<p>$$
+P(A \mid B),P(B) = P(A \cap B)
+$$</p>
+<hr>
+<p>Now look at the same overlap, but from inside <strong>A</strong>:</p>
+<p>$$
+P(B \mid A) = \frac{P(B \cap A)}{P(A)}
+$$</p>
+<p>or:</p>
+<p>$$
+P(B \mid A),P(A) = P(B \cap A)
+$$</p>
+<hr>
+<h2>The key insight</h2>
+<p>Both expressions describe the exact same region:</p>
+<p>$$
+P(A \cap B)
+$$</p>
+<p>So we can equate them:</p>
+<p>$$
+P(B \mid A),P(A) = P(A \mid B)P(B)
+$$</p>
+<p>Rearranging gives us Bayes’ Theorem:</p>
+<p>$$
+P(A \mid B) = \frac{P(B \mid A)P(A)}{P(B)}
+$$</p>
+<hr>
+<h2>Why this matters</h2>
+<p>Bayes’ Theorem lets you <strong>flip conditional probabilities</strong>.</p>
+<ul>
+<li>From something easier to measure, $$P(B \mid A)$$</li>
+<li>To something you actually care about, $$P(A \mid B)$$</li>
+</ul>
+<p>In the medical example:</p>
+<p>$$P(\text{Positive} \mid \text{Disease})$$
+is known from test accuracy</p>
+<p>What we really want is
+$$P(\text{Disease} \mid \text{Positive})$$</p>
+<p>Bayes’ Theorem provides the connection between the two.</p>
+<hr>
+<h2>Intuition in one line</h2>
+<p>Bayes’ Theorem is simply:</p>
+<blockquote>
+<p>Looking at the same overlap, but changing the perspective from which you measure it.</p>
+</blockquote>
+<hr>
+<p>This simple idea is what drives the Naive Bayes Classifier and many real world probabilistic models.</p>
+
+  </div>
+
+</article>
       </div>
     </div>
       
