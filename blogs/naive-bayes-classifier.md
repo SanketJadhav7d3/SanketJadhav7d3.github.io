@@ -39,9 +39,9 @@ What we are trying to compute is:
 
 This is written as:
 
-$$
-P(\text{Disease} \mid \text{Positive})
-$$
+
+![Bayes Theorem Formula](/assets/blogs/naive-bayes-classifier/first.png)
+
 
 * The **evidence** is that the test result is positive
 * The **hypothesis** is that you have the disease
@@ -56,6 +56,8 @@ This is also called the **posterior probability**, since it represents your upda
 ---
 
 ## A visual way to think about it
+
+![Bayes Theorem Formula Visualized](/assets/blogs/naive-bayes-classifier/visualized.png)
 
 It helps to imagine this using sets.
 
