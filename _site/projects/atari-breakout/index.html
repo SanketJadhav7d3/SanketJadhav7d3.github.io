@@ -42,19 +42,21 @@
   <script defer src="/katex/katex.min.js"></script>
   <script defer src="/katex/contrib/auto-render.min.js"></script>
   
-</head>
-
-<style>
+  <style>
   /* 1. Fluid Reset & Global Box Sizing */
   * {
     box-sizing: border-box;
   }
 
-  html, body {
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden; /* Prevents unwanted horizontal scrolling on mobile */
+    min-height: 100vh;
   }
 
   /* 2. Responsive Cursors (Disabled on touch devices for better UX) */
@@ -73,6 +75,16 @@
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
+  }
+
+  /* Ensure background effects don't intercept mouse wheel or trackpad scrolling */
+  .stars-background,
+  .meteors,
+  .stars-background::before,
+  .stars-background::after,
+  .meteors::before,
+  .meteors::after {
+    pointer-events: none !important;
   }
 
   .main-content {
@@ -176,7 +188,8 @@
       display: none;
     }
   }
-</style>
+  </style>
+</head>
 
 <body>
   <div class="page-container">
@@ -244,7 +257,7 @@
 
 <img class="project-cover-image" src="/assets/images/AI-Plays-Atari.png" alt="Cover image for ai agent for atari breakout">
 
-<div class="project-meta-top"><time datetime="Thu Aug 15 2024 05:30:00 GMT+0530 (India Standard Time)">Thu Aug 15 2024 05:30:00 GMT+0530 (India Standard Time)</time></div>
+<div class="project-meta-top"><time datetime="Thu Aug 15 2024 02:00:00 GMT+0200 (Central European Summer Time)">Thu Aug 15 2024 02:00:00 GMT+0200 (Central European Summer Time)</time></div>
 </header>
 
 
