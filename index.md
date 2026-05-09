@@ -15,6 +15,8 @@ templateEngineOverride: njk, md
 
 <div class="manrope-500 body-text-font dim-text">
 i’m a master's student, curious about all things ai and how intelligent systems shape the world around us. i love learning by building and experimenting, and when i’m not diving into tech, i enjoy game development as a fun creative outlet, playing around with ideas and interactive experiences.
+
+this is new
 </div>
 
 
