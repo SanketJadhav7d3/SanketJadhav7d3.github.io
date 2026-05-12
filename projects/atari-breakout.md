@@ -9,6 +9,7 @@ tech:
   - genetic algorithms
   - pygame
 permalink: /projects/atari-breakout/
+repo: https://github.com/SanketJadhav7d3/AI-plays-Atari-Breakout
 ---
 
 trained an ai to play atari breakout game using python neat.

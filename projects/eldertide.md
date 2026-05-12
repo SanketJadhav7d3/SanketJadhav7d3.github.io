@@ -9,6 +9,7 @@ tech:
   - CSS
   - JavaScript
 permalink: /projects/eldertide/
+repo: https://github.com/SanketJadhav7d3/eldertide
 ---
 
 # ⚔️ eldertide ⚔️

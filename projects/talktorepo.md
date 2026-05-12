@@ -11,6 +11,7 @@ tech:
   - treesitter
   - RAG
 permalink: /projects/talktorepo/
+repo: https://github.com/SanketJadhav7d3/talktorepo
 ---
 
 # 🔍 TalkToRepo: Structural Code Intelligence Engine

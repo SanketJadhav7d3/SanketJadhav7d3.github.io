@@ -13,6 +13,7 @@ tech:
   - react
   - tmdb api
 permalink: /projects/cinemystery/
+repo: https://github.com/SanketJadhav7d3/CineMystery
 ---
 
 # cinemystery 🎬

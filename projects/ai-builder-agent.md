@@ -10,6 +10,7 @@ tech:
   - python
   - minetest
 permalink: /projects/ai-builder-agent/
+repo: https://github.com/SanketJadhav7d3/AI-Builder-Agent
 ---
 
 # 🏰 minetest builder agent
