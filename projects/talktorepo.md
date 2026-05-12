@@ -3,7 +3,7 @@ title: "talk to repo"
 date: 2026-05-12
 layout: project.njk        # directly in _includes/
 summary: "Structural code intelligence engine"
-cover: /assets/images/Agentic-AI-Builder.png
+cover: /assets/projects-cover/talktorepo.png
 tech:
   - agentic ai
   - langgraph
