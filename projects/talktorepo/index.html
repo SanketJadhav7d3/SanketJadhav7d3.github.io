@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>my first blog post</title>
+  <title>talk to repo</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,19 +42,21 @@
   <script defer src="/katex/katex.min.js"></script>
   <script defer src="/katex/contrib/auto-render.min.js"></script>
   
-</head>
-
-<style>
+  <style>
   /* 1. Fluid Reset & Global Box Sizing */
   * {
     box-sizing: border-box;
   }
 
-  html, body {
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden; /* Prevents unwanted horizontal scrolling on mobile */
+    min-height: 100vh;
   }
 
   /* 2. Responsive Cursors (Disabled on touch devices for better UX) */
@@ -73,6 +75,16 @@
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
+  }
+
+  /* Ensure background effects don't intercept mouse wheel or trackpad scrolling */
+  .stars-background,
+  .meteors,
+  .stars-background::before,
+  .stars-background::after,
+  .meteors::before,
+  .meteors::after {
+    pointer-events: none !important;
   }
 
   .main-content {
@@ -176,7 +188,8 @@
       display: none;
     }
   }
-</style>
+  </style>
+</head>
 
 <body>
   <div class="page-container">
@@ -237,40 +250,53 @@
 
       <div class="center-bar">
         
+<main class="project-page">
+  <a href="/projects/" class="project-back-button" aria-label="Back to Projects">←</a>
+<header class="project-header">
+<h1>talk to repo</h1>
 
-<style>
-  /* Remove top padding of the container to align the cover image flush with the top of the page */
-  .center-bar {
-    padding-top: 0;
-  }
-</style>
+<img class="project-cover-image" src="/assets/images/Agentic-AI-Builder.png" alt="Cover image for talk to repo">
+
+<div class="project-meta-top"><time datetime="Tue May 12 2026 02:00:00 GMT+0200 (Central European Summer Time)">Tue May 12 2026 02:00:00 GMT+0200 (Central European Summer Time)</time></div>
+</header>
 
 
-<article class="blog-post montserrat-400 body-text-font has-cover">
+<div class="project-body-grid">
 
-  
-    <div class="blog-cover-full" style="background-image: url('/assets/images/blog cover image.png');" aria-hidden="true"></div>
-  
 
-  
-    <h1 class="blog-title montserrat-400">my first blog post</h1>
-  
+<aside class="project-sidebar">
 
-  
+<h1 class="manrope-500">tech stack</h1>
+<ul class="tech-list"><li>agentic ai</li><li>langgraph</li><li>python</li><li>treesitter</li><li>RAG</li></ul>
 
-  <div class="blog-content inter-300">
-    <p>welcome to my first blog post! this is a sample entry to demonstrate how your blog layout will display content.</p>
-<h2>introduction</h2>
-<p>here, you can write an introductory paragraph about your topic. for example, share insights, experiences, or tutorials.</p>
-<p>Inline: $E = mc^2$</p>
-<p>Block:</p>
-<p>$$
-\int_0^\infty e^{-x} dx = 1
-$$</p>
 
-  </div>
+</aside>
 
-</article>
+<section class="project-body"><h1>🔍 TalkToRepo: Structural Code Intelligence Engine</h1>
+<p>TalkToRepo is a high-performance code intelligence engine designed to bridge the gap between massive codebases and Large Language Models. Unlike standard text splitters that break code at arbitrary line counts, TalkToRepo uses <strong>AST (Abstract Syntax Tree)</strong> parsing to extract logical units, ensuring AI models receive syntactically complete context.</p>
+<h2>🚀 Key Features</h2>
+<ul>
+<li><strong>🧠 Logic-Preserving RAG</strong>: Uses Tree-Sitter to chunk code by function/class boundaries, significantly improving LLM reasoning over standard RAG.</li>
+<li><strong>⚡ Polyglot Performance</strong>: Sub-millisecond parsing of C++, Java, Rust, and TS using a hybrid Python <code>ast</code> and C-based Tree-Sitter strategy.</li>
+<li><strong>🔗 Graph-Based Analysis</strong>: Automatically maps project-wide dependencies to provide the AI with a structural understanding of the repository.</li>
+<li><strong>🛠 Production Tooling</strong>: Designed for low-latency agentic workflows (compatible with LangChain and Gemini).</li>
+</ul>
+<h2>🏗 Technical Architecture</h2>
+<ol>
+<li><strong>Ingestion</strong>: Files are filtered and validated via extension mapping.</li>
+<li><strong>Parsing</strong>:
+<ul>
+<li><strong>Python</strong>: Handled via native <code>ast</code> for 100% feature compliance.</li>
+<li><strong>Core Polyglot</strong>: C-bindings for Tree-Sitter provide high-speed extraction for 7+ languages.</li>
+</ul>
+</li>
+<li><strong>Extraction</strong>: Metadata (line ranges, signatures, imports) is structured for vectorization.</li>
+<li><strong>Semantic Retrieval</strong>: Logical blocks are indexed into a Vector Store for context-aware AI querying.</li>
+</ol>
+</section>
+
+</div>
+</main>
       </div>
     </div>
       
