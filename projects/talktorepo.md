@@ -35,4 +35,10 @@ TalkToRepo is a high-performance code intelligence engine designed to bridge the
 3.  **Extraction**: Metadata (line ranges, signatures, imports) is structured for vectorization.
 4.  **Semantic Retrieval**: Logical blocks are indexed into a Vector Store for context-aware AI querying.
 
+## Images
 
+<img width="2485" height="1431" alt="image" src="https://github.com/user-attachments/assets/a388af55-cbc4-4bd6-b960-f6bf48118572" />
+
+<img width="2485" height="1431" alt="image" src="https://github.com/user-attachments/assets/8d8fc284-c47d-45e5-85a8-7ed17719ee7c" />
+
+<img width="2485" height="1431" alt="image" src="https://github.com/user-attachments/assets/1a9f4d07-5878-4b90-b585-ec8bf85189f9" />
