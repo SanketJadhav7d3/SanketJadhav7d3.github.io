@@ -14,8 +14,6 @@ permalink: /projects/portfolio-mcp/
 repo: https://github.com/SanketJadhav7d3/SanketJadhav7d3.github.io/tree/main/mcp-server
 ---
 
-# 🔌 portfolio mcp server
-
 this site talks to language models. not through a scraper or a copy-pasted résumé — through a real [model context protocol](https://modelcontextprotocol.io) server that exposes the portfolio as **callable tools**.
 
 point any mcp client at it and ask "what has sanket built with langgraph?" — the model calls a tool, gets structured json back, and answers from the actual content of this site.

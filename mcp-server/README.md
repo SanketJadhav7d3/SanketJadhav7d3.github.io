@@ -13,7 +13,10 @@ A minimal [MCP](https://modelcontextprotocol.io) server that exposes the portfol
 | `get_profile` | experience, education, blog index |
 
 Transport is **Streamable HTTP** at `POST /mcp`, stateless (a fresh server per request), so it
-scales to zero on Cloud Run. `GET /health` is a liveness probe.
+scales to zero on Cloud Run. `GET /health` reports the number of projects parsed, so a bad
+deploy that ships an empty image is visible immediately rather than silently returning nothing.
+
+Live at `https://portfolio-mcp-7980055254.europe-west1.run.app/mcp`.
 
 ## run locally
 
@@ -21,6 +24,12 @@ scales to zero on Cloud Run. `GET /health` is a liveness probe.
 cd mcp-server
 npm install
 CONTENT_ROOT=.. npm start        # http://localhost:8080/mcp
+```
+
+On PowerShell the env var is set separately:
+
+```powershell
+cd mcp-server; npm install; $env:CONTENT_ROOT = ".."; npm start
 ```
 
 Point Claude Code at it:
@@ -33,7 +42,8 @@ claude mcp add --transport http portfolio http://localhost:8080/mcp
 
 The `Dockerfile` lives at the **repo root** (not here) because `gcloud run deploy --source .`
 only auto-detects a Dockerfile at the root of the source directory. It bakes the markdown
-content into the image, so redeploy whenever you add a project.
+content into the image, **so a project added or edited since the last deploy is not visible to
+the server until you redeploy.**
 
 One-time setup:
 
