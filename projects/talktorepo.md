@@ -19,6 +19,10 @@ repo: https://github.com/SanketJadhav7d3/talktorepo
 
 TalkToRepo is a high-performance code intelligence engine designed to bridge the gap between massive codebases and Large Language Models. Unlike standard text splitters that break code at arbitrary line counts, TalkToRepo uses **AST (Abstract Syntax Tree)** parsing to extract logical units, ensuring AI models receive syntactically complete context.
 
+## 🎥 MCP Server Demo
+
+<video src="/assets/videos/talktorepo-mcp.mp4" autoplay loop muted playsinline controls aria-label="TalkToRepo MCP server answering questions about a codebase"></video>
+
 ## 🚀 Key Features
 
 *   **🧠 Logic-Preserving RAG**: Uses Tree-Sitter to chunk code by function/class boundaries, significantly improving LLM reasoning over standard RAG.
