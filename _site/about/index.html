@@ -297,10 +297,10 @@
         screenWidth = window.innerWidth;
       }
 
-      // Never more than a couple in flight. The moment two are reliably on
-      // screen together it stops reading as a night sky, and the cap doubles as
-      // a hard ceiling if anything ever goes wrong with the scheduling.
-      const MAX_METEORS = 3;
+      // A ceiling, not a rate limit. At the current spacing roughly one or two
+      // are in flight at any moment; this only exists so that if the scheduling
+      // ever goes wrong again the screen cannot fill up.
+      const MAX_METEORS = 6;
 
       const rand = (min, max) => min + Math.random() * (max - min);
 
@@ -351,7 +351,7 @@
         // Always clear first: without this, two calls leave two timers running
         // and the rate silently doubles for the rest of the session.
         if (meteorTimeoutId) clearTimeout(meteorTimeoutId);
-        const delay = rand(4000, 9000);
+        const delay = rand(1200, 3400);
         meteorTimeoutId = setTimeout(() => {
           createMeteor();
           scheduleNextMeteor();
