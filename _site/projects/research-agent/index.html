@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>projects</title>
+  <title>research agent</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -250,112 +250,108 @@
 
       <div class="center-bar">
         
-<section class="projects-intro montserrat-400">
-  <h1 class="pixel-art-secondary-header">projects</h1>
+<main class="project-page">
+  <a href="/projects/" class="project-back-button" aria-label="Back to Projects">←</a>
+<header class="project-header">
+<h1>research agent</h1>
+
+<div class="project-meta-top"><time datetime="Sat Aug 22 2026 02:00:00 GMT+0200 (Central European Summer Time)">Sat Aug 22 2026 02:00:00 GMT+0200 (Central European Summer Time)</time></div>
+</header>
+
+
+<div class="project-body-grid">
+
+
+<aside class="project-sidebar">
+
+<h1 class="manrope-500">tech stack</h1>
+<ul class="tech-list"><li>agentic ai</li><li>langgraph</li><li>python</li><li>fastapi</li><li>react</li><li>plotly</li></ul>
+<h1 class="manrope-500">links</h1>
+<div class="project-links">
+  
+  
+    <a class="btn secondary" href="https://github.com/SanketJadhav7d3/Research-Agent" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      View repo
+    </a>
+  
+</div>
+
+
+</aside>
+
+<section class="project-body"><h1>🔬 research agent</h1>
+<p>give it a research goal and it plans, picks its own tools, searches, reads sources, <strong>scores its own confidence</strong>, loops back when the findings are thin, and writes a cited report.</p>
+<p>the interesting part isn't that it researches. it's that it <em>knows when it hasn't researched enough</em>.</p>
+<h2>🧠 the adaptive graph</h2>
+<p>most agent demos run a fixed pipeline: search → summarize → done. this one has a <strong>fixed outer skeleton with free inner execution</strong> — the sequence of nodes is guaranteed, but the decisions inside <code>execute</code> belong to the model.</p>
+<pre><code>clarify → plan → execute → reflect → visualize → synthesize
+                    ↑          ↓
+                    └──────────┘
+              loops back on low confidence
+</code></pre>
+<p><code>reflect</code> doesn't always continue. it scores its own work, and a gate in <a href="https://github.com/SanketJadhav7d3/Research-Agent/blob/main/backend/agent/confidence.py"><code>confidence.py</code></a> decides what happens next:</p>
+<ul>
+<li><strong>confidence ≥ 0.75</strong> → write the report</li>
+<li><strong>below threshold, iterations remain</strong> → back to <code>execute</code>, aimed at the specific gaps reflect just identified</li>
+<li><strong>below threshold, out of iterations</strong> → write the report anyway, but synthesize is told to state the limitations plainly</li>
+</ul>
+<p>that last branch matters. an agent that loops forever chasing certainty is worse than one that admits what it couldn't establish.</p>
+<h2>🛠 tools the agent chooses between</h2>
+<ul>
+<li><strong>search</strong> — web retrieval via tavily</li>
+<li><strong>reader</strong> — pulls and cleans full source documents</li>
+<li><strong>pdf reader</strong> — handles papers and filings directly</li>
+<li><strong>financial</strong> — structured market/company data</li>
+<li><strong>code</strong> — runs python in a sandbox against the evidence it has gathered</li>
+</ul>
+<p>the code tool is the one with a real design constraint behind it. it's built <strong>per run</strong> rather than declared at import, because it has to carry that run's evidence with it — tools execute in a thread pool where per-run state doesn't propagate, so a factory closing over the data is the mechanism that actually works.</p>
+<p>it also gets far more than the model does: the prompt caps a document at 8k characters, while code can regex a table out of forty thousand.</p>
+<h2>📊 charting after the evidence settles</h2>
+<p><code>visualize</code> sits deliberately <strong>outside</strong> the research loop. a chart drawn mid-research may be plotting numbers a later round replaces — so charting happens once, after the evidence is settled, and renders through plotly in the frontend.</p>
+<h2>🧪 does the looping actually help?</h2>
+<p>the point of an eval harness is to be able to be wrong about your own design. looping is disabled by setting <code>max_iterations=1</code>, so both arms exercise identical code:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1 iteration</th>
+<th>3 iterations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>citations</td>
+<td>30.2</td>
+<td><strong>39.0</strong></td>
+</tr>
+<tr>
+<td>confidence</td>
+<td>0.82</td>
+<td>0.80</td>
+</tr>
+<tr>
+<td>loops taken</td>
+<td>1.00</td>
+<td>1.40</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>88s</td>
+<td>109s</td>
+</tr>
+</tbody>
+</table>
+<p>looping pulls in meaningfully more sources — about 30% more citations — at the cost of ~25% more wall-clock time. self-reported confidence barely moves, which is itself worth knowing: <strong>the model's confidence score is not a reliable proxy for how well-sourced the answer is.</strong></p>
+<p>with n=5 per arm these are directional, not conclusive. the harness appends to <code>results.jsonl</code> and skips pairs already recorded, so the run set grows as free-tier quota allows.</p>
+<h2>🏗 stack</h2>
+<p><strong>backend</strong> — fastapi + langgraph, streaming the agent's trace over SSE so the ui shows tool calls, gate decisions, and confidence as they happen rather than after.</p>
+<p><strong>frontend</strong> — react + vite, with <code>AgentTrace</code>, <code>ToolCallCard</code>, <code>CodeRunCard</code>, and <code>ConfidenceBar</code> components that make the agent's reasoning legible instead of hiding it behind a spinner.</p>
+<p>the whole thing runs with <code>docker compose up --build</code>.</p>
 </section>
 
-<section class="projects-grid body-text-font">
-  
-    <article class="project-card">
-      <a href="/projects/research-agent/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">research agent</h2>
-          <p class="project-excerpt">
-            an agentic researcher that scores its own work and loops until it&#39;s confident
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/portfolio-mcp/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">portfolio mcp server</h2>
-          <p class="project-excerpt">
-            an mcp server that lets any llm read this portfolio as structured data
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/industrial-asr-correction/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">industrial asr terminology correction</h2>
-          <p class="project-excerpt">
-            whisper mangles industrial jargon — fixing it without fine-tuning anything
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/kvasir-instrument-detector/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">surgical instrument detector</h2>
-          <p class="project-excerpt">
-            yolo26n on endoscopic frames, plus a robustness study of what breaks it
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/talktorepo/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">talk to repo</h2>
-          <p class="project-excerpt">
-            Structural code intelligence engine
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/eldertide/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">eldertide</h2>
-          <p class="project-excerpt">
-            an age of empires styled 2D RPG
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/ai-builder-agent/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">ai builder agent</h2>
-          <p class="project-excerpt">
-            an agentic architect to build structures in a game
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/atari-breakout/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">ai agent for atari breakout</h2>
-          <p class="project-excerpt">
-            trained an ai to play atari breakout game using python neat.
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/cinemystery/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">cinemystery</h2>
-          <p class="project-excerpt">
-            a genAI based puzzle games about movies
-          </p>
-        </div>
-      </a>
-    </article>
-  
-</section>
+</div>
+</main>
       </div>
     </div>
       

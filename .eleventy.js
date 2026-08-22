@@ -9,6 +9,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addWatchTarget("js/");
 
+  // the MCP server is deployed separately; keep its README out of the site
+  eleventyConfig.ignores.add("mcp-server/**");
+
 
   eleventyConfig.addPassthroughCopy({
     "node_modules/katex/dist": "katex"

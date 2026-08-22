@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>projects</title>
+  <title>industrial asr terminology correction</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -250,112 +250,138 @@
 
       <div class="center-bar">
         
-<section class="projects-intro montserrat-400">
-  <h1 class="pixel-art-secondary-header">projects</h1>
+<main class="project-page">
+  <a href="/projects/" class="project-back-button" aria-label="Back to Projects">←</a>
+<header class="project-header">
+<h1>industrial asr terminology correction</h1>
+
+<div class="project-meta-top"><time datetime="Tue Jul 14 2026 02:00:00 GMT+0200 (Central European Summer Time)">Tue Jul 14 2026 02:00:00 GMT+0200 (Central European Summer Time)</time></div>
+</header>
+
+
+<div class="project-body-grid">
+
+
+<aside class="project-sidebar">
+
+<h1 class="manrope-500">tech stack</h1>
+<ul class="tech-list"><li>speech recognition</li><li>whisper</li><li>python</li><li>gemini</li><li>phonetics</li></ul>
+<h1 class="manrope-500">links</h1>
+<div class="project-links">
+  
+  
+    <a class="btn secondary" href="https://github.com/SanketJadhav7d3/industrial-asr-terminology-correction" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      View repo
+    </a>
+  
+</div>
+
+
+</aside>
+
+<section class="project-body"><h1>🎙️ industrial asr with domain-term correction</h1>
+<p>whisper transcribes ordinary english well and mangles industrial jargon:</p>
+<blockquote>
+<p>PROFIBUS → <em>&quot;pro fibers&quot;</em> · HART → <em>&quot;heart&quot;</em> · PROFINET → <em>&quot;profanet&quot;</em> · VLAN → <em>&quot;flan&quot;</em></p>
+</blockquote>
+<p>those are exactly the words carrying the meaning. everything around them is already correct.</p>
+<p>so: <strong>don't fine-tune.</strong> the acoustic signal is intact and the terms are merely mislabelled, which means they can be recovered from the text — orders of magnitude cheaper than retraining. the model stays frozen and a correction layer maps mangled output back to canonical terms. there is no training loop in this repo.</p>
+<h2>📏 measuring the right thing</h2>
+<p>~95% of words in these sentences are ordinary english whisper already gets right, so <strong>wer barely reflects the problem</strong>. a system could destroy every domain term and still post a respectable word error rate.</p>
+<p>so the metric is <strong>term error rate</strong> — accuracy on domain vocabulary only. frozen faster-whisper <code>small</code>, 750 clips, 3 voices, snr 20/10/5/0 db:</p>
+<p><strong>term error rate (%)</strong> — lower is better</p>
+<table>
+<thead>
+<tr>
+<th>condition</th>
+<th>baseline</th>
+<th>phonetic</th>
+<th>llm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clean</td>
+<td>20.8</td>
+<td>2.5</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>20 db</td>
+<td>21.1</td>
+<td>2.2</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>10 db</td>
+<td>21.9</td>
+<td>2.2</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>5 db</td>
+<td>24.4</td>
+<td>3.9</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>0 db</td>
+<td>29.7</td>
+<td>13.6</td>
+<td>6.8</td>
+</tr>
+<tr>
+<td><strong>all</strong></td>
+<td><strong>23.6</strong></td>
+<td><strong>4.9</strong></td>
+<td><strong>1.9</strong></td>
+</tr>
+</tbody>
+</table>
+<p>ter drops <strong>5× with phonetic matching and 12× with the llm</strong>.</p>
+<h2>🔍 the number that makes the point</h2>
+<p>here's wer over the same runs:</p>
+<table>
+<thead>
+<tr>
+<th>condition</th>
+<th>baseline</th>
+<th>phonetic</th>
+<th>llm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>all</strong></td>
+<td><strong>10.5</strong></td>
+<td>12.9</td>
+<td>11.9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>wer gets worse.</strong> 10.5 → 12.9. by the standard asr metric, both correction strategies made the system <em>worse</em>, while the terms that actually carry the meaning went from 23.6% wrong to 1.9%.</p>
+<p>that gap is the whole argument. picking wer here would have led you to reject a change that fixed the problem, because wer weights &quot;the&quot; and &quot;PROFIsafe&quot; identically and the corrections introduce minor casing and punctuation churn. <strong>the metric you choose decides what you're allowed to see.</strong></p>
+<h2>⚖️ two strategies</h2>
+<p><strong>phonetic</strong> — double metaphone over the transcript. deterministic, explainable, no api call. blind to context, so it trips on true homophones: a genuinely spoken &quot;heart&quot; becomes <code>HART</code>.</p>
+<p><strong>llm</strong> — retrieves candidate terms and asks gemini to restore <em>only those</em>, changing nothing else. across all 750 clips it introduced <strong>0 hallucinated substitutions</strong> — zero terms outside the allowed candidate list. that was counted separately rather than assumed, because &quot;the llm rewrote something it shouldn't have&quot; is the obvious failure mode of this design.</p>
+<p>the llm wins on accuracy; phonetic wins on cost, latency, and auditability. for a safety-adjacent domain that tradeoff isn't obvious.</p>
+<h2>🔁 the pipeline</h2>
+<pre><code>00_download_noise  →  esc-50 noise (or synthetic fallback)
+01_synthesize      →  sentences → speech, piper, 3 voices
+02_mix_noise       →  mix at set snrs
+03_transcribe      →  whisper baseline + harvest term errors
+04_correct         →  phonetic + llm
+05_evaluate        →  wer/ter tables
+</code></pre>
+<p>the 80-term database carries a german translation per term, and its <code>common_asr_errors</code> were <strong>extended with errors actually observed in the baseline run</strong> — harvested empirically by <code>--update-db</code>, not invented at the desk.</p>
+<h2>⚠️ limitations</h2>
+<p>audio is synthetic tts, not real speech, so the absolute rates are optimistic — the wer-vs-ter <em>contrast</em> is the finding, not the numbers. the term set is small and profinet-centric, and phonetic matching stays context-blind.</p>
+<p>next: a librispeech clean-speech control, whisper prompt-biasing as a third strategy, and a hand-annotated real-audio set.</p>
 </section>
 
-<section class="projects-grid body-text-font">
-  
-    <article class="project-card">
-      <a href="/projects/research-agent/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">research agent</h2>
-          <p class="project-excerpt">
-            an agentic researcher that scores its own work and loops until it&#39;s confident
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/portfolio-mcp/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">portfolio mcp server</h2>
-          <p class="project-excerpt">
-            an mcp server that lets any llm read this portfolio as structured data
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/industrial-asr-correction/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">industrial asr terminology correction</h2>
-          <p class="project-excerpt">
-            whisper mangles industrial jargon — fixing it without fine-tuning anything
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/kvasir-instrument-detector/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">surgical instrument detector</h2>
-          <p class="project-excerpt">
-            yolo26n on endoscopic frames, plus a robustness study of what breaks it
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/talktorepo/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">talk to repo</h2>
-          <p class="project-excerpt">
-            Structural code intelligence engine
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/eldertide/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">eldertide</h2>
-          <p class="project-excerpt">
-            an age of empires styled 2D RPG
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/ai-builder-agent/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">ai builder agent</h2>
-          <p class="project-excerpt">
-            an agentic architect to build structures in a game
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/atari-breakout/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">ai agent for atari breakout</h2>
-          <p class="project-excerpt">
-            trained an ai to play atari breakout game using python neat.
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/cinemystery/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">cinemystery</h2>
-          <p class="project-excerpt">
-            a genAI based puzzle games about movies
-          </p>
-        </div>
-      </a>
-    </article>
-  
-</section>
+</div>
+</main>
       </div>
     </div>
       

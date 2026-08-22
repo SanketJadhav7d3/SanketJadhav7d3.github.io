@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>projects</title>
+  <title>surgical instrument detector</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -250,112 +250,171 @@
 
       <div class="center-bar">
         
-<section class="projects-intro montserrat-400">
-  <h1 class="pixel-art-secondary-header">projects</h1>
+<main class="project-page">
+  <a href="/projects/" class="project-back-button" aria-label="Back to Projects">←</a>
+<header class="project-header">
+<h1>surgical instrument detector</h1>
+
+<img class="project-cover-image" src="https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/degradation_samples.png" alt="Cover image for surgical instrument detector">
+
+<div class="project-meta-top"><time datetime="Fri Jul 10 2026 02:00:00 GMT+0200 (Central European Summer Time)">Fri Jul 10 2026 02:00:00 GMT+0200 (Central European Summer Time)</time></div>
+</header>
+
+
+<div class="project-body-grid">
+
+
+<aside class="project-sidebar">
+
+<h1 class="manrope-500">tech stack</h1>
+<ul class="tech-list"><li>computer vision</li><li>yolo</li><li>pytorch</li><li>python</li><li>onnx</li></ul>
+<h1 class="manrope-500">links</h1>
+<div class="project-links">
+  
+  
+    <a class="btn secondary" href="https://github.com/SanketJadhav7d3/Kvasir-Instrument-Detector" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      View repo
+    </a>
+  
+</div>
+
+
+</aside>
+
+<section class="project-body"><h1>🔬 surgical instrument detection &amp; robustness study</h1>
+<p>fine-tuned <strong>yolo26n</strong> to detect surgical instruments in real endoscopic frames (kvasir-instrument), then ran a <strong>simulated robustness study</strong> over zoom and focus — because a detector that scores well on clean validation data tells you almost nothing about what happens in an operating room.</p>
+<p><strong>baseline on clean val:</strong> mAP@50 = <strong>0.974</strong>, mAP@50-95 = <strong>0.877</strong></p>
+<p>the model wasn't the deliverable. the study of <em>how it degrades</em> was.</p>
+<h2>📉 what actually breaks it</h2>
+<p>perturbations hit the <strong>val set only</strong>, one dataset per condition. photometric changes leave ground-truth boxes alone; zoom center-crops and resizes, so gt boxes are transformed and off-frame boxes dropped — with <code>z=1.0</code> asserted as an exact passthrough, so the harness can prove it isn't silently corrupting labels.</p>
+<table>
+<thead>
+<tr>
+<th>axis</th>
+<th>mild</th>
+<th>strong</th>
+<th>takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>zoom</strong></td>
+<td>1.5× → 0.924</td>
+<td><strong>2.0× → 0.662</strong></td>
+<td>hardest axis; sharp fall-off past 1.5×</td>
+</tr>
+<tr>
+<td><strong>blur (defocus)</strong></td>
+<td>σ=2 → 0.961</td>
+<td>σ=6 → 0.925</td>
+<td>graceful</td>
+</tr>
+<tr>
+<td><strong>brightness</strong></td>
+<td>0.6× → 0.971</td>
+<td>1.4× → 0.971</td>
+<td>negligible</td>
+</tr>
+</tbody>
+</table>
+<h2>🎯 the finding the headline number hides</h2>
+<p>mAP@50 alone makes zoom look survivable until 2×. the stricter metric says otherwise:</p>
+<table>
+<thead>
+<tr>
+<th>zoom</th>
+<th>mAP@50</th>
+<th>mAP@50-95</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0×</td>
+<td>0.973</td>
+<td>0.875</td>
+</tr>
+<tr>
+<td>1.25×</td>
+<td>0.966</td>
+<td><strong>0.716</strong></td>
+</tr>
+<tr>
+<td>1.5×</td>
+<td>0.924</td>
+<td><strong>0.571</strong></td>
+</tr>
+<tr>
+<td>2.0×</td>
+<td>0.662</td>
+<td>0.453</td>
+</tr>
+</tbody>
+</table>
+<p>at 1.25× zoom, mAP@50 has barely moved — but mAP@50-95 has already fallen <strong>18 points</strong>. the model still <em>finds</em> the instrument; it stops localizing it precisely.</p>
+<p>that distinction matters for anything downstream that consumes the box rather than the class. a tracker or a measurement built on those coordinates degrades long before the detection metric admits there's a problem.</p>
+<p>blur shows the same pattern more gently — mAP@50 holds at 0.925 out to σ=6 while mAP@50-95 slides 0.877 → 0.728.</p>
+<p><img src="https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/degradation_samples.png" alt="degradation samples"></p>
+<p><em>clean | blur σ=4 | zoom ×2 — predictions with confidence</em></p>
+<table>
+<thead>
+<tr>
+<th>mAP@50 vs blur σ</th>
+<th>mAP@50 vs zoom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/curve_blur.png" alt="blur curve"></td>
+<td><img src="https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/curve_zoom.png" alt="zoom curve"></td>
+</tr>
+</tbody>
+</table>
+<h2>🔧 the pipeline</h2>
+<p>the emphasis was reproducibility over benchmark-chasing — every stage is a make target, and the environment is locked:</p>
+<pre><code>make all   # data -&gt; train -&gt; perturb -&gt; eval -&gt; viz -&gt; bench
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>stage</th>
+<th>what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>convert.py</code></td>
+<td>kvasir json → yolo txt + data.yaml, split-aware</td>
+</tr>
+<tr>
+<td><code>check_labels.py</code></td>
+<td>label sanity grid — catches conversion bugs before training</td>
+</tr>
+<tr>
+<td><code>perturb.py</code></td>
+<td>generates zoom/focus/brightness eval sets from <code>perturbations.yaml</code></td>
+</tr>
+<tr>
+<td><code>evaluate.py</code></td>
+<td>per-condition validation → <code>metrics.csv</code></td>
+</tr>
+<tr>
+<td><code>benchmark.py</code></td>
+<td>cpu vs gpu latency → <code>latency.csv</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>uv.lock</code> pins the environment and <code>SEED=42</code> fixes the run, so the numbers above regenerate rather than being screenshots of a run nobody can reproduce.</p>
+<h2>⚡ inference</h2>
+<p>single-image at imgsz 640, <strong>cpu: 66.2 ms mean, 15.1 fps</strong>. an onnx export (~9.4 mb) is produced alongside the torch weights.</p>
+<p>only the cpu row is measured — there was no local cuda gpu available. the gpu row is produced automatically when the benchmark runs on a cuda host, rather than being estimated.</p>
+<h2>⚠️ limitations</h2>
+<p>stated rather than papered over: the dataset is single-frame, so there are <strong>no tracking or temporal metrics</strong>; the perturbations are synthetic approximations of operating-room optics, not clinical realism; and it's a single class.</p>
+<p>training early-stopped at 95/100 epochs (patience=25) on a colab t4.</p>
 </section>
 
-<section class="projects-grid body-text-font">
-  
-    <article class="project-card">
-      <a href="/projects/research-agent/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">research agent</h2>
-          <p class="project-excerpt">
-            an agentic researcher that scores its own work and loops until it&#39;s confident
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/portfolio-mcp/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">portfolio mcp server</h2>
-          <p class="project-excerpt">
-            an mcp server that lets any llm read this portfolio as structured data
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/industrial-asr-correction/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">industrial asr terminology correction</h2>
-          <p class="project-excerpt">
-            whisper mangles industrial jargon — fixing it without fine-tuning anything
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/kvasir-instrument-detector/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">surgical instrument detector</h2>
-          <p class="project-excerpt">
-            yolo26n on endoscopic frames, plus a robustness study of what breaks it
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/talktorepo/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">talk to repo</h2>
-          <p class="project-excerpt">
-            Structural code intelligence engine
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/eldertide/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">eldertide</h2>
-          <p class="project-excerpt">
-            an age of empires styled 2D RPG
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/ai-builder-agent/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">ai builder agent</h2>
-          <p class="project-excerpt">
-            an agentic architect to build structures in a game
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/atari-breakout/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">ai agent for atari breakout</h2>
-          <p class="project-excerpt">
-            trained an ai to play atari breakout game using python neat.
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/cinemystery/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">cinemystery</h2>
-          <p class="project-excerpt">
-            a genAI based puzzle games about movies
-          </p>
-        </div>
-      </a>
-    </article>
-  
-</section>
+</div>
+</main>
       </div>
     </div>
       
