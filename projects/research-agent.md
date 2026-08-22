@@ -10,6 +10,7 @@ tech:
   - fastapi
   - react
   - plotly
+cover: /assets/videos/research-agent.mp4
 permalink: /projects/research-agent/
 repo: https://github.com/SanketJadhav7d3/Research-Agent
 ---
