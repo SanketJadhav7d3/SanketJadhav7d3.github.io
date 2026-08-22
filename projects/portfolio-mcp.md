@@ -21,6 +21,8 @@ point any mcp client at it and ask "what has sanket built with langgraph?" — t
 
 live at `https://portfolio-mcp-7980055254.europe-west1.run.app/mcp`
 
+<video src="/assets/videos/portfolio-mcp.mp4" autoplay loop muted playsinline controls aria-label="an llm calling the portfolio mcp server's tools"></video>
+
 ## 🧰 the tools
 
 | tool | what it returns |
