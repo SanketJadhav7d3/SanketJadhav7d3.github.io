@@ -7,7 +7,21 @@ layout: base.njk
 <header class="project-header">
 <h1>{{ title }}</h1>
 {% if cover %}
+  {#- One `cover` field takes either an image or a video; the extension decides
+      which element to render, so a project page never has to say which it is.
+      An optional `coverPoster` gives the video a still to show before it
+      starts — worth setting, since without one the hero is blank until enough
+      of the file has arrived. -#}
+  {% set coverIsVideo = cover.endsWith(".mp4") or cover.endsWith(".webm") or cover.endsWith(".mov") %}
+  {% if coverIsVideo %}
+<video class="project-cover-image project-cover-video"
+       src="{{ cover }}"
+       {% if coverPoster %}poster="{{ coverPoster }}"{% endif %}
+       autoplay loop muted playsinline controls
+       aria-label="Cover video for {{ title }}"></video>
+  {% else %}
 <img class="project-cover-image" src="{{ cover }}" alt="Cover image for {{ title }}">
+  {% endif %}
 {% endif %}
 <div class="project-meta-top">
 {%- if date %}<time datetime="{{ date }}">{{ date }}</time>{% endif -%}

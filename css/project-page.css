@@ -28,6 +28,16 @@
   border: 1px solid var(--project-card-border);
 }
 
+/* A cover image can be cropped to fill without losing anything that matters.
+   A video usually cannot — screen recordings carry text near the edges, and
+   `cover` would slice it off. Contain instead, over a dark ground so the
+   letterboxing reads as part of the frame rather than as a gap. */
+.project-cover-video {
+  object-fit: contain;
+  max-height: 500px;
+  background: #0b0d12;
+}
+
 .project-meta-top {
   color: var(--project-text-muted);
   font-family: 'Space Mono', monospace;

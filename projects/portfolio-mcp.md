@@ -9,6 +9,7 @@ tech:
   - express
   - docker
   - google cloud run
+cover: /assets/videos/portfolio-mcp.mp4
 permalink: /projects/portfolio-mcp/
 repo: https://github.com/SanketJadhav7d3/SanketJadhav7d3.github.io/tree/main/mcp-server
 ---
@@ -20,8 +21,6 @@ this site talks to language models. not through a scraper or a copy-pasted résu
 point any mcp client at it and ask "what has sanket built with langgraph?" — the model calls a tool, gets structured json back, and answers from the actual content of this site.
 
 live at `https://portfolio-mcp-7980055254.europe-west1.run.app/mcp`
-
-<video src="/assets/videos/portfolio-mcp.mp4" autoplay loop muted playsinline controls aria-label="an llm calling the portfolio mcp server's tools"></video>
 
 ## 🧰 the tools
 
