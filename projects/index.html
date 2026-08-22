@@ -402,8 +402,17 @@
         screenWidth = window.innerWidth;
       }
 
+      // Never more than a couple in flight. The moment two are reliably on
+      // screen together it stops reading as a night sky, and the cap doubles as
+      // a hard ceiling if anything ever goes wrong with the scheduling.
+      const MAX_METEORS = 3;
+
+      const rand = (min, max) => min + Math.random() * (max - min);
+
       function createMeteor() {
         if (!meteorContainer) return;
+        if (meteorContainer.childElementCount >= MAX_METEORS) return;
+
         const meteor = document.createElement('span');
 
         // Widen the origin points to a much larger area in the top-right, completely off-screen,
@@ -414,14 +423,40 @@
         meteor.style.left = `${startX}px`;
         meteor.style.top = `${startY}px`;
 
+        // Angle, speed and tail length vary together. A fast meteor with a
+        // short tail looks like a scratch on the screen; a slow one with a long
+        // tail like a smear. Duration and tail are both derived from the same
+        // roll so they stay in proportion.
+        const haste = rand(0, 1);
+        const duration = 4.6 - haste * 2.2;          // 2.4s to 4.6s
+        meteor.style.setProperty('--angle', `${rand(126, 144).toFixed(1)}deg`);
+        meteor.style.setProperty('--tail', `${Math.round(150 + haste * 190)}px`);
+        meteor.style.setProperty('--distance', `${Math.round(rand(1500, 2100))}px`);
+        meteor.style.setProperty('--thickness', `${rand(1.4, 2.6).toFixed(2)}px`);
+        // Not every meteor is a bright one — the faint ones are what make the
+        // occasional bright one feel like an event.
+        meteor.style.setProperty('--brightness', rand(0.45, 1).toFixed(2));
+
         meteor.style.animationName = 'animate-meteor-left';
-        meteor.style.animationDuration = `${Math.random() * 2 + 3}s`; // 3-5s duration
+        meteor.style.animationDuration = `${duration.toFixed(2)}s`;
         meteor.addEventListener('animationend', () => meteor.remove());
         meteorContainer.appendChild(meteor);
       }
 
+      // Meteors are scheduled with setTimeout, which keeps firing while the tab
+      // or window is in the background — but a backgrounded page is not
+      // composited, so the CSS animation never advances and `animationend`
+      // never fires. The spans therefore pile up in the DOM, and every one of
+      // them starts animating the instant you look at the page again.
+      //
+      // That is the shower-on-refocus. The scheduler is stopped whenever the
+      // page is not being looked at, and anything still queued is cleared on
+      // the way back in, so no time is ever owed for the interval spent away.
       function scheduleNextMeteor() {
-        const delay = (Math.random() * 4 + 4) * 1000; // 4 to 8 seconds
+        // Always clear first: without this, two calls leave two timers running
+        // and the rate silently doubles for the rest of the session.
+        if (meteorTimeoutId) clearTimeout(meteorTimeoutId);
+        const delay = rand(4000, 9000);
         meteorTimeoutId = setTimeout(() => {
           createMeteor();
           scheduleNextMeteor();
@@ -438,13 +473,36 @@
         }
       }
 
+      const effectsAreOn = () => !body.classList.contains('effects-off');
+
+      // `visibilitychange` alone is not enough: it fires for a hidden *tab*,
+      // but a browser window sitting behind another application is still
+      // "visible" by that definition. blur and focus cover that case.
+      function pauseEffects() {
+        body.classList.add('effects-paused');
+        stopMeteorScheduler();
+      }
+
+      function resumeEffects() {
+        body.classList.remove('effects-paused');
+        if (!effectsAreOn() || document.hidden) return;
+        stopMeteorScheduler();   // discard anything queued while we were away
+        scheduleNextMeteor();
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) pauseEffects(); else resumeEffects();
+      });
+      window.addEventListener('blur', pauseEffects);
+      window.addEventListener('focus', resumeEffects);
+
       // --- Toggle State Management ---
       function setEffectsState(enabled) {
         if (enabled) {
           body.classList.remove('effects-off');
           toggleBtn.setAttribute('aria-pressed', 'true');
           localStorage.setItem('effectsEnabled', 'true');
-          scheduleNextMeteor();
+          if (!document.hidden) scheduleNextMeteor();
         } else {
           body.classList.add('effects-off');
           toggleBtn.setAttribute('aria-pressed', 'false');
