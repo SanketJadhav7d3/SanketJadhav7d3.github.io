@@ -323,26 +323,6 @@
 <p>there's no database and no api call. the server reads <strong>the same markdown files that build this page</strong>.</p>
 <p>at docker build time, <code>projects/</code>, <code>blogs/</code>, and <code>_data/</code> are copied into the image. on boot, every <code>.md</code> goes through <code>gray-matter</code> once — frontmatter split from body — into a plain in-memory array. after that, requests touch no filesystem at all.</p>
 <p>the tradeoff is deliberate: <strong>adding a project means redeploying.</strong> in exchange the container is genuinely stateless, which is what lets it scale to zero.</p>
-<h2>⚡ stateless by design</h2>
-<p>the mcp streamable http transport supports long-lived sessions. this server deliberately doesn't use them:</p>
-<pre><code class="language-js">// a fresh server + transport per request, so cloud run can scale
-// to zero and any instance can serve any request
-app.post(&quot;/mcp&quot;, async (req, res) =&gt; {
-  const server = buildServer();
-  const transport = new StreamableHTTPServerTransport({
-    sessionIdGenerator: undefined,
-  });
-  ...
-});
-</code></pre>
-<p>session affinity would mean a request has to reach the same instance that started the conversation. for a read-only server over a few hundred kilobytes of markdown, that constraint buys nothing and costs the ability to idle at zero instances. a portfolio that nobody is currently reading should cost nothing to run.</p>
-<h2>☁️ deployment</h2>
-<p>a single <code>Dockerfile</code> at the repo root, deployed straight from source:</p>
-<pre><code class="language-bash">gcloud run deploy portfolio-mcp --source . --region europe-west1 \
-  --allow-unauthenticated \
-  --set-env-vars ALLOWED_ORIGIN=https://sanketjadhav7d3.github.io
-</code></pre>
-<p>cors is pinned to this site's origin rather than left open, and <code>/health</code> reports the parsed project count — so a bad deploy that ships an empty image is visible immediately instead of silently returning nothing.</p>
 <h2>🔭 what's next</h2>
 <p>a small chat backend holding the anthropic api key, so the widget on this site can use these tools directly. the key can't live in the browser, so the server that holds it is the missing piece — the mcp layer underneath it is already done.</p>
 </section>
