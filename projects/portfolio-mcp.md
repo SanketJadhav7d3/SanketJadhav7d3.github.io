@@ -39,36 +39,6 @@ at docker build time, `projects/`, `blogs/`, and `_data/` are copied into the im
 
 the tradeoff is deliberate: **adding a project means redeploying.** in exchange the container is genuinely stateless, which is what lets it scale to zero.
 
-## ⚡ stateless by design
-
-the mcp streamable http transport supports long-lived sessions. this server deliberately doesn't use them:
-
-```js
-// a fresh server + transport per request, so cloud run can scale
-// to zero and any instance can serve any request
-app.post("/mcp", async (req, res) => {
-  const server = buildServer();
-  const transport = new StreamableHTTPServerTransport({
-    sessionIdGenerator: undefined,
-  });
-  ...
-});
-```
-
-session affinity would mean a request has to reach the same instance that started the conversation. for a read-only server over a few hundred kilobytes of markdown, that constraint buys nothing and costs the ability to idle at zero instances. a portfolio that nobody is currently reading should cost nothing to run.
-
-## ☁️ deployment
-
-a single `Dockerfile` at the repo root, deployed straight from source:
-
-```bash
-gcloud run deploy portfolio-mcp --source . --region europe-west1 \
-  --allow-unauthenticated \
-  --set-env-vars ALLOWED_ORIGIN=https://sanketjadhav7d3.github.io
-```
-
-cors is pinned to this site's origin rather than left open, and `/health` reports the parsed project count — so a bad deploy that ships an empty image is visible immediately instead of silently returning nothing.
-
 ## 🔭 what's next
 
 a small chat backend holding the anthropic api key, so the widget on this site can use these tools directly. the key can't live in the browser, so the server that holds it is the missing piece — the mcp layer underneath it is already done.
