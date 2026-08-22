@@ -10,35 +10,101 @@
   overflow: hidden; /* Hide meteors that go off-screen */
 }
 
+/* Each meteor carries its own angle, travel distance, tail length and duration,
+   set as custom properties by the script. Varying them is most of what stops a
+   shower from reading as the same asset replayed on a timer. */
 .meteors span {
+  --angle: 135deg;
+  --distance: 1600px;
+  --tail: 220px;
+  --thickness: 2px;
+  --brightness: 1;
+
   position: absolute;
   top: -50px; /* Start above the screen */
-  width: 3px; /* Meteor head */
-  height: 3px;
-  background: #fff;
+  width: var(--thickness);
+  height: var(--thickness);
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.4);
-  /* animation properties are set by JS */
+  background: #fff;
+  /* A tight core inside a wide, faint bloom. One shadow has to choose between
+     being visible and being delicate; a meteor head needs to be both. */
+  box-shadow:
+    0 0 4px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(200, 220, 255, 0.6),
+    0 0 26px rgba(160, 190, 255, 0.3);
+  opacity: 0;
   animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  will-change: transform, opacity;
 }
 
+/* The tail. Three stops rather than two: a bright throat right behind the head,
+   a long blue-tinted body, then nothing. A straight white-to-transparent ramp
+   loses its shape halfway along and reads as a scratch. */
 .meteors span::before {
   content: '';
   position: absolute;
   top: 50%;
-  right: 1.5px; /* Start from center of span head */
-  transform: translateY(-50%); /* Vertically center the tail */
-  width: 250px; /* Meteor tail */
-  height: 1px;
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0.7), transparent);
+  right: calc(var(--thickness) / 2);
+  transform: translateY(-50%);
+  width: var(--tail);
+  height: calc(var(--thickness) * 0.6);
+  border-radius: 999px;
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(206, 224, 255, 0.35) 35%,
+    rgba(150, 185, 255, 0.12) 65%,
+    transparent
+  );
 }
 
+/* A second, wider wash under the tail, so the trail has a soft edge instead of
+   a hard one. Cheap: it is the same element rotated with the meteor. */
+.meteors span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: calc(var(--thickness) / 2);
+  transform: translateY(-50%);
+  width: calc(var(--tail) * 0.7);
+  height: calc(var(--thickness) * 2.2);
+  border-radius: 999px;
+  background: linear-gradient(
+    270deg,
+    rgba(190, 214, 255, 0.22),
+    rgba(160, 195, 255, 0.07) 50%,
+    transparent
+  );
+  filter: blur(2px);
+}
+
+/* Brighten quickly, hold, then fade over the last third. The asymmetry is most
+   of what makes it read as a meteor rather than a dot sliding across — a
+   symmetric curve looks like a light being switched on and off. */
 @keyframes animate-meteor-left {
-  0% { transform: rotate(135deg) translateX(0); opacity: 1; }
-  70% { opacity: 1; }
-  100% { transform: rotate(135deg) translateX(1500px); opacity: 0; }
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 0;
+  }
+  7% {
+    opacity: var(--brightness);
+  }
+  62% {
+    opacity: var(--brightness);
+  }
+  100% {
+    transform: rotate(var(--angle)) translateX(var(--distance));
+    opacity: 0;
+  }
 }
 
 body.effects-off .meteors {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meteors {
+    display: none;
+  }
 }
