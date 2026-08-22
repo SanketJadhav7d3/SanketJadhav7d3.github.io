@@ -11,6 +11,9 @@ module.exports = function (eleventyConfig) {
 
   // the MCP server is deployed separately; keep its README out of the site
   eleventyConfig.ignores.add("mcp-server/**");
+  // Repo documentation, not a page — Eleventy would otherwise publish it
+  // unstyled at /README/.
+  eleventyConfig.ignores.add("README.md");
 
 
   eleventyConfig.addPassthroughCopy({
