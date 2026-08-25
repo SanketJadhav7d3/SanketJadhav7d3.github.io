@@ -94,11 +94,18 @@
     padding: 0; /* Removing side padding here to allow children to be truly full-width on mobile */
   }
 
-  .center-bar, .home-center-bar {
+  .center-bar {
     width: 90%;
     max-width: 850px; /* Narrower measure for better reading experience on desktop */
     margin: 0 auto;
     padding: 4rem 3rem; /* Enhanced padding for a more spacious feel on large screens */
+  }
+
+  .home-center-bar {
+    width: 90%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
   }
   
   /* 4. Flexible Content Assets (Experience/Education Logos & Icons) */
@@ -248,17 +255,189 @@
     <!-- Main Content -->
     <div class="main-content">
 
-      <div class="center-bar">
-        <br>
+      <div class="home-center-bar">
+        
+
+<br>
 <div class="profile-pic-container">
   <img src="assets/images/tachikoma.jpg" alt="Sanket's Profile Picture" class="profile-pic">
 </div>
+
 <h1 class="pixel-art-secondary-header">hi, i am sanket</h1>
+
+
 <div class="manrope-500 body-text-font dim-text">
 i’m a master's student, curious about all things ai and how intelligent systems shape the world around us. i love learning by building and experimenting, and when i’m not diving into tech, i enjoy game development as a fun creative outlet, playing around with ideas and interactive experiences.
 </div>
+
+
+<div class="home-projects-section">
+  <h2 class="pixel-art-secondary-header">projects</h2>
+  <section class="projects-grid body-text-font">
+    
+    <article class="project-card">
+      <a href="/projects/research-agent/" class="project-card-link">
+        
+        <div class="project-card-cover">
+          
+          <video src="/assets/videos/research-agent.mp4" autoplay muted loop playsinline></video>
+          
+        </div>
+        
+        <div class="project-card-content">
+          <h2 class="project-title">research agent</h2>
+          <p class="project-excerpt">
+            an agentic researcher that scores its own work and loops until it&#39;s confident
+          </p>
+        </div>
+      </a>
+    </article>
+    
+    <article class="project-card">
+      <a href="/projects/portfolio-mcp/" class="project-card-link">
+        
+        <div class="project-card-cover">
+          
+          <video src="/assets/videos/portfolio-mcp.mp4" autoplay muted loop playsinline></video>
+          
+        </div>
+        
+        <div class="project-card-content">
+          <h2 class="project-title">portfolio mcp server</h2>
+          <p class="project-excerpt">
+            an mcp server that lets any llm read this portfolio as structured data
+          </p>
+        </div>
+      </a>
+    </article>
+    
+    <article class="project-card">
+      <a href="/projects/industrial-asr-correction/" class="project-card-link">
+        
+        <div class="project-card-content">
+          <h2 class="project-title">industrial asr terminology correction</h2>
+          <p class="project-excerpt">
+            whisper mangles industrial jargon — fixing it without fine-tuning anything
+          </p>
+        </div>
+      </a>
+    </article>
+    
+    <article class="project-card">
+      <a href="/projects/kvasir-instrument-detector/" class="project-card-link">
+        
+        <div class="project-card-cover">
+          
+          <img src="https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/degradation_samples.png" alt="surgical instrument detector" loading="lazy">
+          
+        </div>
+        
+        <div class="project-card-content">
+          <h2 class="project-title">surgical instrument detector</h2>
+          <p class="project-excerpt">
+            yolo26n on endoscopic frames, plus a robustness study of what breaks it
+          </p>
+        </div>
+      </a>
+    </article>
+    
+    <article class="project-card">
+      <a href="/projects/talktorepo/" class="project-card-link">
+        
+        <div class="project-card-cover">
+          
+          <img src="/assets/projects-cover/talktorepo.png" alt="talk to repo" loading="lazy">
+          
+        </div>
+        
+        <div class="project-card-content">
+          <h2 class="project-title">talk to repo</h2>
+          <p class="project-excerpt">
+            Structural code intelligence engine
+          </p>
+        </div>
+      </a>
+    </article>
+    
+    <article class="project-card">
+      <a href="/projects/eldertide/" class="project-card-link">
+        
+        <div class="project-card-cover">
+          
+          <img src="/assets/images/Eldertide.png" alt="eldertide" loading="lazy">
+          
+        </div>
+        
+        <div class="project-card-content">
+          <h2 class="project-title">eldertide</h2>
+          <p class="project-excerpt">
+            an age of empires styled 2D RPG
+          </p>
+        </div>
+      </a>
+    </article>
+    
+    <article class="project-card">
+      <a href="/projects/ai-builder-agent/" class="project-card-link">
+        
+        <div class="project-card-cover">
+          
+          <img src="/assets/images/Agentic-AI-Builder.png" alt="ai builder agent" loading="lazy">
+          
+        </div>
+        
+        <div class="project-card-content">
+          <h2 class="project-title">ai builder agent</h2>
+          <p class="project-excerpt">
+            an agentic architect to build structures in a game
+          </p>
+        </div>
+      </a>
+    </article>
+    
+    <article class="project-card">
+      <a href="/projects/atari-breakout/" class="project-card-link">
+        
+        <div class="project-card-cover">
+          
+          <img src="/assets/images/AI-Plays-Atari.png" alt="ai agent for atari breakout" loading="lazy">
+          
+        </div>
+        
+        <div class="project-card-content">
+          <h2 class="project-title">ai agent for atari breakout</h2>
+          <p class="project-excerpt">
+            trained an ai to play atari breakout game using python neat.
+          </p>
+        </div>
+      </a>
+    </article>
+    
+    <article class="project-card">
+      <a href="/projects/cinemystery/" class="project-card-link">
+        
+        <div class="project-card-cover">
+          
+          <img src="/assets/images/CineMystery-cover.png" alt="cinemystery" loading="lazy">
+          
+        </div>
+        
+        <div class="project-card-content">
+          <h2 class="project-title">cinemystery</h2>
+          <p class="project-excerpt">
+            a genAI based puzzle games about movies
+          </p>
+        </div>
+      </a>
+    </article>
+    
+  </section>
+</div>
+
 <h2 class="pixel-art-secondary-header">experience</h2>
 <section class="timeline">
+
+  
   <div class="timeline-item">
     <div class="timeline-marker"></div>
     <div class="timeline-content">
@@ -274,9 +453,12 @@ i’m a master's student, curious about all things ai and how intelligent system
       </p>
     </div>
   </div>
+  
 </section>
+
 <h2 class="pixel-art-secondary-header">education</h2>
 <section class="timeline">
+  
   <div class="timeline-item">
     <div class="timeline-marker"></div>
     <div class="timeline-content">
@@ -292,6 +474,7 @@ i’m a master's student, curious about all things ai and how intelligent system
       </p>
     </div>
   </div>
+  
   <div class="timeline-item">
     <div class="timeline-marker"></div>
     <div class="timeline-content">
@@ -307,6 +490,7 @@ i’m a master's student, curious about all things ai and how intelligent system
       </p>
     </div>
   </div>
+  
   <div class="timeline-item">
     <div class="timeline-marker"></div>
     <div class="timeline-content">
@@ -322,88 +506,86 @@ i’m a master's student, curious about all things ai and how intelligent system
       </p>
     </div>
   </div>
+  
 </section>
+
 <h2 class="pixel-art-secondary-header">tech stack</h2>
+
 <p class="manrope-500 body-text-font dim-text">
 technologies and tools i work with to build innovative solutions.
 </p>
+
 <div class="marquee">
   <div class="marquee-content">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" alt="python" title="python" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="tensorflow" title="tensorflow" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-plain-wordmark.svg" alt="pytorch" title="pytorch" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="scikit-learn" title="scikit-learn" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original-wordmark.svg" alt="scikit-learn" title="scikit-learn" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original-wordmark.svg" alt="numpy" title="numpy" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original-wordmark.svg" alt="pandas" title="pandas" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript" title="javascript" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg" alt="git" title="git" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original-wordmark.svg" alt="docker" title="docker" />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original-wordmark.svg" alt="react" title="react" />
-<p><!-- Duplicates for infinite scroll effect -->
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" alt="python" title="python" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="tensorflow" title="tensorflow" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-plain-wordmark.svg" alt="pytorch" title="pytorch" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="scikit-learn" title="scikit-learn" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original-wordmark.svg" alt="numpy" title="numpy" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original-wordmark.svg" alt="pandas" title="pandas" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript" title="javascript" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg" alt="git" title="git" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original-wordmark.svg" alt="docker" title="docker" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original-wordmark.svg" alt="react" title="react" /></p>
+
+    <!-- Duplicates for infinite scroll effect -->
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" alt="python" title="python" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original-wordmark.svg" alt="tensorflow" title="tensorflow" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-plain-wordmark.svg" alt="pytorch" title="pytorch" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original-wordmark.svg" alt="scikit-learn" title="scikit-learn" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original-wordmark.svg" alt="numpy" title="numpy" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original-wordmark.svg" alt="pandas" title="pandas" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript" title="javascript" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg" alt="git" title="git" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original-wordmark.svg" alt="docker" title="docker" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original-wordmark.svg" alt="react" title="react" />
   </div>
 </div>
+
 <div class="tech-stack-expandable">
   <button id="expand-tech-stack-btn" class="expand-btn">show all &gt;</button>
   <div id="tech-stack-details" class="tech-stack-details-container">
-<p><div class="tech-category">
-<h3 class="manrope-500 body-text-font">programming languages</h3>
-<div class="tech-items">
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="python" /><span>python</span></div>
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript" /><span>javascript</span></div>
-</div>
-</div></p>
-<p><div class="tech-category">
-<h3 class="manrope-500 body-text-font">ai &amp; ml frameworks</h3>
-<div class="tech-items">
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="tensorflow" /><span>tensorflow</span></div>
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" alt="pytorch" /><span>pytorch</span></div>
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="scikit-learn" /><span>scikit-learn</span></div>
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" alt="numpy" /><span>numpy</span></div>
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" alt="pandas" /><span>pandas</span></div>
-</div>
-</div></p>
-<p><div class="tech-category">
-<h3 class="manrope-500 body-text-font">web development</h3>
-<div class="tech-items">
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="html5" /><span>html5</span></div>
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="css3" /><span>css3</span></div>
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="react" /><span>react</span></div>
-</div>
-</div></p>
-<p><div class="tech-category">
-<h3 class="manrope-500 body-text-font">backend &amp; devops</h3>
-<div class="tech-items">
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="git" /><span>git</span></div>
-<div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="docker" /><span>docker</span></div>
-</div>
-</div></p>
+
+    <div class="tech-category">
+      <h3 class="manrope-500 body-text-font">programming languages</h3>
+      <div class="tech-items">
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="python" /><span>python</span></div>
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript" /><span>javascript</span></div>
+      </div>
+    </div>
+
+    <div class="tech-category">
+      <h3 class="manrope-500 body-text-font">ai &amp; ml frameworks</h3>
+      <div class="tech-items">
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="tensorflow" /><span>tensorflow</span></div>
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" alt="pytorch" /><span>pytorch</span></div>
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="scikit-learn" /><span>scikit-learn</span></div>
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" alt="numpy" /><span>numpy</span></div>
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" alt="pandas" /><span>pandas</span></div>
+      </div>
+    </div>
+
+    <div class="tech-category">
+      <h3 class="manrope-500 body-text-font">web development</h3>
+      <div class="tech-items">
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="html5" /><span>html5</span></div>
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="css3" /><span>css3</span></div>
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="react" /><span>react</span></div>
+      </div>
+    </div>
+
+    <div class="tech-category">
+      <h3 class="manrope-500 body-text-font">backend &amp; devops</h3>
+      <div class="tech-items">
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="git" /><span>git</span></div>
+        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="docker" /><span>docker</span></div>
+      </div>
+    </div>
+
   </div>
 </div>
-<div class="home-projects-section">
-  <h2 class="pixel-art-secondary-header">projects</h2>
-  <section class="projects-grid body-text-font">
-    <article class="project-card">
-      <a href="/projects/" class="project-card-link">
-        <div class="project-card-content">
-          <h2 class="project-title">view all projects</h2>
-          <p class="project-excerpt">
-            explore my full portfolio of work
-          </p>
-        </div>
-      </a>
-    </article>
-  </section>
-</div>
+
+
 <div class="home-blogs-section">
   <h2 class="pixel-art-secondary-header">blogs</h2>
   <section class="blog-grid body-text-font"><article class="blog-card">
@@ -417,6 +599,7 @@ technologies and tools i work with to build innovative solutions.
       </a>
     </article></section>
 </div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const expandBtn = document.getElementById('expand-tech-stack-btn');
