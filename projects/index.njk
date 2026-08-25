@@ -12,6 +12,15 @@ permalink: /projects/
   {% for project in collections.projects %}
     <article class="project-card">
       <a href="{{ project.url }}" class="project-card-link">
+        {% if project.data.cover %}
+        <div class="project-card-cover">
+          {% if project.data.cover.endsWith(".mp4") %}
+          <video src="{{ project.data.cover }}" autoplay muted loop playsinline></video>
+          {% else %}
+          <img src="{{ project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
+          {% endif %}
+        </div>
+        {% endif %}
         <div class="project-card-content">
           <h2 class="project-title">{{ project.data.title }}</h2>
           <p class="project-excerpt">
