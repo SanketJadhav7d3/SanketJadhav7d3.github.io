@@ -3,7 +3,7 @@ title: "ai agent for atari breakout"
 date: 2024-08-15
 layout: project.njk        # directly in _includes/
 summary: "trained an ai to play atari breakout game using python neat."
-cover: /assets/images/AI-Plays-Atari.png
+cover: /assets/videos/atari-breakout.mp4
 tech:
   - neat
   - genetic algorithms

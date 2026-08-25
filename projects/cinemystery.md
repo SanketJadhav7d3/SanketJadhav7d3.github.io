@@ -3,7 +3,7 @@ title: "cinemystery"
 date: 2024-08-15
 layout: project.njk        # directly in _includes/
 summary: "a genAI based puzzle games about movies"
-cover: /assets/images/CineMystery-cover.png
+cover: /assets/images/cinemystery-screenshot.png
 tech:
   - eleventy
   - css

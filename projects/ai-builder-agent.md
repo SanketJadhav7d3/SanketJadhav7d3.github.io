@@ -3,7 +3,7 @@ title: "ai builder agent"
 date: 2024-08-15
 layout: project.njk        # directly in _includes/
 summary: "an agentic architect to build structures in a game"
-cover: /assets/images/Agentic-AI-Builder.png
+cover: /assets/images/ai-builder-agent-screenshot.png
 tech:
   - agentic ai
   - langgraph

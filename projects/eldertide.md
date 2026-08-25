@@ -3,7 +3,7 @@ title: "eldertide"
 date: 2026-01-11
 layout: project.njk        # directly in _includes/
 summary: "an age of empires styled 2D RPG"
-cover: /assets/images/Eldertide.png
+cover: /assets/images/eldertide-background.gif
 tech:
   - Phaser.js
   - CSS

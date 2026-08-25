@@ -3,6 +3,7 @@ title: "industrial asr terminology correction"
 date: 2026-07-14
 layout: project.njk        # directly in _includes/
 summary: "whisper mangles industrial jargon — fixing it without fine-tuning anything"
+cover: /assets/projects-cover/industrial-asr-terminology-correction.png
 tech:
   - speech recognition
   - whisper
