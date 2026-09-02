@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>projects</title>
+  <title>hybrid rag for sec filings</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -257,187 +257,178 @@
 
       <div class="center-bar">
         
-<section class="projects-intro montserrat-400">
-  <h1 class="pixel-art-secondary-header">projects</h1>
+<main class="project-page">
+  <a href="/projects/" class="project-back-button" aria-label="Back to Projects">←</a>
+<header class="project-header">
+<h1>hybrid rag for sec filings</h1>
+
+<div class="project-meta-top"><time datetime="Wed Sep 02 2026 02:00:00 GMT+0200 (Central European Summer Time)">Wed Sep 02 2026 02:00:00 GMT+0200 (Central European Summer Time)</time></div>
+</header>
+
+
+<div class="project-body-grid">
+
+
+<aside class="project-sidebar">
+
+<h1 class="manrope-500">tech stack</h1>
+<ul class="tech-list"><li>rag</li><li>python</li><li>chroma</li><li>bm25</li><li>gemini</li><li>cross-encoder</li></ul>
+<h1 class="manrope-500">links</h1>
+<div class="project-links">
+  
+  
+    <a class="btn secondary" href="https://github.com/SanketJadhav7d3/Hybrid-RAG" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      View repo
+    </a>
+  
+</div>
+
+
+</aside>
+
+<section class="project-body"><h1>📑 hybrid rag for sec filings</h1>
+<p>a question-answering system over 10-K, 10-Q and 20-F filings from eight tech and semiconductor companies — meta, google, amazon, microsoft, nvidia, tsmc, broadcom and intel — covering roughly the last four years.</p>
+<p>the point wasn't to build another rag demo. it was to <strong>measure whether the extra machinery actually earns its place</strong>.</p>
+<h2>📊 does hybrid retrieval actually help?</h2>
+<p>29 hand-built, keyword-verified queries, scored at <code>hit@8</code>:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>hit rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>naive rag — dense only, no filtering, no reranking</td>
+<td>55.2%</td>
+</tr>
+<tr>
+<td><strong>hybrid rag</strong> — dense + sparse rrf, ticker filtering, reranking</td>
+<td><strong>79.3%</strong></td>
+</tr>
+<tr>
+<td>absolute improvement</td>
+<td>+24.1 points</td>
+</tr>
+<tr>
+<td>relative improvement</td>
+<td>+43.8%</td>
+</tr>
+</tbody>
+</table>
+<p>the aggregate number hides the more interesting story, which is <strong>where</strong> the gain comes from:</p>
+<table>
+<thead>
+<tr>
+<th>category</th>
+<th>naive</th>
+<th>hybrid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>numeric exact lookup</td>
+<td>67%</td>
+<td>78%</td>
+</tr>
+<tr>
+<td>conceptual / semantic</td>
+<td>57%</td>
+<td>86%</td>
+</tr>
+<tr>
+<td>terminology mismatch</td>
+<td>40%</td>
+<td>60%</td>
+</tr>
+<tr>
+<td>hybrid-rescue cases</td>
+<td>50%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>cross-period</td>
+<td>50%</td>
+<td>50%</td>
+</tr>
+</tbody>
+</table>
+<p>two rows are worth pausing on. the <strong>hybrid-rescue</strong> cases — queries designed so that neither dense nor sparse retrieval alone can find the answer — go from a coin flip to perfect. and <strong>cross-period</strong> queries don't move at all: retrieval was never the bottleneck there, so no amount of retrieval engineering fixes them. knowing which of your failures retrieval can't solve is worth as much as the ones it can.</p>
+<p>reproduce it with <code>uv run python src/compare_naive_vs_hybrid.py</code>.</p>
+<h2>🔍 why one retriever isn't enough</h2>
+<p>embeddings are good at meaning and bad at exact strings. bm25 is the reverse. a filing question is usually both at once — &quot;what did nvidia say about <em>supply constraints</em>&quot; is semantic, but &quot;<em>data center revenue</em>, fiscal 2025&quot; is a near-literal string match against a table.</p>
+<p>so both indexes run, and <strong>reciprocal rank fusion</strong> merges the two ranked lists without needing the scores to be on a comparable scale — which they aren't. on top of that:</p>
+<ul>
+<li><strong>ticker-aware metadata filtering</strong> — a question about nvidia should never be answered out of broadcom's 10-K, and without a filter it sometimes was</li>
+<li><strong>cross-encoder reranking</strong> — rrf gets the right chunk into the top 20; the reranker gets it into the top 5, which is what the generator actually sees</li>
+</ul>
+<h2>🏗 the pipeline</h2>
+<pre><code>edgar download → html parsing → section chunking → dense + sparse indexing
+→ hybrid retrieval (rrf + ticker filter + reranker) → gemini generation
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>stage</th>
+<th>script</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>download filings from sec edgar</td>
+<td><code>src/edgar_client.py</code></td>
+</tr>
+<tr>
+<td>parse html into section-tagged text</td>
+<td><code>src/parser.py</code></td>
+</tr>
+<tr>
+<td>build the parsed dataset</td>
+<td><code>src/build_dataset.py</code></td>
+</tr>
+<tr>
+<td>chunk sections into token-bounded pieces</td>
+<td><code>src/chunker.py</code></td>
+</tr>
+<tr>
+<td>build dense (chroma) + sparse (bm25) indexes</td>
+<td><code>src/build_index.py</code></td>
+</tr>
+<tr>
+<td>hybrid retriever</td>
+<td><code>src/retriever.py</code></td>
+</tr>
+<tr>
+<td>answer generation with citations</td>
+<td><code>src/generator.py</code></td>
+</tr>
+<tr>
+<td>evaluation harness</td>
+<td><code>src/evaluate.py</code>, <code>src/compare_naive_vs_hybrid.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>chunking is section-based rather than fixed-window, because a filing already has structure and throwing it away costs you the metadata that makes ticker filtering possible in the first place.</p>
+<h2>⚠️ what it doesn't do well</h2>
+<p><strong>intel's filings are significantly under-parsed.</strong> sec html is not one format — it's whatever each filer's software emitted, and intel's rendering defeats the parser badly enough that those documents are excluded from some eval cases rather than quietly polluting the numbers.</p>
+<p><strong>the eval set is 29 queries.</strong> hand-built and keyword-verified, but small. these are directional results, not a benchmark — the honest read is &quot;hybrid retrieval helps a lot on this corpus&quot;, not &quot;hybrid retrieval helps by exactly 24.1 points&quot;.</p>
+<h2>🛠 running it</h2>
+<pre><code class="language-bash">uv sync
+cp .env.example .env   # add your GEMINI_API_KEY
+
+uv run python src/edgar_client.py    # download filings
+uv run python src/build_dataset.py   # parse into sections
+uv run python src/chunker.py         # chunk sections
+uv run python src/build_index.py     # build dense + sparse indexes
+
+uv run python src/generator.py &quot;What was NVIDIA's data center revenue in fiscal 2025?&quot;
+</code></pre>
 </section>
 
-<section class="projects-grid body-text-font">
-  
-    <article class="project-card">
-      <a href="/projects/hybrid-rag/" class="project-card-link">
-        
-        <div class="project-card-content">
-          <h2 class="project-title">hybrid rag for sec filings</h2>
-          <p class="project-excerpt">
-            dense retrieval alone misses 45% of the answers — here&#39;s what fixes it
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/research-agent/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <video src="/assets/videos/research-agent.mp4" autoplay muted loop playsinline></video>
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">research agent</h2>
-          <p class="project-excerpt">
-            an agentic researcher that scores its own work and loops until it&#39;s confident
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/portfolio-mcp/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <video src="/assets/videos/portfolio-mcp.mp4" autoplay muted loop playsinline></video>
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">portfolio mcp server</h2>
-          <p class="project-excerpt">
-            an mcp server that lets any llm read this portfolio as structured data
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/industrial-asr-correction/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="/assets/projects-cover/industrial-asr-terminology-correction.png" alt="industrial asr terminology correction" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">industrial asr terminology correction</h2>
-          <p class="project-excerpt">
-            whisper mangles industrial jargon — fixing it without fine-tuning anything
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/kvasir-instrument-detector/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/degradation_samples.png" alt="surgical instrument detector" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">surgical instrument detector</h2>
-          <p class="project-excerpt">
-            yolo26n on endoscopic frames, plus a robustness study of what breaks it
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/talktorepo/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <video src="/assets/videos/talktorepo.mp4" autoplay muted loop playsinline></video>
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">talk to repo</h2>
-          <p class="project-excerpt">
-            Structural code intelligence engine
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/eldertide/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="/assets/images/eldertide-background.gif" alt="eldertide" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">eldertide</h2>
-          <p class="project-excerpt">
-            an age of empires styled 2D RPG
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/ai-builder-agent/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="/assets/images/ai-builder-agent-screenshot.png" alt="ai builder agent" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">ai builder agent</h2>
-          <p class="project-excerpt">
-            an agentic architect to build structures in a game
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/atari-breakout/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <video src="/assets/videos/atari-breakout.mp4" autoplay muted loop playsinline></video>
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">ai agent for atari breakout</h2>
-          <p class="project-excerpt">
-            trained an ai to play atari breakout game using python neat.
-          </p>
-        </div>
-      </a>
-    </article>
-  
-    <article class="project-card">
-      <a href="/projects/cinemystery/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="/assets/images/cinemystery-screenshot.png" alt="cinemystery" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">cinemystery</h2>
-          <p class="project-excerpt">
-            a genAI based puzzle games about movies
-          </p>
-        </div>
-      </a>
-    </article>
-  
-</section>
+</div>
+</main>
       </div>
     </div>
       
