@@ -3,6 +3,13 @@
 A minimal [MCP](https://modelcontextprotocol.io) server that exposes the portfolio content
 (`projects/`, `blogs/`, `_data/`) as tools an LLM can call.
 
+
+
+
+https://github.com/user-attachments/assets/3a66e056-301b-47bc-aec5-daa71b75bdb9
+
+
+
 ## tools
 
 | tool | what it does |
