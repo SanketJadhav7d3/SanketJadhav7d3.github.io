@@ -12,6 +12,7 @@ tech:
   - cross-encoder
 permalink: /projects/hybrid-rag/
 repo: https://github.com/SanketJadhav7d3/Hybrid-RAG
+cover: /assets/projects-cover/hybrid-rag-sec-poster.png
 ---
 
 # 📑 hybrid rag for sec filings
