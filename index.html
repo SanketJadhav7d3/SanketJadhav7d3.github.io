@@ -3,812 +3,361 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>home</title>
+  <title>Sanket Jadhav — AI &amp; machine learning</title>
+  <meta name="description" content="Sanket Jadhav — computer science master’s student building AI systems, from agents and retrieval to computer vision.">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // Set the theme before first paint so there is no flash of the wrong one.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") {
+        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f5bea'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='36' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/site.css">
 
-
-  <!-- Devicon icons -->
-  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-          
-
-  <!-- Local Styles -->
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/links_styles.css">
-  <link rel="stylesheet" href="/css/timeline.css">
-  <link rel="stylesheet" href="/css/projects.css">
-  <link rel="stylesheet" href="/css/projects-cosmos.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/gradient.css">
-  <link rel="stylesheet" href="/css/blog.css">
-  <link rel="stylesheet" href="/css/fonts.css">
-  <link rel="stylesheet" href="/css/project-page.css">
-  <link rel="stylesheet" href="/css/radial-nav.css">
-  <link rel="stylesheet" href="/css/bottom-nav.css">
-  <link rel="stylesheet" href="/css/meteors.css">
-  <link rel="stylesheet" href="/css/marquee.css">
-  <link rel="stylesheet" href="/css/tech-stack.css">
-  <link rel="stylesheet" href="/css/stars.css">
-
-  
   <link rel="stylesheet" href="/katex/katex.min.css">
-
   <script defer src="/katex/katex.min.js"></script>
   <script defer src="/katex/contrib/auto-render.min.js"></script>
-  
-  <style>
-  /* 1. Fluid Reset & Global Box Sizing */
-  * {
-    box-sizing: border-box;
-  }
-
-  html {
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-  }
-
-  /* 2. Responsive Cursors (Disabled on touch devices for better UX) */
-  @media (hover: hover) {
-    html, body {
-      cursor: url('/css/Arrows/Arrow4min.png'), auto;
-    }
-    a, button, [role="button"], input[type="submit"] {
-      cursor: url('/css/Arrows/Hand3min.png'), pointer;
-    }
-  }
-
-  /* 3. Fluid Layout Containers */
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-  }
-
-  /* Ensure background effects don't intercept mouse wheel or trackpad scrolling */
-  .stars-background,
-  .meteors,
-  .stars-background::before,
-  .stars-background::after,
-  .meteors::before,
-  .meteors::after {
-    pointer-events: none !important;
-  }
-
-  .main-content {
-    flex: 1;
-    width: 100%;
-    display: block;
-    padding: 0; /* Removing side padding here to allow children to be truly full-width on mobile */
-  }
-
-  .center-bar {
-    width: 90%;
-    max-width: 850px; /* Narrower measure for better reading experience on desktop */
-    margin: 0 auto;
-    padding: 4rem 3rem; /* Enhanced padding for a more spacious feel on large screens */
-  }
-
-  .home-center-bar {
-    width: 90%;
-    max-width: 850px;
-    margin: 0 auto;
-    padding: 4rem 3rem;
-  }
-  
-  /* 4. Flexible Content Assets (Experience/Education Logos & Icons) */
-  .experience-logo, 
-  .education-logo, 
-  .timeline-logo,
-  .experience-item i, 
-  .education-item i {
-    width: clamp(32px, 15vw, 64px) !important; /* Proactively shrinks to prevent squashing text */
-    font-size: clamp(1.2rem, 8vw, 2rem);
-    height: auto; 
-    display: inline-block;
-    flex-shrink: 0; /* Prevents the logo itself from being squashed */
-  }
-
-  /* Constrain marquee images to stay as small icons regardless of screen size */
-  .marquee-content img {
-    height: 120px !important; /* Increased from 35px for better visibility */
-    width: auto !important;
-    max-width: none !important; /* Prevents global img rules from stretching SVGs */
-    margin: 0 1rem;
-    flex-shrink: 0;
-  }
-
-  /* Static tech stack icons in the expandable section */
-  .tech-item img {
-    height: 32px !important; /* Increased from 24px */
-    width: 32px !important;
-  }
-
-  /* 5. Fluid Media */
-  .hero-image {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .hero-image {
-    display: block;
-    margin: 0 auto;
-  }
-  
-  /* 6. Mobile-Specific Breakpoint (approx. for most phones) */
-  @media screen and (max-width: 600px) {
-    .main-content {
-      padding: 0;
-    }
-    
-    /* Mobile-specific layout improvements */
-    .center-bar, .home-center-bar {
-      width: 100%; /* Occupy the whole screen on mobile */
-      padding: 0 1.25rem; /* Internal padding so text doesn't touch the screen edges */
-    }
-
-    .experience-logo, .education-logo, .timeline-logo {
-      width: 40px; /* Specific smaller size for mobile to prioritize text */
-      margin-bottom: 0.5rem;
-    }
-
-    /* Scale down headers on mobile */
-    .pixel-art-header {
-      font-size: 2.2rem;
-    }
-    .pixel-art-secondary-header {
-      font-size: 1.6rem;
-    }
-  }
-
-  /* 6. Bottom Navigation Flexibility */
-  
-  /* When the screen is too narrow for all icons (roughly 550px), 
-     hide the separator and social media links to prioritize site navigation. */
-  @media screen and (max-width: 550px) {
-    .nav-separator,
-    .nav-separator ~ .bottom-nav-item {
-      display: none;
-    }
-    
-    .bottom-nav {
-      justify-content: space-around; /* Distribute the remaining 4 items evenly */
-    }
-  }
-
-  /* On very small screens (400px and below), hide the labels 
-     entirely to keep the bar clean and prevent overflow. */
-  @media screen and (max-width: 400px) {
-    .nav-item-label {
-      display: none;
-    }
-  }
-  </style>
 </head>
 
 <body>
-  <div class="page-container">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Star Panning Effect -->
-    <div class="stars-background" aria-hidden="true"></div>
-
-    <!-- Meteor Shower Effect -->
-    <div class="meteors" aria-hidden="true">
-      <!-- Meteors are generated by JavaScript -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="site-name">Sanket Jadhav</a>
+      <div class="header-right">
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/projects/" >Projects</a>
+        <a href="/#experience">Experience</a>
+        <a href="/blogs/" >Blog</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      </div>
     </div>
-    
+  </header>
+
+  <main id="main" class="container">
     
 
-    <!-- New Bottom Navigation Bar -->
-    <nav class="bottom-nav" aria-label="Main navigation">
-      <div class="bottom-nav-item">
-        <a href="/" aria-label="Home"><i class="fa-solid fa-house-chimney"></i></a>
-        <span class="nav-item-label">Home</span>
-      </div>
-      <div class="bottom-nav-item">
-        <a href="/projects/" aria-label="Projects"><i class="fa-solid fa-layer-group"></i></a>
-        <span class="nav-item-label">Projects</span>
-      </div>
-      
-      <div class="bottom-nav-item">
-        <a href="/blogs/" aria-label="Blog"><i class="fa-solid fa-pen-nib"></i></a>
-        <span class="nav-item-label">Blog</span>
-      </div>
-      
 
-      <div class="bottom-nav-item">
-        <button id="toggle-effects-btn" type="button" aria-label="Toggle background effects" aria-pressed="false">
-          <i class="fa-solid fa-meteor"></i>
-        </button>
-        <span class="nav-item-label">Stargaze</span>
-      </div>
-      
-      <!-- Separator -->
-      <div class="nav-separator"></div>
-      
-      <div class="bottom-nav-item">
-        <a href="https://github.com/SanketJadhav7d3" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <span class="nav-item-label">GitHub</span>
-      </div>
-      <div class="bottom-nav-item">
-        <a href="https://linkedin.com/in/sanket-jadhav-b01398237" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <span class="nav-item-label">LinkedIn</span>
-      </div>
-      <div class="bottom-nav-item">
-        <a href="https://x.com/SanketJadhav7d3" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-        <span class="nav-item-label">X</span>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="main-content">
-
-      <div class="home-center-bar">
-        
-
-<br>
-<div class="profile-pic-container">
-  <img src="assets/images/tachikoma.jpg" alt="Sanket's Profile Picture" class="profile-pic">
-</div>
-
-<h1 class="pixel-art-secondary-header">hi, i am sanket</h1>
-
-
-<div class="manrope-500 body-text-font dim-text">
-i’m a master's student, curious about all things ai and how intelligent systems shape the world around us. i love learning by building and experimenting, and when i’m not diving into tech, i enjoy game development as a fun creative outlet, playing around with ideas and interactive experiences.
-</div>
-
-
-<div class="home-projects-section">
-  <h2 class="pixel-art-secondary-header">projects</h2>
-  <section class="projects-grid body-text-font">
-    
-    <article class="project-card">
-      <a href="/projects/hybrid-rag/" class="project-card-link">
-        
-        <div class="project-card-content">
-          <h2 class="project-title">hybrid rag for sec filings</h2>
-          <p class="project-excerpt">
-            dense retrieval alone misses 45% of the answers — here&#39;s what fixes it
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/research-agent/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <video src="/assets/videos/research-agent.mp4" autoplay muted loop playsinline></video>
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">research agent</h2>
-          <p class="project-excerpt">
-            an agentic researcher that scores its own work and loops until it&#39;s confident
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/portfolio-mcp/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <video src="/assets/videos/portfolio-mcp.mp4" autoplay muted loop playsinline></video>
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">portfolio mcp server</h2>
-          <p class="project-excerpt">
-            an mcp server that lets any llm read this portfolio as structured data
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/industrial-asr-correction/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="/assets/projects-cover/industrial-asr-terminology-correction.png" alt="industrial asr terminology correction" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">industrial asr terminology correction</h2>
-          <p class="project-excerpt">
-            whisper mangles industrial jargon — fixing it without fine-tuning anything
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/kvasir-instrument-detector/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/degradation_samples.png" alt="surgical instrument detector" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">surgical instrument detector</h2>
-          <p class="project-excerpt">
-            yolo26n on endoscopic frames, plus a robustness study of what breaks it
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/talktorepo/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <video src="/assets/videos/talktorepo.mp4" autoplay muted loop playsinline></video>
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">talk to repo</h2>
-          <p class="project-excerpt">
-            Structural code intelligence engine
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/eldertide/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="/assets/images/eldertide-background.gif" alt="eldertide" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">eldertide</h2>
-          <p class="project-excerpt">
-            an age of empires styled 2D RPG
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/ai-builder-agent/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="/assets/images/ai-builder-agent-screenshot.png" alt="ai builder agent" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">ai builder agent</h2>
-          <p class="project-excerpt">
-            an agentic architect to build structures in a game
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/atari-breakout/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <video src="/assets/videos/atari-breakout.mp4" autoplay muted loop playsinline></video>
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">ai agent for atari breakout</h2>
-          <p class="project-excerpt">
-            trained an ai to play atari breakout game using python neat.
-          </p>
-        </div>
-      </a>
-    </article>
-    
-    <article class="project-card">
-      <a href="/projects/cinemystery/" class="project-card-link">
-        
-        <div class="project-card-cover">
-          
-          <img src="/assets/images/cinemystery-screenshot.png" alt="cinemystery" loading="lazy">
-          
-        </div>
-        
-        <div class="project-card-content">
-          <h2 class="project-title">cinemystery</h2>
-          <p class="project-excerpt">
-            a genAI based puzzle games about movies
-          </p>
-        </div>
-      </a>
-    </article>
-    
-  </section>
-</div>
-
-<h2 class="pixel-art-secondary-header">experience</h2>
-<section class="timeline">
-
-  
-  <div class="timeline-item">
-    <div class="timeline-marker"></div>
-    <div class="timeline-content">
-      <div class="timeline-header-container">
-        <img src="assets/logos/clarion analytics.png" alt="clarion analytics" class="timeline-logo" style="height: 60px;">
-        <div>
-          <span class="manrope-500 timeline-date">jun 2025 – oct 2025</span>
-          <h3 class="manrope-500 body-text-font" style="margin: 0;">intern — clarion analytics</h3>
-        </div>
-      </div>
-      <p class="manrope-500 body-text-font dim-text">
-        worked on extracting structured data from pharmacy bills, hospital invoices, and identity documents. converting unstructured info into usable data for downstream processing.
-      </p>
+<section class="hero">
+  <img src="/assets/images/tachikoma.jpg" alt="Sanket Jadhav" class="avatar" width="96" height="96">
+  <div>
+    <h1>Hi, I’m Sanket.</h1>
+    <p class="lede">
+      I’m a computer science master’s student interested in AI and how intelligent systems
+      shape the world around us. I learn by building: agents, retrieval systems and computer
+      vision models. For fun, I make small games.
+    </p>
+    <div class="hero-actions">
+      <a class="button" href="/projects/">See my projects</a>
+      <a class="button button-secondary" href="https://linkedin.com/in/sanket-jadhav-b01398237" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
     </div>
   </div>
-  
 </section>
 
-<h2 class="pixel-art-secondary-header">education</h2>
-<section class="timeline">
-  
-  <div class="timeline-item">
-    <div class="timeline-marker"></div>
-    <div class="timeline-content">
-      <div class="timeline-header-container">
-        <img src="assets/logos/RPTU Logo_minimal12.png" alt="Rheinland-Pfälzische Technische Universität Kaiserslautern" class="timeline-logo" style="height: 32px;">
-        <div>
-          <span class="manrope-500 timeline-date">2026 – Present</span>
-          <h3 class="manrope-500 body-text-font" style="margin: 0;">Master of Science in Computer Science — Rheinland-Pfälzische Technische Universität Kaiserslautern</h3>
-        </div>
-      </div>
-      <p class="manrope-500 body-text-font dim-text">
-        Focusing on deep learning, computer vision, and natural language processing. Researching efficient transformer architectures.
-      </p>
-    </div>
+<section class="section" id="projects">
+  <div class="section-head">
+    <h2>Projects</h2>
+    <a href="/projects/" class="section-link">View all →</a>
   </div>
-  
-  <div class="timeline-item">
-    <div class="timeline-marker"></div>
-    <div class="timeline-content">
-      <div class="timeline-header-container">
-        <img src="assets/logos/kit logo.png" alt="KIT&#39;s College of Engineering, Kolhapur" class="timeline-logo" style="height: 80px;">
-        <div>
-          <span class="manrope-500 timeline-date">2022 – 2025</span>
-          <h3 class="manrope-500 body-text-font" style="margin: 0;">Bachelor of Technology in Computer Science (AIML) — KIT&#39;s College of Engineering, Kolhapur</h3>
-        </div>
-      </div>
-      <p class="manrope-500 body-text-font dim-text">
-        Core computer science fundamentals, data structures, and algorithms.
-      </p>
+  <div class="card-grid">
+    
+      <article class="card">
+  <a href="/projects/hybrid-rag/" class="card-link">
+    
+    <div class="card-media">
+      
+      <img src="/assets/projects-cover/hybrid-rag-sec-poster.png" alt="" loading="lazy">
+      
     </div>
-  </div>
-  
-  <div class="timeline-item">
-    <div class="timeline-marker"></div>
-    <div class="timeline-content">
-      <div class="timeline-header-container">
-        <img src="assets/logos/SGP.png" alt="Sanjay Ghodawat Polytechnic, Kolhapur" class="timeline-logo" style="height: 80px;">
-        <div>
-          <span class="manrope-500 timeline-date">2019 – 2022</span>
-          <h3 class="manrope-500 body-text-font" style="margin: 0;">Diploma in Computer Science — Sanjay Ghodawat Polytechnic, Kolhapur</h3>
-        </div>
-      </div>
-      <p class="manrope-500 body-text-font dim-text">
-        Core computer science fundamentals, data structures, and algorithms.
-      </p>
+    
+    <div class="card-body">
+      <h3>Hybrid RAG for SEC Filings</h3>
+      <p>Dense retrieval alone misses 45% of the answers. Here’s what fixes it.</p>
+      
+      <ul class="chips chips-small"><li>rag</li><li>python</li><li>chroma</li><li>bm25</li></ul>
+      
     </div>
+  </a>
+</article>
+
+    
+      <article class="card">
+  <a href="/projects/research-agent/" class="card-link">
+    
+    <div class="card-media">
+      
+      <video src="/assets/videos/research-agent.mp4#t=0.1" preload="metadata" muted loop playsinline aria-hidden="true"></video>
+      
+    </div>
+    
+    <div class="card-body">
+      <h3>Research Agent</h3>
+      <p>An agentic researcher that scores its own work and loops until it’s confident.</p>
+      
+      <ul class="chips chips-small"><li>agentic ai</li><li>langgraph</li><li>python</li><li>fastapi</li></ul>
+      
+    </div>
+  </a>
+</article>
+
+    
+      <article class="card">
+  <a href="/projects/portfolio-mcp/" class="card-link">
+    
+    <div class="card-media">
+      
+      <video src="/assets/videos/portfolio-mcp.mp4#t=0.1" preload="metadata" muted loop playsinline aria-hidden="true"></video>
+      
+    </div>
+    
+    <div class="card-body">
+      <h3>Portfolio MCP Server</h3>
+      <p>An MCP server that lets any LLM read this portfolio as structured data.</p>
+      
+      <ul class="chips chips-small"><li>mcp</li><li>node.js</li><li>express</li><li>docker</li></ul>
+      
+    </div>
+  </a>
+</article>
+
+    
+      <article class="card">
+  <a href="/projects/industrial-asr-correction/" class="card-link">
+    
+    <div class="card-media">
+      
+      <img src="/assets/projects-cover/industrial-asr-terminology-correction.png" alt="" loading="lazy">
+      
+    </div>
+    
+    <div class="card-body">
+      <h3>Industrial ASR Terminology Correction</h3>
+      <p>Whisper mangles industrial jargon. Fixing it without fine-tuning anything.</p>
+      
+      <ul class="chips chips-small"><li>speech recognition</li><li>whisper</li><li>python</li><li>gemini</li></ul>
+      
+    </div>
+  </a>
+</article>
+
+    
+      <article class="card">
+  <a href="/projects/kvasir-instrument-detector/" class="card-link">
+    
+    <div class="card-media">
+      
+      <img src="https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/degradation_samples.png" alt="" loading="lazy">
+      
+    </div>
+    
+    <div class="card-body">
+      <h3>Surgical Instrument Detector</h3>
+      <p>YOLO26n on endoscopic frames, plus a robustness study of what breaks it.</p>
+      
+      <ul class="chips chips-small"><li>computer vision</li><li>yolo</li><li>pytorch</li><li>python</li></ul>
+      
+    </div>
+  </a>
+</article>
+
+    
+      <article class="card">
+  <a href="/projects/talktorepo/" class="card-link">
+    
+    <div class="card-media">
+      
+      <video src="/assets/videos/talktorepo.mp4#t=0.1" preload="metadata" muted loop playsinline aria-hidden="true"></video>
+      
+    </div>
+    
+    <div class="card-body">
+      <h3>Talk to Repo</h3>
+      <p>A structural code intelligence engine.</p>
+      
+      <ul class="chips chips-small"><li>agentic ai</li><li>langgraph</li><li>python</li><li>treesitter</li></ul>
+      
+    </div>
+  </a>
+</article>
+
+    
   </div>
-  
 </section>
 
-<h2 class="pixel-art-secondary-header">tech stack</h2>
-
-<p class="manrope-500 body-text-font dim-text">
-technologies and tools i work with to build innovative solutions.
-</p>
-
-<div class="marquee">
-  <div class="marquee-content">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" alt="python" title="python" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="tensorflow" title="tensorflow" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-plain-wordmark.svg" alt="pytorch" title="pytorch" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="scikit-learn" title="scikit-learn" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original-wordmark.svg" alt="numpy" title="numpy" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original-wordmark.svg" alt="pandas" title="pandas" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript" title="javascript" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg" alt="git" title="git" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original-wordmark.svg" alt="docker" title="docker" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original-wordmark.svg" alt="react" title="react" />
-
-    <!-- Duplicates for infinite scroll effect -->
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" alt="python" title="python" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original-wordmark.svg" alt="tensorflow" title="tensorflow" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-plain-wordmark.svg" alt="pytorch" title="pytorch" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="scikit-learn" title="scikit-learn" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original-wordmark.svg" alt="numpy" title="numpy" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original-wordmark.svg" alt="pandas" title="pandas" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript" title="javascript" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg" alt="git" title="git" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original-wordmark.svg" alt="docker" title="docker" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original-wordmark.svg" alt="react" title="react" />
-  </div>
-</div>
-
-<div class="tech-stack-expandable">
-  <button id="expand-tech-stack-btn" class="expand-btn">show all &gt;</button>
-  <div id="tech-stack-details" class="tech-stack-details-container">
-
-    <div class="tech-category">
-      <h3 class="manrope-500 body-text-font">programming languages</h3>
-      <div class="tech-items">
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="python" /><span>python</span></div>
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript" /><span>javascript</span></div>
+<section class="section" id="experience">
+  <h2>Experience</h2>
+  <ul class="entries">
+    
+    <li class="entry">
+      <span class="entry-logo"><img src="/assets/logos/clarion analytics.png" alt="Clarion Analytics"></span>
+      <div>
+        <h3>Intern, Clarion Analytics</h3>
+        <p class="entry-date">Jun 2025 – Oct 2025</p>
+        <p>Worked on extracting structured data from pharmacy bills, hospital invoices and identity documents, turning unstructured information into data usable by downstream processing.</p>
       </div>
-    </div>
+    </li>
+    
+  </ul>
+</section>
 
-    <div class="tech-category">
-      <h3 class="manrope-500 body-text-font">ai &amp; ml frameworks</h3>
-      <div class="tech-items">
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="tensorflow" /><span>tensorflow</span></div>
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" alt="pytorch" /><span>pytorch</span></div>
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="scikit-learn" /><span>scikit-learn</span></div>
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" alt="numpy" /><span>numpy</span></div>
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" alt="pandas" /><span>pandas</span></div>
-      </div>
-    </div>
-
-    <div class="tech-category">
-      <h3 class="manrope-500 body-text-font">web development</h3>
-      <div class="tech-items">
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="html5" /><span>html5</span></div>
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="css3" /><span>css3</span></div>
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="react" /><span>react</span></div>
-      </div>
-    </div>
-
-    <div class="tech-category">
-      <h3 class="manrope-500 body-text-font">backend &amp; devops</h3>
-      <div class="tech-items">
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="git" /><span>git</span></div>
-        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="docker" /><span>docker</span></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<div class="home-blogs-section">
-  <h2 class="pixel-art-secondary-header">blogs</h2>
-  <section class="blog-grid body-text-font"><article class="blog-card">
-      <a href="/blogs/naive-bayes-classifier/" class="blog-card-link">
-        <div class="blog-card-content">
-          <h2 class="blog-title">Naive Bayes Classifier</h2>
-          <p class="manrope-500 blog-excerpt">
-            An introduction to Naive Bayes Classifier
-          </p>
-        </div>
-      </a>
-    </article></section>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const expandBtn = document.getElementById('expand-tech-stack-btn');
-    const techDetails = document.getElementById('tech-stack-details');
-
-    if (expandBtn && techDetails) {
-      expandBtn.addEventListener('click', () => {
-        const isExpanded = techDetails.classList.toggle('expanded');
-        expandBtn.textContent = isExpanded ? 'show less <' : 'show all >';
-      });
-    }
-  });
-</script>
-
-      </div>
-    </div>
+<section class="section" id="education">
+  <h2>Education</h2>
+  <ul class="entries">
+    
+    <li class="entry">
       
-
-    <!-- START: Minimal Footer -->
-    <footer class="site-footer" role="contentinfo" aria-label="Site footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="/" class="logo montserrat-400">Sanket</a>
-          <p class="tagline body-text-font">
-            small things, carefully made — <span class="current-year"></span>
-          </p>
-        </div>
-
-        <div class="footer-social" aria-label="Social links">
-        </div>
+      <div>
+        <h3>Master of Science in Computer Science</h3>
+        <p class="entry-org">Rheinland-Pfälzische Technische Universität Kaiserslautern</p>
+        <p class="entry-date">2026 – Present</p>
+        <p>Focusing on deep learning, computer vision, and natural language processing. Researching efficient transformer architectures.</p>
       </div>
-
-      <div class="footer-bottom">
-        <a id="back-to-top" href="#" class="back-to-top body-text-font" aria-label="Back to top">Back to top ↑</a>
+    </li>
+    
+    <li class="entry">
+      <span class="entry-logo"><img src="/assets/logos/kit logo.png" alt="KIT&#39;s College of Engineering, Kolhapur"></span>
+      <div>
+        <h3>Bachelor of Technology in Computer Science (AIML)</h3>
+        <p class="entry-org">KIT&#39;s College of Engineering, Kolhapur</p>
+        <p class="entry-date">2022 – 2025</p>
+        <p>Core computer science fundamentals, data structures, and algorithms.</p>
       </div>
-    </footer>
-    <!-- END: Minimal Footer -->
+    </li>
+    
+    <li class="entry">
+      <span class="entry-logo"><img src="/assets/logos/SGP.png" alt="Sanjay Ghodawat Polytechnic, Kolhapur"></span>
+      <div>
+        <h3>Diploma in Computer Science</h3>
+        <p class="entry-org">Sanjay Ghodawat Polytechnic, Kolhapur</p>
+        <p class="entry-date">2019 – 2022</p>
+        <p>Core computer science fundamentals, data structures, and algorithms.</p>
+      </div>
+    </li>
+    
+  </ul>
+</section>
 
+<section class="section" id="skills">
+  <h2>Skills</h2>
+  <dl class="skills">
+    
+    <div class="skill-row">
+      <dt>Languages</dt>
+      <dd>
+        <ul class="chips"><li>Python</li><li>JavaScript</li></ul>
+      </dd>
+    </div>
+    
+    <div class="skill-row">
+      <dt>AI &amp; ML</dt>
+      <dd>
+        <ul class="chips"><li>PyTorch</li><li>TensorFlow</li><li>scikit-learn</li><li>NumPy</li><li>pandas</li><li>LangGraph</li><li>RAG</li></ul>
+      </dd>
+    </div>
+    
+    <div class="skill-row">
+      <dt>Web</dt>
+      <dd>
+        <ul class="chips"><li>HTML</li><li>CSS</li><li>React</li><li>Node.js</li></ul>
+      </dd>
+    </div>
+    
+    <div class="skill-row">
+      <dt>Tools</dt>
+      <dd>
+        <ul class="chips"><li>Git</li><li>Docker</li><li>Google Cloud Run</li></ul>
+      </dd>
+    </div>
+    
+  </dl>
+</section>
+
+<section class="section" id="blog">
+  <div class="section-head">
+    <h2>Writing</h2>
+    <a href="/blogs/" class="section-link">All posts →</a>
   </div>
+  <ul class="post-list">
+    
+    <li>
+      <a href="/blogs/naive-bayes-classifier/">
+        <span class="post-title">Naive Bayes Classifier</span>
+        <span class="post-desc">An introduction to Naive Bayes Classifier</span>
+      </a>
+      <time datetime="2026-04-18T12:19:03.562Z">Apr 2026</time>
+    </li>
+    
+  </ul>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 Sanket Jadhav</p>
+      <ul class="social-links" aria-label="Social links">
+        <li>
+          <a href="https://github.com/SanketJadhav7d3" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/in/sanket-jadhav-b01398237" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="https://x.com/SanketJadhav7d3" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.58-6.63 7.58H.49l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.5h2.04L6.48 3.24H4.3l13.31 17.41Z"/></svg>
+            X
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // --- Effects Toggle ---
-      const toggleBtn = document.getElementById('toggle-effects-btn');
-      const body = document.body;
-      const meteorContainer = document.querySelector('.meteors');
-      let meteorTimeoutId = null;
-
-      // --- Meteor Logic ---
-      const centerBar = document.querySelector('.center-bar, .home-center-bar');
-      let screenWidth = window.innerWidth;
-      let rightGutterWidth = 0;
-
-      function updateLayout() {
-        if (!centerBar) return;
-        const style = window.getComputedStyle(centerBar);
-        rightGutterWidth = parseFloat(style.paddingRight);
-        screenWidth = window.innerWidth;
-      }
-
-      // A ceiling, not a rate limit. At the current spacing roughly one or two
-      // are in flight at any moment; this only exists so that if the scheduling
-      // ever goes wrong again the screen cannot fill up.
-      const MAX_METEORS = 6;
-
-      const rand = (min, max) => min + Math.random() * (max - min);
-
-      function createMeteor() {
-        if (!meteorContainer) return;
-        if (meteorContainer.childElementCount >= MAX_METEORS) return;
-
-        const meteor = document.createElement('span');
-
-        // Widen the origin points to a much larger area in the top-right, completely off-screen,
-        // so they appear more randomly and from a wider, non-visible source.
-        const startX = screenWidth + (Math.random() * 500);      // Start 0-500px off-screen to the right
-        const startY = -200 - (Math.random() * 500); // Start 200-700px above the screen
-
-        meteor.style.left = `${startX}px`;
-        meteor.style.top = `${startY}px`;
-
-        // Angle, speed and tail length vary together. A fast meteor with a
-        // short tail looks like a scratch on the screen; a slow one with a long
-        // tail like a smear. Duration and tail are both derived from the same
-        // roll so they stay in proportion.
-        const haste = rand(0, 1);
-        const duration = 4.6 - haste * 2.2;          // 2.4s to 4.6s
-        meteor.style.setProperty('--angle', `${rand(126, 144).toFixed(1)}deg`);
-        meteor.style.setProperty('--tail', `${Math.round(150 + haste * 190)}px`);
-        meteor.style.setProperty('--distance', `${Math.round(rand(1500, 2100))}px`);
-        meteor.style.setProperty('--thickness', `${rand(1.4, 2.6).toFixed(2)}px`);
-        // Not every meteor is a bright one — the faint ones are what make the
-        // occasional bright one feel like an event.
-        meteor.style.setProperty('--brightness', rand(0.45, 1).toFixed(2));
-
-        meteor.style.animationName = 'animate-meteor-left';
-        meteor.style.animationDuration = `${duration.toFixed(2)}s`;
-        meteor.addEventListener('animationend', () => meteor.remove());
-        meteorContainer.appendChild(meteor);
-      }
-
-      // Meteors are scheduled with setTimeout, which keeps firing while the tab
-      // or window is in the background — but a backgrounded page is not
-      // composited, so the CSS animation never advances and `animationend`
-      // never fires. The spans therefore pile up in the DOM, and every one of
-      // them starts animating the instant you look at the page again.
-      //
-      // That is the shower-on-refocus. The scheduler is stopped whenever the
-      // page is not being looked at, and anything still queued is cleared on
-      // the way back in, so no time is ever owed for the interval spent away.
-      function scheduleNextMeteor() {
-        // Always clear first: without this, two calls leave two timers running
-        // and the rate silently doubles for the rest of the session.
-        if (meteorTimeoutId) clearTimeout(meteorTimeoutId);
-        const delay = rand(1200, 3400);
-        meteorTimeoutId = setTimeout(() => {
-          createMeteor();
-          scheduleNextMeteor();
-        }, delay);
-      }
-
-      function stopMeteorScheduler() {
-        if (meteorTimeoutId) {
-          clearTimeout(meteorTimeoutId);
-          meteorTimeoutId = null;
-        }
-        if (meteorContainer) {
-          meteorContainer.innerHTML = ''; // Clear existing meteors
-        }
-      }
-
-      const effectsAreOn = () => !body.classList.contains('effects-off');
-
-      // `visibilitychange` alone is not enough: it fires for a hidden *tab*,
-      // but a browser window sitting behind another application is still
-      // "visible" by that definition. blur and focus cover that case.
-      function pauseEffects() {
-        body.classList.add('effects-paused');
-        stopMeteorScheduler();
-      }
-
-      function resumeEffects() {
-        body.classList.remove('effects-paused');
-        if (!effectsAreOn() || document.hidden) return;
-        stopMeteorScheduler();   // discard anything queued while we were away
-        scheduleNextMeteor();
-      }
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) pauseEffects(); else resumeEffects();
-      });
-      window.addEventListener('blur', pauseEffects);
-      window.addEventListener('focus', resumeEffects);
-
-      // --- Toggle State Management ---
-      function setEffectsState(enabled) {
-        if (enabled) {
-          body.classList.remove('effects-off');
-          toggleBtn.setAttribute('aria-pressed', 'true');
-          localStorage.setItem('effectsEnabled', 'true');
-          if (!document.hidden) scheduleNextMeteor();
-        } else {
-          body.classList.add('effects-off');
-          toggleBtn.setAttribute('aria-pressed', 'false');
-          localStorage.setItem('effectsEnabled', 'false');
-          stopMeteorScheduler();
-        }
-      }
-
-      // Check localStorage for saved state, default to false (effects off)
-      const effectsEnabled = localStorage.getItem('effectsEnabled') === 'true';
-
-      // Set initial state on page load
-      setEffectsState(effectsEnabled);
-
-      toggleBtn.addEventListener('click', () => {
-        const effectsAreOff = body.classList.contains('effects-off');
-        setEffectsState(effectsAreOff); // Toggle to the opposite state
-      });
-
-      // Initial setup and listeners
-      updateLayout();
-      window.addEventListener('resize', updateLayout, { passive: true });
-    });
-
     document.addEventListener("DOMContentLoaded", function () {
-      renderMathInElement(document.body, {
-        delimiters: [
-          {left: "$$", right: "$$", display: true},
-          {left: "$", right: "$", display: false}
-        ]
+      document.getElementById("theme-toggle").addEventListener("click", function () {
+        var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+          ]
+        });
+      }
+
+      // Project-card videos show their first frame and play on hover/focus.
+      document.querySelectorAll(".card-media video").forEach(function (v) {
+        var card = v.closest("a");
+        card.addEventListener("mouseenter", function () { v.play().catch(function () {}); });
+        card.addEventListener("focus", function () { v.play().catch(function () {}); });
+        card.addEventListener("mouseleave", function () { v.pause(); });
+        card.addEventListener("blur", function () { v.pause(); });
       });
     });
   </script>
