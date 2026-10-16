@@ -1,8 +1,8 @@
 ---
-title: "cinemystery"
+title: "CineMystery"
 date: 2024-08-15
 layout: project.njk        # directly in _includes/
-summary: "a genAI based puzzle games about movies"
+summary: "A GenAI-powered puzzle game about movies."
 cover: /assets/images/cinemystery-screenshot.png
 tech:
   - eleventy

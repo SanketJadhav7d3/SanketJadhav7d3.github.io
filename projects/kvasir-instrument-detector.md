@@ -1,8 +1,8 @@
 ---
-title: "surgical instrument detector"
+title: "Surgical Instrument Detector"
 date: 2026-07-10
 layout: project.njk        # directly in _includes/
-summary: "yolo26n on endoscopic frames, plus a robustness study of what breaks it"
+summary: "YOLO26n on endoscopic frames, plus a robustness study of what breaks it."
 cover: https://raw.githubusercontent.com/SanketJadhav7d3/Kvasir-Instrument-Detector/main/results/degradation_samples.png
 tech:
   - computer vision

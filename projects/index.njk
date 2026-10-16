@@ -1,33 +1,17 @@
 ---
 title: projects
+pageTitle: Projects — Sanket Jadhav
 layout: base.njk
 permalink: /projects/
 ---
 
-<section class="projects-intro montserrat-400">
-  <h1 class="pixel-art-secondary-header">{{ title }}</h1>
-</section>
+<header class="page-head">
+  <h1>Projects</h1>
+  <p class="lede">Things I’ve built while learning: AI agents, retrieval systems, computer vision and a few games.</p>
+</header>
 
-<section class="projects-grid body-text-font">
+<div class="card-grid">
   {% for project in collections.projects %}
-    <article class="project-card">
-      <a href="{{ project.url }}" class="project-card-link">
-        {% if project.data.cover %}
-        <div class="project-card-cover">
-          {% if project.data.cover.endsWith(".mp4") %}
-          <video src="{{ project.data.cover }}" autoplay muted loop playsinline></video>
-          {% else %}
-          <img src="{{ project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
-          {% endif %}
-        </div>
-        {% endif %}
-        <div class="project-card-content">
-          <h2 class="project-title">{{ project.data.title }}</h2>
-          <p class="project-excerpt">
-            {{ project.data.summary or project.templateContent | striptags | truncate(160) }}
-          </p>
-        </div>
-      </a>
-    </article>
+    {% include "project-card.njk" %}
   {% endfor %}
-</section>
+</div>

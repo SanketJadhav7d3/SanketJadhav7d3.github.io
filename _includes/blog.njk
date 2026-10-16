@@ -2,31 +2,19 @@
 layout: base.njk
 ---
 
-{% if cover %}
-<style>
-  /* Remove top padding of the container to align the cover image flush with the top of the page */
-  .center-bar {
-    padding-top: 0;
-  }
-</style>
-{% endif %}
+<article class="project">
+  <a href="/blogs/" class="back-link">← All posts</a>
 
-<article class="blog-post montserrat-400 body-text-font {% if cover %}has-cover{% endif %}">
+  <header class="project-head">
+    <h1>{{ title }}</h1>
+    {% if date %}
+    <div class="project-meta"><time datetime="{{ date.toISOString() }}">{{ date | monthYear }}</time></div>
+    {% endif %}
+  </header>
 
   {% if cover %}
-    <div class="blog-cover-full" style="background-image: url('{{ cover }}');" aria-hidden="true"></div>
+  <figure class="project-cover"><img src="{{ cover }}" alt=""></figure>
   {% endif %}
 
-  {% if title %}
-    <h1 class="blog-title montserrat-400">{{ title }}</h1>
-  {% endif %}
-
-  {% if date %}
-    <p class="blog-date inter-300" style="opacity: 0.8; margin-bottom: 20px;">{{ date.toDateString() }}</p>
-  {% endif %}
-
-  <div class="blog-content inter-300">
-    {{ content | safe }}
-  </div>
-
+  <div class="prose">{{ content | safe }}</div>
 </article>

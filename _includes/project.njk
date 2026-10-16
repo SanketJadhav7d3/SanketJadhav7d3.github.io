@@ -2,68 +2,46 @@
 layout: base.njk
 ---
 
-<main class="project-page">
-  <a href="/projects/" class="project-back-button" aria-label="Back to Projects">←</a>
-<header class="project-header">
-<h1>{{ title }}</h1>
-{% if cover %}
-  {#- One `cover` field takes either an image or a video; the extension decides
-      which element to render, so a project page never has to say which it is.
-      An optional `coverPoster` gives the video a still to show before it
-      starts — worth setting, since without one the hero is blank until enough
-      of the file has arrived. -#}
-  {% set coverIsVideo = cover.endsWith(".mp4") or cover.endsWith(".webm") or cover.endsWith(".mov") %}
-  {% if coverIsVideo %}
-<video class="project-cover-image project-cover-video"
-       src="{{ cover }}"
-       {% if coverPoster %}poster="{{ coverPoster }}"{% endif %}
-       autoplay loop muted playsinline controls
-       aria-label="Cover video for {{ title }}"></video>
-  {% else %}
-<img class="project-cover-image" src="{{ cover }}" alt="Cover image for {{ title }}">
+<article class="project">
+  <a href="/projects/" class="back-link">← All projects</a>
+
+  <header class="project-head">
+    <h1>{{ title }}</h1>
+    {% if summary %}<p class="lede">{{ summary }}</p>{% endif %}
+
+    <div class="project-meta">
+      {% if date %}<time datetime="{{ date.toISOString() }}">{{ date | monthYear }}</time>{% endif %}
+      {% if role %}<span>{{ role }}</span>{% endif %}
+    </div>
+
+    {% if tech %}
+    <ul class="chips">{% for t in tech %}<li>{{ t }}</li>{% endfor %}</ul>
+    {% endif %}
+
+    {% if link or repo %}
+    <div class="hero-actions">
+      {% if link %}<a class="button" href="{{ link }}" target="_blank" rel="noopener">Visit site</a>{% endif %}
+      {% if repo %}<a class="button button-secondary" href="{{ repo }}" target="_blank" rel="noopener">View source</a>{% endif %}
+    </div>
+    {% endif %}
+  </header>
+
+  {% if cover %}
+    {#- One `cover` field takes an image or a video; the extension decides which
+        element to render. An optional `coverPoster` gives a video a still frame
+        to show before it starts. -#}
+    {% set coverIsVideo = cover.endsWith(".mp4") or cover.endsWith(".webm") or cover.endsWith(".mov") %}
+    <figure class="project-cover">
+    {% if coverIsVideo %}
+      <video src="{{ cover }}"
+             {% if coverPoster %}poster="{{ coverPoster }}"{% endif %}
+             autoplay loop muted playsinline controls
+             aria-label="Cover video for {{ title }}"></video>
+    {% else %}
+      <img src="{{ cover }}" alt="Cover image for {{ title }}">
+    {% endif %}
+    </figure>
   {% endif %}
-{% endif %}
-<div class="project-meta-top">
-{%- if date %}<time datetime="{{ date }}">{{ date }}</time>{% endif -%}
-{%- if role %}<span class="project-role">{{ role }}</span>{% endif -%}
-</div>
-</header>
 
-
-<div class="project-body-grid">
-
-
-<aside class="project-sidebar">
-{% if tech %}
-<h1 class="manrope-500">tech stack</h1>
-<ul class="tech-list">{% for t in tech %}<li>{{ t }}</li>{% endfor %}</ul>
-{% endif %}
-
-{%- if link or repo -%}
-<h1 class="manrope-500">links</h1>
-<div class="project-links">
-  {% if link %}
-    <a class="btn" href="{{ link }}" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;">
-        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-        <polyline points="15 3 21 3 21 9"></polyline>
-        <line x1="10" y1="14" x2="21" y2="3"></line>
-      </svg>
-      Visit site
-    </a>
-  {% endif %}
-  {% if repo %}
-    <a class="btn secondary" href="{{ repo }}" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-      View repo
-    </a>
-  {% endif %}
-</div>
-{% endif %}
-
-</aside>
-
-<section class="project-body">{{ content | safe }}</section>
-
-</div>
-</main>
+  <div class="prose">{{ content | safe }}</div>
+</article>

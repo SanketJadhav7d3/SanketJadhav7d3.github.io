@@ -1,23 +1,23 @@
 ---
 title: blogs
+pageTitle: Blog — Sanket Jadhav
 layout: base.njk
 permalink: /blogs/
 ---
 
-<section class="projects-intro montserrat-400">
-  <h1 class="pixel-art-secondary-header">{{ title }}</h1>
-  <p class="body-text-font">
-    Explore my latest blog posts. Click on any card to read the full post.
-  </p>
-</section>
+<header class="page-head">
+  <h1>Blog</h1>
+  <p class="lede">Notes on things I’m learning.</p>
+</header>
 
-<section class="blog-index-list body-text-font">
+<ul class="post-list">
   {% for blog in collections.blogs %}
-    <article class="blog-item">
-      <a href="{{ blog.url }}" class="blog-item-link">
-        <span class="blog-item-date dim-text">{{ blog.date.toDateString() }}</span>
-        <h2 class="blog-item-title">{{ blog.data.title }}</h2>
-      </a>
-    </article>
+  <li>
+    <a href="{{ blog.url }}">
+      <span class="post-title">{{ blog.data.title }}</span>
+      <span class="post-desc">{{ blog.data.description }}</span>
+    </a>
+    <time datetime="{{ blog.date.toISOString() }}">{{ blog.date | monthYear }}</time>
+  </li>
   {% endfor %}
-</section>
+</ul>

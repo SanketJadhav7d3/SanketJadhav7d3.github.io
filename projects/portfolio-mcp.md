@@ -1,8 +1,8 @@
 ---
-title: "portfolio mcp server"
+title: "Portfolio MCP Server"
 date: 2026-08-21
 layout: project.njk        # directly in _includes/
-summary: "an mcp server that lets any llm read this portfolio as structured data"
+summary: "An MCP server that lets any LLM read this portfolio as structured data."
 tech:
   - mcp
   - node.js

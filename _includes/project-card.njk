@@ -1,0 +1,20 @@
+<article class="card">
+  <a href="{{ project.url }}" class="card-link">
+    {% if project.data.cover %}
+    <div class="card-media">
+      {% if project.data.cover.endsWith(".mp4") %}
+      <video src="{{ project.data.cover }}#t=0.1" preload="metadata" muted loop playsinline aria-hidden="true"></video>
+      {% else %}
+      <img src="{{ project.data.cover }}" alt="" loading="lazy">
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="card-body">
+      <h3>{{ project.data.title }}</h3>
+      <p>{{ project.data.summary }}</p>
+      {% if project.data.tech %}
+      <ul class="chips chips-small">{% for t in project.data.tech | head(4) %}<li>{{ t }}</li>{% endfor %}</ul>
+      {% endif %}
+    </div>
+  </a>
+</article>

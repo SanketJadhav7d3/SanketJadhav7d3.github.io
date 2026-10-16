@@ -1,8 +1,8 @@
 ---
-title: "research agent"
+title: "Research Agent"
 date: 2026-08-22
 layout: project.njk        # directly in _includes/
-summary: "an agentic researcher that scores its own work and loops until it's confident"
+summary: "An agentic researcher that scores its own work and loops until it’s confident."
 tech:
   - agentic ai
   - langgraph

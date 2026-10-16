@@ -1,8 +1,8 @@
 ---
-title: "talk to repo"
+title: "Talk to Repo"
 date: 2026-05-12
 layout: project.njk        # directly in _includes/
-summary: "Structural code intelligence engine"
+summary: "A structural code intelligence engine."
 cover: /assets/videos/talktorepo.mp4
 tech:
   - agentic ai

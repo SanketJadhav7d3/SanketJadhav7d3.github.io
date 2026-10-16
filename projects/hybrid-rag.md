@@ -1,8 +1,8 @@
 ---
-title: "hybrid rag for sec filings"
+title: "Hybrid RAG for SEC Filings"
 date: 2026-09-02
 layout: project.njk        # directly in _includes/
-summary: "dense retrieval alone misses 45% of the answers — here's what fixes it"
+summary: "Dense retrieval alone misses 45% of the answers. Here’s what fixes it."
 tech:
   - rag
   - python
